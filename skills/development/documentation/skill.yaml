@@ -1,0 +1,9 @@
+name: documentation
+version: 1.0.0
+type: skill
+description: Generates clean, concise API documentation, architecture notes, and inline docstrings without marketing fluff.
+category: development
+
+triggers:
+  - generate-docs
+  - update-readme

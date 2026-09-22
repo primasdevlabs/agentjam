@@ -1,0 +1,15 @@
+name: django
+version: 1.0.0
+type: stack
+description: Stack profile for Django applications (Django REST Framework, Pytest, Ruff).
+framework: Django
+ecosystem: backend
+defaults:
+  language: python
+  package_manager: uv
+  linter: ruff
+  test_runner: pytest
+  style_system: none
+conventions:
+  api: django-rest-framework
+  database: django-orm

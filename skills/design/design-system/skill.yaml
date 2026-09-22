@@ -1,0 +1,9 @@
+name: design-system
+version: 1.0.0
+type: skill
+description: Enforces design token usage, component reuse, and architectural consistency for design systems.
+category: design
+
+triggers:
+  - design-system
+  - build-components

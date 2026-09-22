@@ -1,41 +1,16 @@
-profile: nestjs-production
+name: nestjs
 version: 1.0.0
-description: Production stack profile for NestJS, TypeScript, Prisma ORM, and PostgreSQL.
-
-stack:
-  language:
-    name: typescript
-    version: "5.x"
-    version_policy: project-compatible
-  backend:
-    framework: nestjs
-    version: "10.x"
-    version_policy: latest-compatible
-  database:
-    engine: postgresql
-    version: "16"
-  orm:
-    name: prisma
-    version: "5.x"
-
-sources:
-  - https://docs.nestjs.com
-  - https://www.prisma.io/docs
-
-dependencies:
-  allowed:
-    - "@nestjs/core"
-    - "@nestjs/common"
-    - "@prisma/client"
-    - class-validator
-    - class-transformer
-  forbidden:
-    - express
-    - mongodb
-    - mongoose
-
-validation:
-  commands:
-    lint: "npm run lint"
-    typecheck: "npx tsc --noEmit"
-    test: "npm run test"
+type: stack
+description: Stack profile for NestJS enterprise TypeScript backend applications (Prisma / TypeORM, Jest / Vitest, Class Validator).
+framework: NestJS
+ecosystem: backend
+defaults:
+  language: typescript
+  package_manager: npm
+  linter: eslint
+  test_runner: jest
+  style_system: none
+conventions:
+  architecture: modular-clean-architecture
+  api: controllers-and-dtos
+  validation: class-validator

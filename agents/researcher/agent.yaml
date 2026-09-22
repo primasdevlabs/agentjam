@@ -1,0 +1,19 @@
+name: researcher
+version: 1.0.0
+type: agent
+description: Technology researcher responsible for discovering authoritative documentation, API references, library versions, and ecosystem updates.
+author: AgentJam Team
+license: MIT
+skills:
+  - documentation-research
+  - technology-research
+  - current-conventions
+tools:
+  - filesystem
+  - terminal
+inputs:
+  - query
+  - technology-name
+outputs:
+  - research-summary
+  - api-reference-notes

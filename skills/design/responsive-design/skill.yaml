@@ -1,0 +1,9 @@
+name: responsive-design
+version: 1.0.0
+type: skill
+description: Ensures fluid, breakpoint-governed layouts across mobile, tablet, desktop, and ultra-wide viewports.
+category: design
+
+triggers:
+  - responsive-design
+  - mobile-friendly

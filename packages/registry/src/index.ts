@@ -20,120 +20,102 @@ export interface RegistryIndex {
   entries: RegistryEntry[];
 }
 
+function findManifestFiles(dir: string, targetFileName: string): string[] {
+  const results: string[] = [];
+  if (!fs.existsSync(dir)) return results;
+
+  function walk(currentDir: string) {
+    const files = fs.readdirSync(currentDir, { withFileTypes: true });
+    for (const file of files) {
+      const fullPath = path.join(currentDir, file.name);
+      if (file.isDirectory()) {
+        walk(fullPath);
+      } else if (file.isFile() && file.name === targetFileName) {
+        results.push(fullPath);
+      }
+    }
+  }
+
+  walk(dir);
+  return results;
+}
+
 export function buildRegistryIndex(rootDir: string): RegistryIndex {
   const entries: RegistryEntry[] = [];
 
   // Agents
-  const agentsDir = path.join(rootDir, 'agents');
-  if (fs.existsSync(agentsDir)) {
-    const items = fs.readdirSync(agentsDir, { withFileTypes: true });
-    for (const item of items) {
-      if (item.isDirectory()) {
-        const p = path.join(agentsDir, item.name);
-        if (fs.existsSync(path.join(p, 'agent.yaml'))) {
-          const { manifest } = parseAgent(p);
-          entries.push({
-            name: manifest.name,
-            version: manifest.version,
-            type: 'agent',
-            description: manifest.description,
-            path: `agents/${item.name}`,
-          });
-        }
-      }
-    }
+  const agentFiles = findManifestFiles(path.join(rootDir, 'agents'), 'agent.yaml');
+  for (const file of agentFiles) {
+    const dir = path.dirname(file);
+    const relPath = path.relative(rootDir, dir).replace(/\\/g, '/');
+    const { manifest } = parseAgent(dir);
+    entries.push({
+      name: manifest.name,
+      version: manifest.version,
+      type: 'agent',
+      description: manifest.description,
+      path: relPath,
+    });
   }
 
   // Skills
-  const skillsDir = path.join(rootDir, 'skills');
-  if (fs.existsSync(skillsDir)) {
-    const items = fs.readdirSync(skillsDir, { recursive: true, withFileTypes: true });
-    for (const item of items) {
-      if (item.isDirectory()) {
-        const yamlPath = path.join(item.path || skillsDir, item.name, 'skill.yaml');
-        if (fs.existsSync(yamlPath)) {
-          const p = path.dirname(yamlPath);
-          const relPath = path.relative(rootDir, p).replace(/\\/g, '/');
-          const { manifest } = parseSkill(p);
-          entries.push({
-            name: manifest.name,
-            version: manifest.version,
-            type: 'skill',
-            description: manifest.description,
-            path: relPath,
-          });
-        }
-      }
-    }
+  const skillFiles = findManifestFiles(path.join(rootDir, 'skills'), 'skill.yaml');
+  for (const file of skillFiles) {
+    const dir = path.dirname(file);
+    const relPath = path.relative(rootDir, dir).replace(/\\/g, '/');
+    const { manifest } = parseSkill(dir);
+    entries.push({
+      name: manifest.name,
+      version: manifest.version,
+      type: 'skill',
+      description: manifest.description,
+      path: relPath,
+    });
   }
 
   // Tools
-  const toolsDir = path.join(rootDir, 'tools');
-  if (fs.existsSync(toolsDir)) {
-    const items = fs.readdirSync(toolsDir, { recursive: true, withFileTypes: true });
-    for (const item of items) {
-      if (item.isDirectory()) {
-        const yamlPath = path.join(item.path || toolsDir, item.name, 'tool.yaml');
-        if (fs.existsSync(yamlPath)) {
-          const p = path.dirname(yamlPath);
-          const relPath = path.relative(rootDir, p).replace(/\\/g, '/');
-          const { manifest } = parseTool(p);
-          entries.push({
-            name: manifest.name,
-            version: manifest.version,
-            type: 'tool',
-            description: manifest.description,
-            path: relPath,
-          });
-        }
-      }
-    }
+  const toolFiles = findManifestFiles(path.join(rootDir, 'tools'), 'tool.yaml');
+  for (const file of toolFiles) {
+    const dir = path.dirname(file);
+    const relPath = path.relative(rootDir, dir).replace(/\\/g, '/');
+    const { manifest } = parseTool(dir);
+    entries.push({
+      name: manifest.name,
+      version: manifest.version,
+      type: 'tool',
+      description: manifest.description,
+      path: relPath,
+    });
   }
 
   // Workflows
-  const workflowsDir = path.join(rootDir, 'workflows');
-  if (fs.existsSync(workflowsDir)) {
-    const items = fs.readdirSync(workflowsDir, { recursive: true, withFileTypes: true });
-    for (const item of items) {
-      if (item.isDirectory()) {
-        const yamlPath = path.join(item.path || workflowsDir, item.name, 'workflow.yaml');
-        if (fs.existsSync(yamlPath)) {
-          const p = path.dirname(yamlPath);
-          const relPath = path.relative(rootDir, p).replace(/\\/g, '/');
-          const { manifest } = parseWorkflow(p);
-          entries.push({
-            name: manifest.name,
-            version: manifest.version,
-            type: 'workflow',
-            description: manifest.description,
-            path: relPath,
-          });
-        }
-      }
-    }
+  const workflowFiles = findManifestFiles(path.join(rootDir, 'workflows'), 'workflow.yaml');
+  for (const file of workflowFiles) {
+    const dir = path.dirname(file);
+    const relPath = path.relative(rootDir, dir).replace(/\\/g, '/');
+    const { manifest } = parseWorkflow(dir);
+    entries.push({
+      name: manifest.name,
+      version: manifest.version,
+      type: 'workflow',
+      description: manifest.description,
+      path: relPath,
+    });
   }
 
   // Languages
-  const languagesDir = path.join(rootDir, 'languages');
-  if (fs.existsSync(languagesDir)) {
-    const items = fs.readdirSync(languagesDir, { recursive: true, withFileTypes: true });
-    for (const item of items) {
-      if (item.isDirectory()) {
-        const yamlPath = path.join(item.path || languagesDir, item.name, 'language.yaml');
-        if (fs.existsSync(yamlPath)) {
-          const p = path.dirname(yamlPath);
-          const relPath = path.relative(rootDir, p).replace(/\\/g, '/');
-          const manifest = parseLanguage(p);
-          entries.push({
-            name: manifest.name,
-            version: '1.0.0',
-            type: 'language',
-            description: `${manifest.name} language definition (${manifest.ecosystem} ecosystem)`,
-            path: relPath,
-          });
-        }
-      }
-    }
+  const languageFiles = findManifestFiles(path.join(rootDir, 'languages'), 'language.yaml');
+  for (const file of languageFiles) {
+    const dir = path.dirname(file);
+    const relPath = path.relative(rootDir, dir).replace(/\\/g, '/');
+    const manifest = parseLanguage(dir);
+    entries.push({
+      name: manifest.name,
+      version: '1.0.0',
+      type: 'language',
+      description: `${manifest.name} language definition (${manifest.ecosystem} ecosystem)`,
+      path: relPath,
+    });
   }
 
   return {

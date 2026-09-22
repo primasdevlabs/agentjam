@@ -14,129 +14,114 @@ export interface ValidationResult {
   errors: ValidationError[];
 }
 
+function findManifestFiles(dir: string, targetFileName: string): string[] {
+  const results: string[] = [];
+  if (!fs.existsSync(dir)) return results;
+
+  function walk(currentDir: string) {
+    const files = fs.readdirSync(currentDir, { withFileTypes: true });
+    for (const file of files) {
+      const fullPath = path.join(currentDir, file.name);
+      if (file.isDirectory()) {
+        walk(fullPath);
+      } else if (file.isFile() && file.name === targetFileName) {
+        results.push(fullPath);
+      }
+    }
+  }
+
+  walk(dir);
+  return results;
+}
+
 export function validateRepository(rootDir: string): ValidationResult {
   const errors: ValidationError[] = [];
 
   // 1. Validate agents
-  const agentsDir = path.join(rootDir, 'agents');
-  if (fs.existsSync(agentsDir)) {
-    const agents = fs.readdirSync(agentsDir, { withFileTypes: true });
-    for (const dirent of agents) {
-      if (dirent.isDirectory()) {
-        const agentPath = path.join(agentsDir, dirent.name);
-        const yamlPath = path.join(agentPath, 'agent.yaml');
-        if (fs.existsSync(yamlPath)) {
-          try {
-            const bundle = parseAgent(agentPath);
-            if (!bundle.instructions['role.md']) {
-              errors.push({
-                resourcePath: agentPath,
-                field: 'instructions/role.md',
-                message: `Agent '${dirent.name}' is missing role.md in instructions/`,
-                severity: 'warning',
-              });
-            }
-          } catch (err: any) {
-            errors.push({
-              resourcePath: agentPath,
-              message: `Invalid agent.yaml: ${err.message}`,
-              severity: 'error',
-            });
-          }
-        }
+  const agentFiles = findManifestFiles(path.join(rootDir, 'agents'), 'agent.yaml');
+  for (const file of agentFiles) {
+    const agentPath = path.dirname(file);
+    try {
+      const bundle = parseAgent(agentPath);
+      if (!bundle.instructions['role.md']) {
+        errors.push({
+          resourcePath: agentPath,
+          field: 'instructions/role.md',
+          message: `Agent '${bundle.manifest.name}' is missing role.md in instructions/`,
+          severity: 'warning',
+        });
       }
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      errors.push({
+        resourcePath: agentPath,
+        message: `Invalid agent.yaml: ${msg}`,
+        severity: 'error',
+      });
     }
   }
 
   // 2. Validate skills
-  const skillsDir = path.join(rootDir, 'skills');
-  if (fs.existsSync(skillsDir)) {
-    const skills = fs.readdirSync(skillsDir, { recursive: true, withFileTypes: true });
-    for (const dirent of skills) {
-      if (dirent.isDirectory()) {
-        const yamlPath = path.join(dirent.path || skillsDir, dirent.name, 'skill.yaml');
-        if (fs.existsSync(yamlPath)) {
-          const skillPath = path.dirname(yamlPath);
-          try {
-            parseSkill(skillPath);
-          } catch (err: any) {
-            errors.push({
-              resourcePath: skillPath,
-              message: `Invalid skill.yaml: ${err.message}`,
-              severity: 'error',
-            });
-          }
-        }
-      }
+  const skillFiles = findManifestFiles(path.join(rootDir, 'skills'), 'skill.yaml');
+  for (const file of skillFiles) {
+    const skillPath = path.dirname(file);
+    try {
+      parseSkill(skillPath);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      errors.push({
+        resourcePath: skillPath,
+        message: `Invalid skill.yaml: ${msg}`,
+        severity: 'error',
+      });
     }
   }
 
   // 3. Validate tools
-  const toolsDir = path.join(rootDir, 'tools');
-  if (fs.existsSync(toolsDir)) {
-    const tools = fs.readdirSync(toolsDir, { recursive: true, withFileTypes: true });
-    for (const dirent of tools) {
-      if (dirent.isDirectory()) {
-        const yamlPath = path.join(dirent.path || toolsDir, dirent.name, 'tool.yaml');
-        if (fs.existsSync(yamlPath)) {
-          const toolPath = path.dirname(yamlPath);
-          try {
-            parseTool(toolPath);
-          } catch (err: any) {
-            errors.push({
-              resourcePath: toolPath,
-              message: `Invalid tool.yaml: ${err.message}`,
-              severity: 'error',
-            });
-          }
-        }
-      }
+  const toolFiles = findManifestFiles(path.join(rootDir, 'tools'), 'tool.yaml');
+  for (const file of toolFiles) {
+    const toolPath = path.dirname(file);
+    try {
+      parseTool(toolPath);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      errors.push({
+        resourcePath: toolPath,
+        message: `Invalid tool.yaml: ${msg}`,
+        severity: 'error',
+      });
     }
   }
 
   // 4. Validate workflows
-  const workflowsDir = path.join(rootDir, 'workflows');
-  if (fs.existsSync(workflowsDir)) {
-    const workflows = fs.readdirSync(workflowsDir, { recursive: true, withFileTypes: true });
-    for (const dirent of workflows) {
-      if (dirent.isDirectory()) {
-        const yamlPath = path.join(dirent.path || workflowsDir, dirent.name, 'workflow.yaml');
-        if (fs.existsSync(yamlPath)) {
-          const workflowPath = path.dirname(yamlPath);
-          try {
-            parseWorkflow(workflowPath);
-          } catch (err: any) {
-            errors.push({
-              resourcePath: workflowPath,
-              message: `Invalid workflow.yaml: ${err.message}`,
-              severity: 'error',
-            });
-          }
-        }
-      }
+  const workflowFiles = findManifestFiles(path.join(rootDir, 'workflows'), 'workflow.yaml');
+  for (const file of workflowFiles) {
+    const workflowPath = path.dirname(file);
+    try {
+      parseWorkflow(workflowPath);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      errors.push({
+        resourcePath: workflowPath,
+        message: `Invalid workflow.yaml: ${msg}`,
+        severity: 'error',
+      });
     }
   }
 
   // 5. Validate languages
-  const languagesDir = path.join(rootDir, 'languages');
-  if (fs.existsSync(languagesDir)) {
-    const langs = fs.readdirSync(languagesDir, { recursive: true, withFileTypes: true });
-    for (const dirent of langs) {
-      if (dirent.isDirectory()) {
-        const yamlPath = path.join(dirent.path || languagesDir, dirent.name, 'language.yaml');
-        if (fs.existsSync(yamlPath)) {
-          const langPath = path.dirname(yamlPath);
-          try {
-            parseLanguage(langPath);
-          } catch (err: any) {
-            errors.push({
-              resourcePath: langPath,
-              message: `Invalid language.yaml: ${err.message}`,
-              severity: 'error',
-            });
-          }
-        }
-      }
+  const languageFiles = findManifestFiles(path.join(rootDir, 'languages'), 'language.yaml');
+  for (const file of languageFiles) {
+    const langPath = path.dirname(file);
+    try {
+      parseLanguage(langPath);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      errors.push({
+        resourcePath: langPath,
+        message: `Invalid language.yaml: ${msg}`,
+        severity: 'error',
+      });
     }
   }
 

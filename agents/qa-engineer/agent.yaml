@@ -1,0 +1,19 @@
+name: qa-engineer
+version: 1.0.0
+type: agent
+description: Quality assurance and test automation engineer responsible for test coverage, regression testing, and verification.
+author: AgentJam Team
+license: MIT
+skills:
+  - testing
+  - error-handling
+  - code-quality
+tools:
+  - filesystem
+  - terminal
+inputs:
+  - codebase
+  - test-spec
+outputs:
+  - test-suite
+  - test-results

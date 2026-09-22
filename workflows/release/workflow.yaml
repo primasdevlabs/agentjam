@@ -1,0 +1,27 @@
+name: release
+version: 1.0.0
+type: workflow
+description: Pre-release audit and tag creation workflow validating changelog, semver tagging, security audit, and build bundle integrity.
+mode: multi-agent
+agents:
+  - code-reviewer
+  - security-engineer
+  - qa-engineer
+steps:
+  - id: step-1
+    name: Security Scan
+    agent: security-engineer
+    description: Confirm zero secret leaks or high CVE vulnerabilities.
+  - id: step-2
+    name: QA Verification
+    agent: qa-engineer
+    description: Execute build scripts and test suites.
+  - id: step-3
+    name: Release Tagging & Changelog
+    agent: code-reviewer
+    description: Generate changelog and verify semver version bump.
+inputs:
+  - release-type
+outputs:
+  - release-tag
+  - changelog

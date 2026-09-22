@@ -1,0 +1,10 @@
+name: ui-copy
+version: 1.0.0
+type: skill
+description: Direct, human UI copy generation enforcing strict anti-marketing slop rules.
+category: design
+
+triggers:
+  - copy
+  - ui-text
+  - microcopy

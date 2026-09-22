@@ -1,0 +1,21 @@
+name: backend-engineer
+version: 1.0.0
+type: agent
+description: Backend systems specialist focused on API design, database schemas, performance, security, and domain services.
+author: AgentJam Team
+license: MIT
+skills:
+  - architecture
+  - error-handling
+  - secure-coding
+  - testing
+  - secrets
+tools:
+  - filesystem
+  - terminal
+inputs:
+  - api-spec
+  - schema-def
+outputs:
+  - service-code
+  - migrations

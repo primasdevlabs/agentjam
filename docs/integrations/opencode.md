@@ -1,0 +1,1 @@
+# OpenCode documentation placeholder

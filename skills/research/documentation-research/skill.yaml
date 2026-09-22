@@ -1,0 +1,9 @@
+name: documentation-research
+version: 1.0.0
+type: skill
+description: Retrieves and verifies up-to-date framework and library documentation before generating implementation code.
+category: research
+
+triggers:
+  - fetch-docs
+  - research-documentation

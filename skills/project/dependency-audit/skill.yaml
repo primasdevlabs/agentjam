@@ -1,0 +1,9 @@
+name: dependency-audit
+version: 1.0.0
+type: skill
+description: Scans project dependencies for deprecated packages, version drift, security advisories, and missing peer dependencies.
+category: project
+
+triggers:
+  - audit-dependencies
+  - check-packages

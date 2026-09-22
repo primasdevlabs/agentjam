@@ -1,0 +1,14 @@
+name: rails
+version: 1.0.0
+type: stack
+description: Stack profile for Ruby on Rails 7/8 applications (ActiveRecord, RSpec, RuboCop).
+framework: Rails
+ecosystem: backend
+defaults:
+  language: ruby
+  package_manager: bundler
+  linter: rubocop
+  test_runner: rspec
+  style_system: tailwind
+conventions:
+  database: activerecord

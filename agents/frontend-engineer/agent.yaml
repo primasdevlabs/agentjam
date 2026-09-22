@@ -1,0 +1,23 @@
+name: frontend-engineer
+version: 1.0.0
+type: agent
+description: Frontend UI specialist focused on modern web components, design system fidelity, anti-slop governance, and responsive user experiences.
+author: AgentJam Team
+license: MIT
+skills:
+  - design-discovery
+  - anti-slop
+  - design-system
+  - responsive-design
+  - accessibility
+  - ui-copy
+  - visual-review
+tools:
+  - filesystem
+  - browser
+inputs:
+  - ui-spec
+  - design-tokens
+outputs:
+  - component-code
+  - stylesheets

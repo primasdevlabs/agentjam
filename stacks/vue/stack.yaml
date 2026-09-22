@@ -1,0 +1,15 @@
+name: vue
+version: 1.0.0
+type: stack
+description: Stack profile for Vue 3 Single Page Applications (Composition API, Script Setup, Vite, Pinia).
+framework: Vue
+ecosystem: web
+defaults:
+  language: typescript
+  package_manager: pnpm
+  linter: eslint
+  test_runner: vitest
+  style_system: scoped-css
+conventions:
+  api: script-setup
+  state: pinia

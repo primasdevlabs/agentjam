@@ -1,0 +1,19 @@
+name: security-engineer
+version: 1.0.0
+type: agent
+description: Cybersecurity engineer specializing in threat modeling, vulnerability scanning, secret detection, and secure boundary enforcement.
+author: AgentJam Team
+license: MIT
+skills:
+  - secure-coding
+  - dependency-security
+  - secrets
+tools:
+  - filesystem
+  - terminal
+inputs:
+  - codebase
+  - dependency-manifest
+outputs:
+  - security-report
+  - remediation-plan

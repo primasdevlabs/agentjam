@@ -1,24 +1,22 @@
 name: software-engineer
 version: 1.0.0
 type: agent
-description: Versatile software engineer agent capable of implementing features, refactoring, and fixing bugs.
-author: AgentJam Community
+description: Generalist software engineer capable of full-stack feature development, refactoring, and bug fixing.
+author: AgentJam Team
 license: MIT
-
 skills:
-  - software-development
+  - architecture
+  - code-quality
+  - error-handling
   - testing
-
+  - documentation
+  - secure-coding
 tools:
   - filesystem
   - terminal
-  - git
-
 inputs:
-  - specification
+  - requirement-spec
   - codebase
-
 outputs:
-  - source_code
-  - tests
-  - documentation
+  - source-code
+  - pull-request

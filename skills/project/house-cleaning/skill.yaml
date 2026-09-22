@@ -1,0 +1,9 @@
+name: house-cleaning
+version: 1.0.0
+type: skill
+description: Audits and remediates dead code, unused dependencies, inconsistent formatting, broken imports, and AI slop artifacts.
+category: project
+
+triggers:
+  - house-cleaning
+  - cleanup-codebase

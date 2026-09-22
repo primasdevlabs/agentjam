@@ -1,35 +1,16 @@
-profile: laravel-production
+name: laravel
 version: 1.0.0
-description: Production stack profile for Laravel 11/12, PHP 8.3+, Eloquent, Pest/PHPUnit, and Pint.
-
-stack:
-  language:
-    name: php
-    version: "8.3+"
-    version_policy: current-stable
-  backend:
-    framework: laravel
-    version: "11.x"
-    version_policy: latest-compatible
+type: stack
+description: Stack profile for modern Laravel 11/12 applications (modular monolith, Inertia.js / Blade, Pest testing, Laravel Pint formatting).
+framework: Laravel
+ecosystem: backend
+defaults:
+  language: php
   package_manager: composer
-  testing: pest
-  linting: pint
-  formatting: pint
-
-sources:
-  - https://laravel.com/docs
-  - https://pestphp.com
-
-dependencies:
-  allowed:
-    - laravel/framework
-    - laravel/sanctum
-    - pestphp/pest
-  forbidden:
-    - codeigniter/framework
-    - symfony/symfony
-
-validation:
-  commands:
-    lint: "./vendor/bin/pint --test"
-    test: "./vendor/bin/pest"
+  linter: pint
+  test_runner: pest
+  style_system: tailwind
+conventions:
+  architecture: modular-monolith
+  api: form-requests
+  database: eloquent-orm

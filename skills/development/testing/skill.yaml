@@ -1,0 +1,9 @@
+name: testing
+version: 1.0.0
+type: skill
+description: Guides unit, integration, and end-to-end test creation colocated with feature code.
+category: development
+
+triggers:
+  - add-tests
+  - unit-testing

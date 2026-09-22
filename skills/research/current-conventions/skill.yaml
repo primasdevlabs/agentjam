@@ -1,0 +1,9 @@
+name: current-conventions
+version: 1.0.0
+type: skill
+description: Discovers and enforces current ecosystem conventions and active project patterns over outdated training data practices.
+category: research
+
+triggers:
+  - verify-conventions
+  - current-rules

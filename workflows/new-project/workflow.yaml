@@ -1,0 +1,28 @@
+name: new-project
+version: 1.0.0
+type: workflow
+description: Guided workflow for initializing a new harness-agnostic project with AgentJam rules, stack profile, and design system governance.
+mode: multi-agent
+agents:
+  - architect
+  - ui-ux-designer
+  - software-engineer
+steps:
+  - id: step-1
+    name: Stack & Architecture Selection
+    agent: architect
+    description: Determine target tech stack, project layout, and core domain boundaries.
+  - id: step-2
+    name: Design Governance Setup
+    agent: ui-ux-designer
+    description: Establish project color tokens, typography scales, icon set, and anti-slop rules.
+  - id: step-3
+    name: Project Initialization
+    agent: software-engineer
+    description: Scaffold directory structure, configuration manifests, and linting rules.
+inputs:
+  - project-name
+  - target-stack
+outputs:
+  - codebase
+  - project-profile

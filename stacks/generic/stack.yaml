@@ -1,0 +1,14 @@
+name: generic
+version: 1.0.0
+type: stack
+description: Fallback stack profile for polyglot, unclassified, or custom codebases.
+framework: Custom
+ecosystem: general
+defaults:
+  language: polyglot
+  package_manager: standard
+  linter: default
+  test_runner: default
+  style_system: default
+conventions:
+  architecture: modular

@@ -1,0 +1,9 @@
+name: existing-project-audit
+version: 1.0.0
+type: skill
+description: Audits existing codebase structure, dependencies, architecture, design system, security, and tooling.
+category: project
+
+triggers:
+  - project-audit
+  - house-cleaning

@@ -1,0 +1,15 @@
+name: react
+version: 1.0.0
+type: stack
+description: Stack profile for React single page applications with Vite, TypeScript, and Vitest.
+framework: React
+ecosystem: web
+defaults:
+  language: typescript
+  package_manager: pnpm
+  linter: biome
+  test_runner: vitest
+  style_system: vanilla-css
+conventions:
+  bundler: vite
+  state: zustand

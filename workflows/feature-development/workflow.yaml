@@ -1,37 +1,31 @@
 name: feature-development
 version: 1.0.0
 type: workflow
-description: End-to-end feature development workflow connecting product spec, implementation, testing, and code review.
+description: End-to-end workflow for designing, implementing, testing, and reviewing a new software feature.
 mode: multi-agent
-
 agents:
+  - researcher
   - software-engineer
+  - qa-engineer
   - code-reviewer
-
-skills:
-  - software-development
-  - testing
-  - code-review
-
 steps:
   - id: step-1
-    name: implement-feature
-    agent: software-engineer
-    description: Implement feature changes according to specification.
+    name: Context & Research
+    agent: researcher
+    description: Fetch documentation and inspect active project conventions.
   - id: step-2
-    name: write-and-run-tests
+    name: Feature Implementation
     agent: software-engineer
-    skill: testing
-    description: Add unit and integration tests and verify test suite passes.
+    description: Write production code according to modularity and security policies.
   - id: step-3
-    name: review-implementation
+    name: Test Automation
+    agent: qa-engineer
+    description: Write unit and integration tests covering feature code.
+  - id: step-4
+    name: Code Review
     agent: code-reviewer
-    skill: code-review
-    description: Review implementation quality and security before merging.
-
+    description: Audit feature implementation against AgentJam policies.
 inputs:
-  - feature_specification
-
+  - feature-spec
 outputs:
-  - pull_request
-  - test_report
+  - pull-request

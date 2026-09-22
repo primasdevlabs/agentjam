@@ -1,0 +1,9 @@
+name: stack-detection
+version: 1.0.0
+type: skill
+description: Detects technologies, frameworks, language versions, build tools, and containerization in a codebase.
+category: project
+
+triggers:
+  - detect-stack
+  - identify-framework

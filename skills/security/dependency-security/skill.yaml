@@ -1,0 +1,9 @@
+name: dependency-security
+version: 1.0.0
+type: skill
+description: Audits third-party dependencies for known vulnerabilities, CVEs, and insecure transitive packages.
+category: security
+
+triggers:
+  - audit-vulnerabilities
+  - cve-scan

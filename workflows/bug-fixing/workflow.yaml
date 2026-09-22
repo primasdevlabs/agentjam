@@ -1,0 +1,26 @@
+name: bug-fixing
+version: 1.0.0
+type: workflow
+description: Systematic workflow for reproducing, isolating, fixing, and verifying bug resolutions.
+mode: multi-agent
+agents:
+  - software-engineer
+  - qa-engineer
+steps:
+  - id: step-1
+    name: Reproduction & Analysis
+    agent: software-engineer
+    description: Inspect full un-truncated stack trace logs and write reproducing test case.
+  - id: step-2
+    name: Root Cause Remediation
+    agent: software-engineer
+    description: Fix underlying contract break without superficial symptom patching.
+  - id: step-3
+    name: Verification
+    agent: qa-engineer
+    description: Run test suite to verify fix and prevent regression.
+inputs:
+  - error-log
+  - reproduction-steps
+outputs:
+  - bugfix-commit

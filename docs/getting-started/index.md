@@ -1,16 +1,12 @@
 # Getting Started with AgentJam
 
-AgentJam is an open-source, community-driven collection and ecosystem for AI agents, skills, tools, and workflows.
+AgentJam is an open-source, harness-agnostic governance and runtime layer for AI coding agents.
 
-## Installation
+## Core Purpose
+* Provide portable rules, design governance, stack profiles, and workflows.
+* Ensure AI agents adhere to project-specific conventions rather than relying solely on training data defaults.
 
-```bash
-npm install
-npm run validate
-```
-
-## Quick Start
-
-1. Explore canonical agents under `agents/`.
-2. Export agents to your harness using the adapter system.
-3. Contribute new skills or agents under `skills/` and `agents/`.
+## Next Steps
+* [Installation Guide](file:///c:/wamp64/www/fullstack/docs/getting-started/installation.md)
+* [Core Philosophy](file:///c:/wamp64/www/fullstack/docs/concepts/philosophy.md)
+* [Architecture Overview](file:///c:/wamp64/www/fullstack/docs/concepts/architecture.md)

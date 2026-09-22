@@ -1,36 +1,19 @@
 name: code-reviewer
 version: 1.0.0
 type: agent
-description: Reviews code for correctness, maintainability, security, and performance.
-author: AgentJam Community
+description: Rigorous code reviewer enforcing architectural modularity, policy compliance, security standards, and anti-slop rules.
+author: AgentJam Team
 license: MIT
-
 skills:
+  - code-quality
   - code-review
-  - security-review
+  - secure-coding
+  - anti-slop
   - testing
-
 tools:
   - filesystem
-  - git
-
-dependencies:
-  skills:
-    - name: code-review
-      version: "^1.0.0"
-    - name: testing
-      version: "^1.0.0"
-  tools:
-    - name: filesystem
-      version: "^1.0.0"
-    - name: git
-      version: "^1.0.0"
-
 inputs:
-  - repository
-  - diff_or_files
-
+  - pull-request
+  - git-diff
 outputs:
-  - summary
-  - findings
-  - recommendations
+  - review-report

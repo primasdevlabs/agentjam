@@ -1,0 +1,9 @@
+name: anti-slop
+version: 1.0.0
+type: skill
+description: Audits UI implementations to eliminate generic AI aesthetic slop, emoji icons, purple gradients, and repetitive card grids.
+category: design
+
+triggers:
+  - anti-slop
+  - design-governance

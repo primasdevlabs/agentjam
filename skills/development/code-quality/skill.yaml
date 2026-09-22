@@ -1,0 +1,9 @@
+name: code-quality
+version: 1.0.0
+type: skill
+description: Enforces code quality, refactoring standards, type safety, and formatting consistency across all supported languages.
+category: development
+
+triggers:
+  - code-quality
+  - refactor

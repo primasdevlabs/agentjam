@@ -1,0 +1,9 @@
+name: architecture
+version: 1.0.0
+type: skill
+description: Guides system architecture decisions, domain boundary design, modularity, and clean separation of concerns.
+category: development
+
+triggers:
+  - architecture-design
+  - domain-boundaries

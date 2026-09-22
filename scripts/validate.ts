@@ -1,8 +1,8 @@
 import path from 'node:path';
 import fs from 'node:fs';
-import { validateRepository } from '../packages/validator/src/index.ts';
-import { buildRegistryIndex } from '../packages/registry/src/index.ts';
-import { PolicyEngine } from '../packages/policy-engine/src/index.ts';
+import { validateRepository } from '../packages/validator/src/index.js';
+import { buildRegistryIndex } from '../packages/registry/src/index.js';
+import { PolicyEngine } from '../packages/policy-engine/src/index.js';
 
 const rootDir = process.cwd();
 
@@ -27,8 +27,10 @@ if (result.errors.length > 0) {
 // 3. Verify stacks, languages, and design governance directories
 const stacksDir = path.join(rootDir, 'stacks');
 const languagesDir = path.join(rootDir, 'languages');
+const hasStacks = fs.existsSync(stacksDir);
+const hasLanguages = fs.existsSync(languagesDir);
 
-if (result.valid) {
+if (result.valid && hasStacks && hasLanguages) {
   const index = buildRegistryIndex(rootDir);
   const totalPolicies = policyEngine.getPolicies().length;
 

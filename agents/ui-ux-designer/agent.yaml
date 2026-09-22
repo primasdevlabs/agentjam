@@ -1,0 +1,20 @@
+name: ui-ux-designer
+version: 1.0.0
+type: agent
+description: UI/UX design specialist crafting visual design systems, anti-slop guidelines, color palettes, and component design governance.
+author: AgentJam Team
+license: MIT
+skills:
+  - design-discovery
+  - anti-slop
+  - design-system
+  - responsive-design
+  - ui-copy
+tools:
+  - filesystem
+inputs:
+  - brand-spec
+  - wireframes
+outputs:
+  - design-system-spec
+  - style-guide

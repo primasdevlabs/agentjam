@@ -1,0 +1,9 @@
+name: visual-review
+version: 1.0.0
+type: skill
+description: Reviews frontend visual outputs against project design tokens, alignment, typography, and anti-slop rules.
+category: design
+
+triggers:
+  - visual-review
+  - check-ui

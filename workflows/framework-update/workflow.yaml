@@ -1,0 +1,31 @@
+name: framework-update
+version: 1.0.0
+type: workflow
+description: Framework migration workflow (e.g. Next.js major upgrade, Laravel major upgrade) with deprecation checks and ADR creation.
+mode: multi-agent
+agents:
+  - researcher
+  - architect
+  - software-engineer
+  - qa-engineer
+steps:
+  - id: step-1
+    name: Migration Research
+    agent: researcher
+    description: Fetch official migration guide and breaking changes list.
+  - id: step-2
+    name: Architecture ADR
+    agent: architect
+    description: Define upgrade strategy, deprecation replacements, and feature flags.
+  - id: step-3
+    name: Codebase Migration
+    agent: software-engineer
+    description: Apply framework migrations and update config manifests.
+  - id: step-4
+    name: Full Suite Verification
+    agent: qa-engineer
+    description: Execute test suites and verify runtime build.
+inputs:
+  - target-framework-version
+outputs:
+  - migration-pr

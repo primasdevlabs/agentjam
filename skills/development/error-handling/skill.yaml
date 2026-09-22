@@ -1,0 +1,9 @@
+name: error-handling
+version: 1.0.0
+type: skill
+description: Enforces robust error handling, domain-specific exception hierarchies, structured context logging, and defensive boundary checking.
+category: development
+
+triggers:
+  - error-handling
+  - exception-handling

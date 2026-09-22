@@ -1,0 +1,9 @@
+name: secure-coding
+version: 1.0.0
+type: skill
+description: Enforces secure coding practices, parameterized SQL queries, input validation, output encoding, and auth checks.
+category: security
+
+triggers:
+  - secure-coding
+  - security-audit

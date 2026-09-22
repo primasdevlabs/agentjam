@@ -1,0 +1,9 @@
+name: technology-research
+version: 1.0.0
+type: skill
+description: Evaluates new libraries, tools, and technical solutions against project requirements, performance, and maintenance history.
+category: research
+
+triggers:
+  - evaluate-technology
+  - compare-libraries

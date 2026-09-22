@@ -1,0 +1,9 @@
+name: accessibility
+version: 1.0.0
+type: skill
+description: Enforces WCAG 2.1 AA accessibility standards, screen reader compatibility, keyboard navigation, and semantic HTML.
+category: design
+
+triggers:
+  - accessibility
+  - a11y-audit

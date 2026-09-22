@@ -1,0 +1,25 @@
+name: ui-development
+version: 1.0.0
+type: workflow
+description: UI component and page development workflow enforcing design discovery, token binding, anti-slop rules, and visual review.
+mode: multi-agent
+agents:
+  - ui-ux-designer
+  - frontend-engineer
+steps:
+  - id: step-1
+    name: Token & Discovery Audit
+    agent: ui-ux-designer
+    description: Inspect design system tokens and visual language rules.
+  - id: step-2
+    name: Component Implementation
+    agent: frontend-engineer
+    description: Build UI component with clean CSS variables and semantic HTML.
+  - id: step-3
+    name: Visual & Accessibility Review
+    agent: frontend-engineer
+    description: Perform responsiveness, contrast, keyboard nav, and anti-slop check.
+inputs:
+  - ui-mockup
+outputs:
+  - ui-components

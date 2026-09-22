@@ -1,0 +1,26 @@
+name: dependency-update
+version: 1.0.0
+type: workflow
+description: Controlled dependency upgrade workflow auditing security advisories, lockfiles, and breaking changes.
+mode: multi-agent
+agents:
+  - security-engineer
+  - software-engineer
+  - qa-engineer
+steps:
+  - id: step-1
+    name: Dependency Scan
+    agent: security-engineer
+    description: Scan lockfile for CVEs and outdated dependencies.
+  - id: step-2
+    name: Package Upgrade
+    agent: software-engineer
+    description: Upgrade targeted packages and resolve breaking API signature changes.
+  - id: step-3
+    name: Regression Testing
+    agent: qa-engineer
+    description: Run automated test suite to ensure zero regression.
+inputs:
+  - package-name
+outputs:
+  - updated-manifest
