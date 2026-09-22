@@ -1,0 +1,18 @@
+name: mcp
+version: 1.0.0
+type: tool
+description: Model Context Protocol (MCP) integration interface connecting AI coding agents to external MCP servers, tools, resources, and prompts over stdio or SSE.
+category: protocol
+capabilities:
+  - mcp-server
+  - mcp-tool-call
+  - mcp-resource-fetch
+  - mcp-prompt-template
+safetyLevel: safe-write
+mcpServer:
+  name: agentjam-mcp-hub
+  transport: stdio
+  command: npx
+  args:
+    - "-y"
+    - "@agentjam/mcp-server"

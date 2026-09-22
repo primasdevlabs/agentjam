@@ -45,7 +45,9 @@ AgentJam prevents AI agents from introducing unvetted dependencies, inventing no
 | **Language Ecosystems** | 15 Ecosystem Categories | [languages/](file:///c:/wamp64/www/fullstack/languages)                    |
 | **Design Governance**   | 12 Anti-Slop Policies   | [policies/design/](file:///c:/wamp64/www/fullstack/policies/design)        |
 
-### Ecosystem Topic Tags`#ai-agents` `#agent-governance` `#harness-agnostic` `#claude-code` `#cursor` `#windsurf` `#roo-code` `#cline` `#antigravity` `#design-governance` `#anti-slop` `#language-registry` `#stack-profiles` `#monorepo` `#typescript`
+### Ecosystem Topic Tags
+
+`#ai-agents` `#agent-governance` `#harness-agnostic` `#mcp` `#model-context-protocol` `#mcp-server` `#mcp-tools` `#claude-code` `#cursor` `#windsurf` `#roo-code` `#cline` `#antigravity` `#design-governance` `#anti-slop` `#language-registry` `#stack-profiles` `#monorepo` `#typescript`
 
 ---
 

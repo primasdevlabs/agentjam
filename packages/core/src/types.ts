@@ -12,6 +12,15 @@ export const DependencyReferenceSchema = z.object({
 });
 export type DependencyReference = z.infer<typeof DependencyReferenceSchema>;
 
+export const MCPServerConfigSchema = z.object({
+  name: z.string(),
+  command: z.string(),
+  args: z.array(z.string()).optional(),
+  env: z.record(z.string()).optional(),
+  transport: z.enum(['stdio', 'sse']).default('stdio'),
+});
+export type MCPServerConfig = z.infer<typeof MCPServerConfigSchema>;
+
 export const AgentManifestSchema = z.object({
   name: z.string(),
   version: SemVerSchema,
@@ -21,6 +30,7 @@ export const AgentManifestSchema = z.object({
   license: z.string().optional(),
   skills: z.array(z.string()).default([]),
   tools: z.array(z.string()).default([]),
+  mcpServers: z.array(MCPServerConfigSchema).optional(),
   dependencies: z.object({
     skills: z.array(DependencyReferenceSchema).optional(),
     tools: z.array(DependencyReferenceSchema).optional(),
@@ -61,6 +71,7 @@ export const ToolManifestSchema = z.object({
   category: z.string().optional(),
   capabilities: z.array(z.string()).default([]),
   safetyLevel: z.enum(['read-only', 'safe-write', 'destructive', 'admin']).default('read-only'),
+  mcpServer: MCPServerConfigSchema.optional(),
   parameters: z.record(z.unknown()).optional(),
 });
 export type ToolManifest = z.infer<typeof ToolManifestSchema>;
@@ -121,7 +132,7 @@ export const EnvironmentCapabilitiesSchema = z.object({
   filesystem: z.boolean().default(true),
   terminal: z.boolean().default(true),
   browser: z.boolean().default(false),
-  mcp: z.boolean().default(false),
+  mcp: z.boolean().default(true),
   project_rules: z.boolean().default(true),
   context_files: z.boolean().default(true),
   hooks: z.boolean().default(false),
