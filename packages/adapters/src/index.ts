@@ -1,5 +1,5 @@
-import { ResourceBundle, parseIntegration } from '@agentjam/parser';
-import { AgentManifest, SkillManifest, IntegrationManifest } from '@agentjam/core';
+import { ResourceBundle } from '@agentjam/parser';
+import { AgentManifest, SkillManifest } from '@agentjam/core';
 
 export interface ExportResult {
   harness: string;
@@ -20,12 +20,12 @@ export class GenericAdapter implements HarnessAdapter {
     let content = `# Agent: ${manifest.name} (v${manifest.version})\n\n`;
     content += `> ${manifest.description}\n\n`;
 
-    if (manifest.skills.length > 0) {
-      content += `## Skills\n` + manifest.skills.map((s) => `- ${s}`).join('\n') + '\n\n';
+    if (manifest.skills && manifest.skills.length > 0) {
+      content += `## Skills\n` + manifest.skills.map((s: string) => `- ${s}`).join('\n') + '\n\n';
     }
 
-    if (manifest.tools.length > 0) {
-      content += `## Tools\n` + manifest.tools.map((t) => `- ${t}`).join('\n') + '\n\n';
+    if (manifest.tools && manifest.tools.length > 0) {
+      content += `## Tools\n` + manifest.tools.map((t: string) => `- ${t}`).join('\n') + '\n\n';
     }
 
     content += `## Instructions\n\n`;

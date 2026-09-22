@@ -10,7 +10,7 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
+    "build": "tsc -b tsconfig.build.json",
     "test": "vitest run",
     "lint": "eslint packages scripts --ext .ts",
     "format": "prettier --write .",
