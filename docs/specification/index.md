@@ -1,9 +1,6 @@
-# AgentJam Format Specification
+# AgentJam Technical Specifications
 
-## Schema Specifications
-* **Agent Specification**: `agent.yaml` schema defining skills, tools, inputs, and outputs.
-* **Skill Specification**: `skill.yaml` schema defining parameters, triggers, and instructions.
-* **Tool Specification**: `tool.yaml` schema defining safety level and capabilities.
-* **Workflow Specification**: `workflow.yaml` schema defining multi-agent / single-agent steps.
-* **Policy Specification**: Governance documents written in Markdown with GitHub-style alerts.
-* **Language Specification**: `language.yaml` ecosystem manifest.
+Specifications for AgentJam manifest formats, schemas, and CLI tooling:
+
+- **[Canonical Manifest Specification](canonical-format.md)**: YAML manifest schema definitions.
+- **[CLI Tool Specification](cli-spec.md)**: Command-line tool specification (`init`, `validate`, `export`, `build-registry`).

@@ -1,60 +1,47 @@
-import { ResourceBundle } from '@agentjam/parser';
-import { AgentManifest, SkillManifest } from '@agentjam/core';
+/**
+ * @agentjam/adapters — Entry Point
+ *
+ * Exports base adapter interfaces, individual harness adapters, and factory lookup.
+ */
 
-export interface ExportResult {
-  harness: string;
-  files: Record<string, string>;
-}
+import { HarnessAdapter } from './base-adapter.js';
+import { CursorAdapter } from './adapters/cursor-adapter.js';
+import { ClaudeCodeAdapter } from './adapters/claude-code-adapter.js';
+import { GeminiAdapter } from './adapters/gemini-adapter.js';
+import { ClineAdapter } from './adapters/cline-adapter.js';
+import { WindsurfAdapter } from './adapters/windsurf-adapter.js';
+import { DevinAdapter } from './adapters/devin-adapter.js';
+import { GenericAdapter } from './adapters/generic-adapter.js';
 
-export interface HarnessAdapter {
-  harnessName: string;
-  exportAgent(bundle: ResourceBundle<AgentManifest>): ExportResult;
-  exportSkill(bundle: ResourceBundle<SkillManifest>): ExportResult;
-}
+export * from './base-adapter.js';
+export * from './adapters/cursor-adapter.js';
+export * from './adapters/claude-code-adapter.js';
+export * from './adapters/gemini-adapter.js';
+export * from './adapters/cline-adapter.js';
+export * from './adapters/windsurf-adapter.js';
+export * from './adapters/devin-adapter.js';
+export * from './adapters/generic-adapter.js';
 
-export class GenericAdapter implements HarnessAdapter {
-  harnessName = 'generic';
-
-  exportAgent(bundle: ResourceBundle<AgentManifest>): ExportResult {
-    const { manifest, instructions } = bundle;
-    let content = `# Agent: ${manifest.name} (v${manifest.version})\n\n`;
-    content += `> ${manifest.description}\n\n`;
-
-    if (manifest.skills && manifest.skills.length > 0) {
-      content += `## Skills\n` + manifest.skills.map((s: string) => `- ${s}`).join('\n') + '\n\n';
-    }
-
-    if (manifest.tools && manifest.tools.length > 0) {
-      content += `## Tools\n` + manifest.tools.map((t: string) => `- ${t}`).join('\n') + '\n\n';
-    }
-
-    content += `## Instructions\n\n`;
-    for (const [filename, text] of Object.entries(instructions)) {
-      content += `### ${filename}\n\n${text}\n\n`;
-    }
-
-    return {
-      harness: 'generic',
-      files: {
-        [`${manifest.name}.md`]: content,
-      },
-    };
-  }
-
-  exportSkill(bundle: ResourceBundle<SkillManifest>): ExportResult {
-    const { manifest, instructions } = bundle;
-    let content = `# Skill: ${manifest.name} (v${manifest.version})\n\n`;
-    content += `> ${manifest.description}\n\n`;
-
-    for (const [filename, text] of Object.entries(instructions)) {
-      content += `### ${filename}\n\n${text}\n\n`;
-    }
-
-    return {
-      harness: 'generic',
-      files: {
-        [`skills/${manifest.name}.md`]: content,
-      },
-    };
+/**
+ * Factory function to instantiate a HarnessAdapter by harness name.
+ */
+export function getAdapter(harnessName: string): HarnessAdapter {
+  switch (harnessName.toLowerCase()) {
+    case 'cursor':
+      return new CursorAdapter();
+    case 'claude':
+    case 'claude-code':
+      return new ClaudeCodeAdapter();
+    case 'gemini':
+      return new GeminiAdapter();
+    case 'cline':
+      return new ClineAdapter();
+    case 'windsurf':
+      return new WindsurfAdapter();
+    case 'devin':
+      return new DevinAdapter();
+    case 'generic':
+    default:
+      return new GenericAdapter();
   }
 }

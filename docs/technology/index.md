@@ -1,19 +1,6 @@
-# AgentJam Technology & Language Coverage
+# Technology Ecosystems & Stacks
 
-AgentJam supports a broad range of programming ecosystems categorized under `languages/`:
+AgentJam supports multi-language and multi-framework software engineering:
 
-* **systems**: C, C++, Rust, Zig, Nim, D.
-* **web**: JavaScript, TypeScript, HTML, CSS, SCSS, LESS, WASM.
-* **jvm**: Java, Kotlin, Scala, Groovy, Clojure.
-* **dotnet**: C#, F#, Visual Basic.
-* **apple**: Swift, Objective-C, Objective-C++.
-* **mobile**: Dart/Flutter, React Native.
-* **backend**: PHP, Python, Go, Ruby, Elixir.
-* **data**: R, Julia, SQL.
-* **functional**: Haskell, OCaml, Erlang.
-* **scripting**: Bash, PowerShell, Lua.
-* **infrastructure**: HCL (Terraform), Dockerfile, YAML.
-* **databases**: PostgreSQL, MySQL, SQLite, MongoDB.
-* **smart-contracts**: Solidity, Vyper.
-* **embedded**: Embedded C, Assembly.
-* **legacy**: COBOL, Fortran.
+- **[Stack Profiles](stacks.md)**: Explore predefined stack profiles (`nextjs-fullstack`, `react-spa`, `laravel-monolith`, `python-fastapi`, `go-microservice`).
+- **[Language Ecosystems](languages.md)**: Explore the 15 supported language specifications.

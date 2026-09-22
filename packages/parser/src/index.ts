@@ -1,105 +1,82 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import yaml from 'js-yaml';
-import {
-  AgentManifestSchema,
-  SkillManifestSchema,
-  ToolManifestSchema,
-  WorkflowManifestSchema,
-  IntegrationManifestSchema,
-  LanguageManifestSchema,
-  type AgentManifest,
-  type SkillManifest,
-  type ToolManifest,
-  type WorkflowManifest,
-  type IntegrationManifest,
-  type LanguageManifest
-} from '@agentjam/core';
+/**
+ * @agentjam/parser — Entry Point
+ *
+ * Exports discovery, markdown utilities, all individual parsers,
+ * and unified high-level resource and repository parser functions.
+ */
 
-export interface ResourceBundle<T> {
-  manifest: T;
-  instructions: Record<string, string>;
-  basePath: string;
+import { ResourceType, ParseError } from '@agentjam/core';
+import { parseAgent } from './parsers/agent-parser.js';
+import { parseSkill } from './parsers/skill-parser.js';
+import { parseTool } from './parsers/tool-parser.js';
+import { parseWorkflow } from './parsers/workflow-parser.js';
+import { parseStack } from './parsers/stack-parser.js';
+import { parsePolicy } from './parsers/policy-parser.js';
+import { parseIntegration } from './parsers/integration-parser.js';
+import { parseLanguage } from './parsers/language-parser.js';
+import { discoverResources } from './discovery.js';
+
+export * from './types.js';
+export * from './discovery.js';
+export * from './markdown.js';
+export * from './parsers/agent-parser.js';
+export * from './parsers/skill-parser.js';
+export * from './parsers/tool-parser.js';
+export * from './parsers/workflow-parser.js';
+export * from './parsers/stack-parser.js';
+export * from './parsers/policy-parser.js';
+export * from './parsers/integration-parser.js';
+export * from './parsers/language-parser.js';
+
+/**
+ * Dispatcher function to parse any resource given its directory path and resource type.
+ */
+export function parseResource(dirPath: string, type: ResourceType | string): unknown {
+  switch (type) {
+    case 'agent':
+      return parseAgent(dirPath);
+    case 'skill':
+      return parseSkill(dirPath);
+    case 'tool':
+      return parseTool(dirPath);
+    case 'workflow':
+      return parseWorkflow(dirPath);
+    case 'stack':
+      return parseStack(dirPath);
+    case 'policy':
+      return parsePolicy(dirPath);
+    case 'integration':
+      return parseIntegration(dirPath);
+    case 'language':
+      return parseLanguage(dirPath);
+    default:
+      throw new ParseError(`Unknown or unsupported resource type: ${type}`, { resourcePath: dirPath });
+  }
 }
 
-export function parseYamlFile<T>(filePath: string): T {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  return yaml.load(content) as T;
-}
+/**
+ * Parse an entire AgentJam repository directory into a collection of resource bundles.
+ */
+export function parseRepository(rootDir: string): Record<string, unknown[]> {
+  const discovered = discoverResources(rootDir);
+  const results: Record<string, unknown[]> = {
+    agents: [],
+    skills: [],
+    tools: [],
+    workflows: [],
+    stacks: [],
+    policies: [],
+    integrations: [],
+    languages: [],
+  };
 
-export function parseAgent(dirPath: string): ResourceBundle<AgentManifest> {
-  const manifestPath = path.join(dirPath, 'agent.yaml');
-  const raw = parseYamlFile(manifestPath);
-  const manifest = AgentManifestSchema.parse(raw);
-
-  const instructions: Record<string, string> = {};
-  const instructionsDir = path.join(dirPath, 'instructions');
-  if (fs.existsSync(instructionsDir)) {
-    const files = fs.readdirSync(instructionsDir);
-    for (const file of files) {
-      if (file.endsWith('.md')) {
-        instructions[file] = fs.readFileSync(path.join(instructionsDir, file), 'utf-8');
-      }
+  for (const item of discovered) {
+    const parsed = parseResource(item.path, item.type);
+    const key = `${item.type}s`;
+    if (results[key]) {
+      results[key].push(parsed);
     }
   }
 
-  return { manifest, instructions, basePath: dirPath };
+  return results;
 }
-
-export function parseSkill(dirPath: string): ResourceBundle<SkillManifest> {
-  const manifestPath = path.join(dirPath, 'skill.yaml');
-  const raw = parseYamlFile(manifestPath);
-  const manifest = SkillManifestSchema.parse(raw);
-
-  const instructions: Record<string, string> = {};
-  const instructionsDir = path.join(dirPath, 'instructions');
-  if (fs.existsSync(instructionsDir)) {
-    const files = fs.readdirSync(instructionsDir);
-    for (const file of files) {
-      if (file.endsWith('.md')) {
-        instructions[file] = fs.readFileSync(path.join(instructionsDir, file), 'utf-8');
-      }
-    }
-  }
-
-  return { manifest, instructions, basePath: dirPath };
-}
-
-export function parseTool(dirPath: string): ResourceBundle<ToolManifest> {
-  const manifestPath = path.join(dirPath, 'tool.yaml');
-  const raw = parseYamlFile(manifestPath);
-  const manifest = ToolManifestSchema.parse(raw);
-  return { manifest, instructions: {}, basePath: dirPath };
-}
-
-export function parseWorkflow(dirPath: string): ResourceBundle<WorkflowManifest> {
-  const manifestPath = path.join(dirPath, 'workflow.yaml');
-  const raw = parseYamlFile(manifestPath);
-  const manifest = WorkflowManifestSchema.parse(raw);
-
-  const instructions: Record<string, string> = {};
-  const instructionsDir = path.join(dirPath, 'instructions');
-  if (fs.existsSync(instructionsDir)) {
-    const files = fs.readdirSync(instructionsDir);
-    for (const file of files) {
-      if (file.endsWith('.md')) {
-        instructions[file] = fs.readFileSync(path.join(instructionsDir, file), 'utf-8');
-      }
-    }
-  }
-
-  return { manifest, instructions, basePath: dirPath };
-}
-
-export function parseIntegration(dirPath: string): IntegrationManifest {
-  const manifestPath = path.join(dirPath, 'manifest.yaml');
-  const raw = parseYamlFile(manifestPath);
-  return IntegrationManifestSchema.parse(raw);
-}
-
-export function parseLanguage(dirPath: string): LanguageManifest {
-  const manifestPath = path.join(dirPath, 'language.yaml');
-  const raw = parseYamlFile(manifestPath);
-  return LanguageManifestSchema.parse(raw);
-}
-

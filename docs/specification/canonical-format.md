@@ -1,25 +1,50 @@
-# Canonical Resource Specification
+# Canonical Manifest Specification
 
-Every AgentJam resource requires machine-readable metadata.
+AgentJam defines strict YAML schemas for all resource types.
 
-## Agent Manifest (`agent.yaml`)
+---
 
+## 1. Agent Manifest (`agent.yaml`)
 ```yaml
-name: code-reviewer
+name: software-engineer
 version: 1.0.0
 type: agent
-description: Reviews code changes.
-skills:
-  - code-review
-tools:
-  - filesystem
+description: Generalist software engineer for full-stack feature development.
+skills: [architecture, testing, secure-coding]
+tools: [filesystem, terminal]
+inputs: [requirement-spec, codebase]
+outputs: [source-code, pull-request]
 ```
 
-## Skill Manifest (`skill.yaml`)
-
+## 2. Skill Manifest (`skill.yaml`)
 ```yaml
-name: code-review
+name: anti-slop
 version: 1.0.0
 type: skill
-description: Code review skill instructions.
+description: Audits UI implementations to eliminate generic AI slop.
+category: design
+triggers: [anti-slop, design-governance]
+```
+
+## 3. Workflow Manifest (`workflow.yaml`)
+```yaml
+name: feature-development
+version: 1.0.0
+type: workflow
+description: End-to-end feature implementation flow.
+mode: multi-agent
+steps:
+  - id: planning
+    agent: architect
+  - id: implementation
+    agent: software-engineer
+```
+
+## 4. Policy Manifest (`policy.yaml`)
+```yaml
+id: design-anti-slop
+name: Design Anti-Slop Policy
+description: Prohibits emoji UI icons and generic purple gradients.
+category: design
+enforcement: strict-block
 ```

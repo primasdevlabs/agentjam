@@ -1,0 +1,24 @@
+name: roo-code
+type: extensions
+status: supported
+compatibility_level: 5
+
+capabilities:
+  instructions: true
+  skills: true
+  agents: true
+  workflows: true
+  tools: true
+  filesystem: true
+  terminal: true
+  mcp: true
+  project_rules: true
+  context_files: true
+  hooks: false
+  lifecycle_events: false
+  validation: true
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: ".roomodes"
+  outputDir: ".roo"

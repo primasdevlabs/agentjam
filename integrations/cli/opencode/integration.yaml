@@ -1,0 +1,24 @@
+name: opencode
+type: cli
+status: supported
+compatibility_level: 4
+
+capabilities:
+  instructions: true
+  skills: true
+  agents: false
+  workflows: false
+  tools: true
+  filesystem: true
+  terminal: true
+  mcp: true
+  project_rules: true
+  context_files: true
+  hooks: false
+  lifecycle_events: false
+  validation: false
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: "opencode.json"
+  outputDir: "."
