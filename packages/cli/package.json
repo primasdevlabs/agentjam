@@ -13,13 +13,13 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@agentjam/core": "workspace:*",
-    "@agentjam/parser": "workspace:*",
-    "@agentjam/policy-engine": "workspace:*",
-    "@agentjam/validator": "workspace:*",
-    "@agentjam/registry": "workspace:*",
-    "@agentjam/adapters": "workspace:*",
-    "@agentjam/runtime": "workspace:*",
+    "@agentjam/core": "^0.1.0",
+    "@agentjam/parser": "^0.1.0",
+    "@agentjam/policy-engine": "^0.1.0",
+    "@agentjam/validator": "^0.1.0",
+    "@agentjam/registry": "^0.1.0",
+    "@agentjam/adapters": "^0.1.0",
+    "@agentjam/runtime": "^0.1.0",
     "commander": "^12.0.0",
     "js-yaml": "^4.1.0"
   },
