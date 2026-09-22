@@ -1,0 +1,30 @@
+{
+  "name": "@agentjam/cli",
+  "version": "0.1.0",
+  "description": "Command-line interface for AgentJam workspace management, validation, and harness export.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "agentjam": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@agentjam/core": "workspace:*",
+    "@agentjam/parser": "workspace:*",
+    "@agentjam/policy-engine": "workspace:*",
+    "@agentjam/validator": "workspace:*",
+    "@agentjam/registry": "workspace:*",
+    "@agentjam/adapters": "workspace:*",
+    "@agentjam/runtime": "workspace:*",
+    "commander": "^12.0.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}

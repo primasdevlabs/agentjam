@@ -7,7 +7,8 @@
       "@agentjam/registry": ["packages/registry/dist/index.d.ts"],
       "@agentjam/adapters": ["packages/adapters/dist/index.d.ts"],
       "@agentjam/policy-engine": ["packages/policy-engine/dist/index.d.ts"],
-      "@agentjam/runtime": ["packages/runtime/dist/index.d.ts"]
+      "@agentjam/runtime": ["packages/runtime/dist/index.d.ts"],
+      "@agentjam/cli": ["packages/cli/dist/index.d.ts"]
     }
   },
   "files": [],
@@ -18,6 +19,7 @@
     { "path": "packages/validator" },
     { "path": "packages/registry" },
     { "path": "packages/adapters" },
-    { "path": "packages/runtime" }
+    { "path": "packages/runtime" },
+    { "path": "packages/cli" }
   ]
 }

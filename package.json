@@ -34,6 +34,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@agentjam/policy-engine": "^0.1.0",
     "@agentjam/runtime": "^0.1.0",
     "@agentjam/validator": "^0.1.0"
   },
