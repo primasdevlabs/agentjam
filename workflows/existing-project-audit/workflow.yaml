@@ -1,0 +1,43 @@
+name: existing-project-audit
+version: 1.0.0
+type: workflow
+description: Comprehensive non-destructive audit workflow inspecting project structure, tech versions, architecture, design tokens, and dependencies before feature implementation.
+mode: single-agent
+
+agents:
+  - software-engineer
+
+skills:
+  - software-development
+  - code-review
+  - testing
+
+steps:
+  - id: step-1
+    name: inspect-project
+    description: Inspect project root manifests, framework versions, and stack configuration.
+  - id: step-2
+    name: audit-architecture
+    description: Analyze directory organization, domain boundaries, and God files.
+  - id: step-3
+    name: audit-dependencies
+    description: Check for deprecated, outdated, or duplicate packages.
+  - id: step-4
+    name: audit-design
+    description: Inspect design tokens, typography, icon systems, hardcoded colors, and visual slop.
+  - id: step-5
+    name: audit-code-quality
+    description: Check linter, typecheck, and test suite health.
+  - id: step-6
+    name: audit-conventions
+    description: Verify adherence to project coding standards and formatting.
+  - id: step-7
+    name: generate-house-cleaning-report
+    description: Consolidate findings into a structured House Cleaning Report categorized into Critical, Recommended, and Optional items.
+
+inputs:
+  - project_root
+
+outputs:
+  - audit_report
+  - house_cleaning_recommendations

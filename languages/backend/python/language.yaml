@@ -1,0 +1,19 @@
+id: lang-python
+name: Python
+ecosystem: backend
+aliases: [py, python3]
+extensions: [.py, .pyi]
+
+tooling:
+  package_manager: uv
+  linter: ruff
+  formatter: black
+  type_checker: mypy
+
+framework_precedence:
+  - django
+  - fastapi
+  - flask
+
+documentation:
+  official_site: https://docs.python.org/3/

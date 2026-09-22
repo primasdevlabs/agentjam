@@ -1,0 +1,21 @@
+id: lang-typescript
+name: TypeScript
+ecosystem: web
+aliases: [ts, tsx]
+extensions: [.ts, .tsx, .mts, .cts]
+
+tooling:
+  package_manager: npm
+  linter: eslint
+  formatter: prettier
+  type_checker: tsc
+
+framework_precedence:
+  - next
+  - nestjs
+  - react
+  - vue
+  - vite
+
+documentation:
+  official_site: https://www.typescriptlang.org/docs/

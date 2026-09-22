@@ -1,0 +1,17 @@
+name: code-review
+version: 1.0.0
+type: skill
+description: Rigorous code review techniques for quality, security, performance, and maintainability.
+author: AgentJam Community
+category: code-quality
+
+triggers:
+  - review
+  - audit
+  - pull-request
+
+parameters:
+  strictMode:
+    type: boolean
+    description: Enforce zero warning tolerance
+    default: false

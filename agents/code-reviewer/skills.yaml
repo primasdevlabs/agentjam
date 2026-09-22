@@ -1,0 +1,7 @@
+skills:
+  - name: code-review
+    version: "^1.0.0"
+  - name: security-review
+    version: "^1.0.0"
+  - name: testing
+    version: "^1.0.0"

@@ -1,0 +1,23 @@
+id: 03-freshness
+name: Documentation Freshness Policy
+description: TRAINING KNOWLEDGE ≠ SOURCE OF TRUTH. Forces agents to verify current official documentation over model training memory.
+category: freshness
+enforcement: strict-block
+
+rules:
+  training_knowledge: NEVER_OVERRIDE_CURRENT_DOCS
+  required: true
+  max_doc_age: 7d
+  fallback_behavior: abort_and_report_unverified
+
+instructions: |
+  CRITICAL RULE: TRAINING KNOWLEDGE ≠ SOURCE OF TRUTH
+
+  Before making framework-specific or library implementation decisions:
+  1. Determine the project's exact required framework version.
+  2. Check current supported API conventions.
+  3. Consult configured authoritative documentation sources.
+  4. Prefer current documentation over LLM memory.
+  5. Do not introduce deprecated APIs or removed features.
+  6. Do not assume historical conventions remain valid.
+  7. If current information cannot be verified, stop and report that verification is unavailable.

@@ -1,0 +1,24 @@
+name: software-engineer
+version: 1.0.0
+type: agent
+description: Versatile software engineer agent capable of implementing features, refactoring, and fixing bugs.
+author: AgentJam Community
+license: MIT
+
+skills:
+  - software-development
+  - testing
+
+tools:
+  - filesystem
+  - terminal
+  - git
+
+inputs:
+  - specification
+  - codebase
+
+outputs:
+  - source_code
+  - tests
+  - documentation

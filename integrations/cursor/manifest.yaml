@@ -1,0 +1,18 @@
+name: cursor-integration
+harness: cursor
+description: Target harness integration adapter for Cursor IDE rules.
+version: 1.0.0
+
+capabilities:
+  supportsAgents: true
+  supportsSkills: true
+  supportsWorkflows: false
+  supportsTools: true
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: ".cursorrules"
+  toolCallStyle: cursor-system-prompt
+
+limitations:
+  - Multi-agent workflows converted to single prompt rules

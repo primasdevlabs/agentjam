@@ -1,0 +1,18 @@
+id: 02-versions
+name: Version Constraint Policy
+description: Enforces version policy rules (current-stable, project-compatible, pinned) over raw 'latest'.
+category: versions
+enforcement: strict-block
+
+rules:
+  default_policy: project-compatible
+  allowed_policies:
+    - current-stable
+    - project-compatible
+    - pinned
+
+instructions: |
+  Version Selection Rules:
+  - 'current-stable': Use the latest stable major release suitable for production.
+  - 'project-compatible': Select the highest version compatible with existing project constraints.
+  - 'pinned': Lock version strictly to project lockfile.

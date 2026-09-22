@@ -1,0 +1,8 @@
+name: example-tool
+version: 1.0.0
+type: tool
+description: Interface description for this tool.
+category: general
+capabilities:
+  - capability-one
+safetyLevel: read-only

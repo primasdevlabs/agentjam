@@ -1,0 +1,24 @@
+name: generic
+type: generic
+status: supported
+compatibility_level: 1
+
+capabilities:
+  instructions: true
+  skills: partial
+  agents: false
+  workflows: false
+  tools: false
+  filesystem: true
+  terminal: false
+  mcp: false
+  project_rules: true
+  context_files: true
+  hooks: false
+  lifecycle_events: false
+  validation: false
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: "AGENTJAM.md"
+  outputDir: "."

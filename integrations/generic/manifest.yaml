@@ -1,0 +1,19 @@
+name: generic-integration
+harness: generic
+description: Generic fallback integration adapter mapping AgentJam resources to standardized Markdown bundles.
+version: 1.0.0
+
+capabilities:
+  supportsAgents: true
+  supportsSkills: true
+  supportsWorkflows: true
+  supportsTools: true
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: "{{resource_name}}.md"
+  toolCallStyle: markdown-fenced-code
+
+limitations:
+  - Does not support harness-native secret injection
+  - Requires manually loading prompt context into target UI

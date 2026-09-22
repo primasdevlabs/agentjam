@@ -1,0 +1,19 @@
+id: 06-dependencies
+name: Dependency Boundary Policy
+description: Restricts unapproved external package additions.
+category: dependencies
+enforcement: strict-block
+
+rules:
+  allow_arbitrary_packages: false
+  forbidden:
+    - express
+    - mongodb
+    - redux
+    - axios
+    - jquery
+
+instructions: |
+  Dependency Rules:
+  - Do not install unapproved third-party packages without verifying stack profile compatibility.
+  - Avoid duplicate helper packages when standard library or existing dependencies provide equivalent functionality.

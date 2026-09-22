@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-09-22T04:45:00.000Z",
+  "totalAgents": 2,
+  "totalSkills": 2,
+  "totalTools": 2,
+  "totalWorkflows": 2,
+  "entries": [
+    {
+      "name": "code-reviewer",
+      "version": "1.0.0",
+      "type": "agent",
+      "description": "Reviews code for correctness, maintainability, security, and performance.",
+      "path": "agents/code-reviewer"
+    },
+    {
+      "name": "software-engineer",
+      "version": "1.0.0",
+      "type": "agent",
+      "description": "Versatile software engineer agent capable of implementing features, refactoring, and fixing bugs.",
+      "path": "agents/software-engineer"
+    },
+    {
+      "name": "code-review",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Rigorous code review techniques for quality, security, performance, and maintainability.",
+      "path": "skills/code-review"
+    },
+    {
+      "name": "testing",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Test generation, execution, and validation across unit, integration, and E2E suites.",
+      "path": "skills/testing"
+    },
+    {
+      "name": "filesystem",
+      "version": "1.0.0",
+      "type": "tool",
+      "description": "Interface for reading, writing, listing, and inspecting files on local storage.",
+      "path": "tools/filesystem"
+    },
+    {
+      "name": "git",
+      "version": "1.0.0",
+      "type": "tool",
+      "description": "Interface for inspecting git repositories, status, diffs, branches, and commit histories.",
+      "path": "tools/git"
+    },
+    {
+      "name": "code-review",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Automated multi-stage code review workflow involving review, security checks, and report generation.",
+      "path": "workflows/code-review"
+    },
+    {
+      "name": "feature-development",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "End-to-end feature development workflow connecting product spec, implementation, testing, and code review.",
+      "path": "workflows/feature-development"
+    }
+  ]
+}

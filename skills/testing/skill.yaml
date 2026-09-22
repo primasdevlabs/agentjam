@@ -1,0 +1,11 @@
+name: testing
+version: 1.0.0
+type: skill
+description: Test generation, execution, and validation across unit, integration, and E2E suites.
+author: AgentJam Community
+category: testing
+
+triggers:
+  - test
+  - spec
+  - coverage

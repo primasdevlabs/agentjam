@@ -1,0 +1,24 @@
+name: antigravity
+type: ai-platforms
+status: supported
+compatibility_level: 6
+
+capabilities:
+  instructions: true
+  skills: true
+  agents: true
+  workflows: true
+  tools: true
+  filesystem: true
+  terminal: true
+  mcp: true
+  project_rules: true
+  context_files: true
+  hooks: true
+  lifecycle_events: true
+  validation: true
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: "GEMINI.md"
+  outputDir: ".gemini"

@@ -1,0 +1,37 @@
+name: feature-development
+version: 1.0.0
+type: workflow
+description: End-to-end feature development workflow connecting product spec, implementation, testing, and code review.
+mode: multi-agent
+
+agents:
+  - software-engineer
+  - code-reviewer
+
+skills:
+  - software-development
+  - testing
+  - code-review
+
+steps:
+  - id: step-1
+    name: implement-feature
+    agent: software-engineer
+    description: Implement feature changes according to specification.
+  - id: step-2
+    name: write-and-run-tests
+    agent: software-engineer
+    skill: testing
+    description: Add unit and integration tests and verify test suite passes.
+  - id: step-3
+    name: review-implementation
+    agent: code-reviewer
+    skill: code-review
+    description: Review implementation quality and security before merging.
+
+inputs:
+  - feature_specification
+
+outputs:
+  - pull_request
+  - test_report

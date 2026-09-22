@@ -1,0 +1,34 @@
+name: code-review
+version: 1.0.0
+type: workflow
+description: Automated multi-stage code review workflow involving review, security checks, and report generation.
+mode: single-agent
+
+agents:
+  - code-reviewer
+
+skills:
+  - code-review
+  - security-review
+
+steps:
+  - id: step-1
+    name: inspect-diff
+    skill: code-review
+    description: Parse modified files and generate initial structural diff summary.
+  - id: step-2
+    name: security-audit
+    skill: security-review
+    description: Scan modified code for common vulnerability patterns and credential leaks.
+  - id: step-3
+    name: generate-report
+    agent: code-reviewer
+    description: Consolidate findings into actionable review comments.
+
+inputs:
+  - repository
+  - pull_request_id
+
+outputs:
+  - review_summary
+  - review_comments

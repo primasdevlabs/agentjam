@@ -1,0 +1,15 @@
+{
+  "name": "@agentjam/validator",
+  "version": "0.1.0",
+  "description": "Validation engine for AgentJam resources, schemas, and dependencies.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@agentjam/core": "*",
+    "@agentjam/parser": "*"
+  }
+}

@@ -1,0 +1,36 @@
+name: code-reviewer
+version: 1.0.0
+type: agent
+description: Reviews code for correctness, maintainability, security, and performance.
+author: AgentJam Community
+license: MIT
+
+skills:
+  - code-review
+  - security-review
+  - testing
+
+tools:
+  - filesystem
+  - git
+
+dependencies:
+  skills:
+    - name: code-review
+      version: "^1.0.0"
+    - name: testing
+      version: "^1.0.0"
+  tools:
+    - name: filesystem
+      version: "^1.0.0"
+    - name: git
+      version: "^1.0.0"
+
+inputs:
+  - repository
+  - diff_or_files
+
+outputs:
+  - summary
+  - findings
+  - recommendations

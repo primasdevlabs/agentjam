@@ -1,0 +1,19 @@
+id: lang-rust
+name: Rust
+ecosystem: systems
+aliases: [rs]
+extensions: [.rs]
+
+tooling:
+  package_manager: cargo
+  linter: clippy
+  formatter: rustfmt
+  type_checker: rustc
+
+framework_precedence:
+  - actix-web
+  - axum
+  - tokio
+
+documentation:
+  official_site: https://doc.rust-lang.org/

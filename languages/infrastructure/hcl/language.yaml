@@ -1,0 +1,16 @@
+id: lang-hcl
+name: HCL
+ecosystem: infrastructure
+aliases: [hcl, tf]
+extensions: [.hcl, .tf, .tfvars]
+
+tooling:
+  linter: tflint
+  formatter: terraform-fmt
+
+framework_precedence:
+  - terraform
+  - opentofu
+
+documentation:
+  official_site: https://developer.hashicorp.com/terraform/docs

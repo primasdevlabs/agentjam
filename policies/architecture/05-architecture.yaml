@@ -1,0 +1,15 @@
+id: 05-architecture
+name: Modular Architecture Policy
+description: Enforces clean separation of concerns, public contract boundaries, and small composable units.
+category: architecture
+enforcement: strict-block
+
+rules:
+  respect_module_boundaries: true
+  colocate_tests_and_types: true
+
+instructions: |
+  Architecture Rules:
+  - Respect module and package boundaries; use public APIs, shared packages, or contracts.
+  - Never import other features' private internals.
+  - Prefer small, composable units with single responsibility.

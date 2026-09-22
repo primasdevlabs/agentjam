@@ -1,0 +1,21 @@
+id: lang-php
+name: PHP
+ecosystem: backend
+aliases: [php]
+extensions: [.php, .phtml]
+
+tooling:
+  package_manager: composer
+  linter: php-cs-fixer
+  formatter: pint
+  type_checker: phpstan
+
+framework_precedence:
+  - laravel
+  - symfony
+  - laminas
+  - codeigniter
+
+documentation:
+  official_site: https://www.php.net/docs.php
+  psr_standards: https://www.php-fig.org/psr/

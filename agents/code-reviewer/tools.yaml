@@ -1,0 +1,5 @@
+tools:
+  - name: filesystem
+    capabilities: [read, write]
+  - name: git
+    capabilities: [diff, log, status]

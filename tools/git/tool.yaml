@@ -1,0 +1,11 @@
+name: git
+version: 1.0.0
+type: tool
+description: Interface for inspecting git repositories, status, diffs, branches, and commit histories.
+category: version-control
+capabilities:
+  - diff
+  - log
+  - status
+  - branch
+safetyLevel: safe-write

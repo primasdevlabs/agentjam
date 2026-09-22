@@ -1,0 +1,15 @@
+name: example-skill
+version: 1.0.0
+type: skill
+description: Description of the skill capability.
+author: Your Name <your.email@example.com>
+category: general
+
+triggers:
+  - example-trigger
+
+parameters:
+  paramName:
+    type: string
+    description: Parameter description
+    required: false

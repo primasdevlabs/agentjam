@@ -1,0 +1,24 @@
+name: vscode
+type: ide
+status: supported
+compatibility_level: 5
+
+capabilities:
+  instructions: true
+  skills: true
+  agents: partial
+  workflows: partial
+  tools: true
+  filesystem: true
+  terminal: true
+  mcp: true
+  project_rules: true
+  context_files: true
+  hooks: false
+  lifecycle_events: false
+  validation: true
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: "settings.json"
+  outputDir: ".vscode"

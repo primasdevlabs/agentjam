@@ -1,0 +1,16 @@
+id: 04-security
+name: Security & Secret Management Policy
+description: Enforces zero-secret leakage, input validation at boundaries, and parameterized database queries.
+category: security
+enforcement: strict-block
+
+rules:
+  allow_committed_secrets: false
+  parameterized_queries_only: true
+  validate_external_input: true
+
+instructions: |
+  Security Requirements:
+  - Never hardcode or commit secrets, API keys, or credentials. Use environment variables.
+  - Parameterize all SQL/ORM database queries.
+  - Validate and sanitize external input at HTTP and queue boundaries.

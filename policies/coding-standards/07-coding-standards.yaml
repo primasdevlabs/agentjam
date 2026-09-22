@@ -1,0 +1,16 @@
+id: 07-coding-standards
+name: Coding Standards Policy
+description: Requires strict linting, formatting, type checking, and test verification before completion.
+category: coding-standards
+enforcement: strict-block
+
+rules:
+  require_typecheck: true
+  require_linter_pass: true
+  require_tests_pass: true
+
+instructions: |
+  Quality Assurance Rules:
+  - Run type checking (`tsc` or stack equivalent) before declaring completion.
+  - Run linter/formatter (`eslint`, `prettier`, `pint`, `php-cs-fixer`).
+  - Ensure automated unit/integration tests pass cleanly.

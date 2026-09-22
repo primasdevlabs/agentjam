@@ -1,0 +1,15 @@
+{
+  "name": "@agentjam/registry",
+  "version": "0.1.0",
+  "description": "Registry index builder and discovery metadata generator for AgentJam.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@agentjam/core": "*",
+    "@agentjam/parser": "*"
+  }
+}

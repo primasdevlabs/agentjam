@@ -1,0 +1,18 @@
+name: example-agent
+version: 1.0.0
+type: agent
+description: Description of what this agent does.
+author: Your Name <your.email@example.com>
+license: MIT
+
+skills:
+  - example-skill
+
+tools:
+  - filesystem
+
+inputs:
+  - input_name
+
+outputs:
+  - output_name

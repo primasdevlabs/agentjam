@@ -1,0 +1,19 @@
+name: example-workflow
+version: 1.0.0
+type: workflow
+description: Description of the multi-step execution flow.
+mode: single-agent
+
+agents:
+  - example-agent
+
+steps:
+  - id: step-1
+    name: initial-step
+    description: Perform initial processing step.
+
+inputs:
+  - input_data
+
+outputs:
+  - output_result

@@ -1,0 +1,24 @@
+name: devin
+type: autonomous-agents
+status: supported
+compatibility_level: 5
+
+capabilities:
+  instructions: true
+  skills: true
+  agents: true
+  workflows: true
+  tools: true
+  filesystem: true
+  terminal: true
+  mcp: true
+  project_rules: true
+  context_files: true
+  hooks: false
+  lifecycle_events: true
+  validation: true
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: "DEVIN.md"
+  outputDir: ".devin"

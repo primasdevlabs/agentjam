@@ -1,0 +1,42 @@
+profile: nextjs-production
+version: 1.0.0
+description: Production stack profile for Next.js (App Router), React 19, TypeScript, TailwindCSS, and Vitest.
+
+stack:
+  language:
+    name: typescript
+    version: "5.x"
+    version_policy: project-compatible
+  frontend:
+    framework: next
+    version: "15.x"
+    version_policy: latest-compatible
+  package_manager: npm
+  testing: vitest
+  linting: eslint
+  formatting: prettier
+
+sources:
+  - https://nextjs.org/docs
+  - https://react.dev
+
+dependencies:
+  allowed:
+    - next
+    - react
+    - react-dom
+    - zod
+    - tailwindcss
+    - vitest
+  forbidden:
+    - express
+    - mongodb
+    - redux
+    - axios
+    - jquery
+
+validation:
+  commands:
+    lint: "npm run lint"
+    typecheck: "npx tsc --noEmit"
+    test: "npm test"

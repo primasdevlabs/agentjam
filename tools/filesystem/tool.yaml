@@ -1,0 +1,11 @@
+name: filesystem
+version: 1.0.0
+type: tool
+description: Interface for reading, writing, listing, and inspecting files on local storage.
+category: file-management
+capabilities:
+  - read
+  - write
+  - list
+  - search
+safetyLevel: safe-write

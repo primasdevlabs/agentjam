@@ -1,0 +1,14 @@
+id: 01-stack
+name: Technology Stack Policy
+description: Enforces project-declared tech stack boundaries and prevents casual introduction of unapproved frameworks.
+category: technology
+enforcement: strict-block
+
+rules:
+  enforce_project_stack: true
+  allow_unlisted_frameworks: false
+
+instructions: |
+  Before introducing a new framework, ORM, or database engine:
+  1. Check the project's stack definition (.agentjam/stack.yaml or stacks/<profile>).
+  2. Do not introduce alternative frameworks (e.g. Express into NestJS, MongoDB into PostgreSQL) without explicit approval.
