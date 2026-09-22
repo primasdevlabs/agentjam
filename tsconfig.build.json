@@ -1,4 +1,15 @@
 {
+  "compilerOptions": {
+    "paths": {
+      "@agentjam/core": ["packages/core/dist/index.d.ts"],
+      "@agentjam/parser": ["packages/parser/dist/index.d.ts"],
+      "@agentjam/validator": ["packages/validator/dist/index.d.ts"],
+      "@agentjam/registry": ["packages/registry/dist/index.d.ts"],
+      "@agentjam/adapters": ["packages/adapters/dist/index.d.ts"],
+      "@agentjam/policy-engine": ["packages/policy-engine/dist/index.d.ts"],
+      "@agentjam/runtime": ["packages/runtime/dist/index.d.ts"]
+    }
+  },
   "files": [],
   "references": [
     { "path": "packages/core" },
