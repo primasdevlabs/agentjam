@@ -3,7 +3,7 @@ package core_test
 import (
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/core"
 )
 
 func TestCoreUtilsAndTypes(t *testing.T) {

@@ -3,8 +3,8 @@ package validator
 import (
 	"fmt"
 
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/parser"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/parser"
 )
 
 // ValidationError represents a repository validation issue.

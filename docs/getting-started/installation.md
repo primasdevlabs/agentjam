@@ -10,7 +10,7 @@ Install AgentJam CLI and runtime using Go:
 
 ```bash
 # Clone repository
-git clone https://github.com/agentjam/agentjam.git
+git clone https://github.com/primasdevlabs/agentjam.git
 cd agentjam
 
 # Build native Go binary

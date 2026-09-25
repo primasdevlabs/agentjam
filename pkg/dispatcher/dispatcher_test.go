@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/dispatcher"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/dispatcher"
 )
 
 func TestToolDispatcherModule(t *testing.T) {

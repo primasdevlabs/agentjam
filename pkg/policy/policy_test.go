@@ -3,8 +3,8 @@ package policy_test
 import (
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/policy"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/policy"
 )
 
 func TestPolicyEngineAndEvaluators(t *testing.T) {

@@ -6,16 +6,16 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/agentjam/agentjam/pkg/adapters"
-	"github.com/agentjam/agentjam/pkg/context"
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/dispatcher"
-	"github.com/agentjam/agentjam/pkg/memory"
-	"github.com/agentjam/agentjam/pkg/parser"
-	"github.com/agentjam/agentjam/pkg/policy"
-	"github.com/agentjam/agentjam/pkg/registry"
-	"github.com/agentjam/agentjam/pkg/runtime"
-	"github.com/agentjam/agentjam/pkg/validator"
+	"github.com/primasdevlabs/agentjam/pkg/adapters"
+	"github.com/primasdevlabs/agentjam/pkg/context"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/dispatcher"
+	"github.com/primasdevlabs/agentjam/pkg/memory"
+	"github.com/primasdevlabs/agentjam/pkg/parser"
+	"github.com/primasdevlabs/agentjam/pkg/policy"
+	"github.com/primasdevlabs/agentjam/pkg/registry"
+	"github.com/primasdevlabs/agentjam/pkg/runtime"
+	"github.com/primasdevlabs/agentjam/pkg/validator"
 )
 
 const version = core.Version

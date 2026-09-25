@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/memory"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/memory"
 )
 
 func TestMemoryManagerModule(t *testing.T) {

@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/context"
-	"github.com/agentjam/agentjam/pkg/policy"
+	"github.com/primasdevlabs/agentjam/pkg/context"
+	"github.com/primasdevlabs/agentjam/pkg/policy"
 )
 
 func TestContextManagerModule(t *testing.T) {

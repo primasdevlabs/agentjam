@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/agentjam/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/core"
 )
 
 // ToolchainManager handles shell execution, system binary checks, and preflight checks in Go.

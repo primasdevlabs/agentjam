@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/policy"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/policy"
 )
 
 // ContextOptions configures snapshot generation.

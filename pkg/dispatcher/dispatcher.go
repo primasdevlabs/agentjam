@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/memory"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/memory"
 )
 
 // ToolHandler defines tool execution handler in Go.

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/validator"
+	"github.com/primasdevlabs/agentjam/pkg/validator"
 )
 
 func TestValidatorModule(t *testing.T) {

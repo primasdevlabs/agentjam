@@ -5,13 +5,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/agentjam/agentjam/pkg/context"
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/dispatcher"
-	"github.com/agentjam/agentjam/pkg/policy"
-	"github.com/agentjam/agentjam/pkg/registry"
-	"github.com/agentjam/agentjam/pkg/runtime"
-	"github.com/agentjam/agentjam/pkg/validator"
+	"github.com/primasdevlabs/agentjam/pkg/context"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/dispatcher"
+	"github.com/primasdevlabs/agentjam/pkg/policy"
+	"github.com/primasdevlabs/agentjam/pkg/registry"
+	"github.com/primasdevlabs/agentjam/pkg/runtime"
+	"github.com/primasdevlabs/agentjam/pkg/validator"
 )
 
 func TestFullGoArchitecture(t *testing.T) {

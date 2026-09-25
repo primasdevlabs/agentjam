@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/parser"
+	"github.com/primasdevlabs/agentjam/pkg/parser"
 )
 
 func TestParserModule(t *testing.T) {

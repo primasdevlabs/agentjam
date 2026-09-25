@@ -1,6 +1,6 @@
 package policy
 
-import "github.com/agentjam/agentjam/pkg/core"
+import "github.com/primasdevlabs/agentjam/pkg/core"
 
 // PolicyEngineSummary summarizes evaluation results.
 type PolicyEngineSummary struct {

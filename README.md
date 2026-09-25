@@ -242,13 +242,13 @@ fullstack/
 
 | Package | Path | Description |
 | :--- | :--- | :--- |
-| **`github.com/agentjam/agentjam/pkg/core`** | [pkg/core](file:///c:/wamp64/www/fullstack/pkg/core) | Go structs and types for agents, skills, workflows, policies, stacks, and languages. |
-| **`github.com/agentjam/agentjam/pkg/parser`** | [pkg/parser](file:///c:/wamp64/www/fullstack/pkg/parser) | Parser for `agent.yaml`, `skill.yaml`, `workflow.yaml`, `SKILL.md`, and Markdown frontmatter. |
-| **`github.com/agentjam/agentjam/pkg/policy`** | [pkg/policy](file:///c:/wamp64/www/fullstack/pkg/policy) | Evaluator for core policies, design governance rules, and anti-slop constraints. |
-| **`github.com/agentjam/agentjam/pkg/validator`** | [pkg/validator](file:///c:/wamp64/www/fullstack/pkg/validator) | Structural and cross-reference validator for AgentJam repository resources. |
-| **`github.com/agentjam/agentjam/pkg/registry`** | [pkg/registry](file:///c:/wamp64/www/fullstack/pkg/registry) | Indexer building registry metadata for discovery and search. |
-| **`github.com/agentjam/agentjam/pkg/adapters`** | [pkg/adapters](file:///c:/wamp64/www/fullstack/pkg/adapters) | Exporters rendering canonical resources into CLAUDE.md, .cursorrules, and GEMINI.md. |
-| **`github.com/agentjam/agentjam/pkg/runtime`** | [pkg/runtime](file:///c:/wamp64/www/fullstack/pkg/runtime) | Execution runtime, environment detector, context, memory, and tool dispatcher orchestrator. |
+| **`github.com/primasdevlabs/agentjam/pkg/core`** | [pkg/core](file:///c:/wamp64/www/fullstack/pkg/core) | Go structs and types for agents, skills, workflows, policies, stacks, and languages. |
+| **`github.com/primasdevlabs/agentjam/pkg/parser`** | [pkg/parser](file:///c:/wamp64/www/fullstack/pkg/parser) | Parser for `agent.yaml`, `skill.yaml`, `workflow.yaml`, `SKILL.md`, and Markdown frontmatter. |
+| **`github.com/primasdevlabs/agentjam/pkg/policy`** | [pkg/policy](file:///c:/wamp64/www/fullstack/pkg/policy) | Evaluator for core policies, design governance rules, and anti-slop constraints. |
+| **`github.com/primasdevlabs/agentjam/pkg/validator`** | [pkg/validator](file:///c:/wamp64/www/fullstack/pkg/validator) | Structural and cross-reference validator for AgentJam repository resources. |
+| **`github.com/primasdevlabs/agentjam/pkg/registry`** | [pkg/registry](file:///c:/wamp64/www/fullstack/pkg/registry) | Indexer building registry metadata for discovery and search. |
+| **`github.com/primasdevlabs/agentjam/pkg/adapters`** | [pkg/adapters](file:///c:/wamp64/www/fullstack/pkg/adapters) | Exporters rendering canonical resources into CLAUDE.md, .cursorrules, and GEMINI.md. |
+| **`github.com/primasdevlabs/agentjam/pkg/runtime`** | [pkg/runtime](file:///c:/wamp64/www/fullstack/pkg/runtime) | Execution runtime, environment detector, context, memory, and tool dispatcher orchestrator. |
 
 ---
 
@@ -283,9 +283,9 @@ go run ./cmd/agentjam validate
 
 ```go
 import (
-    "github.com/agentjam/agentjam/pkg/context"
-    "github.com/agentjam/agentjam/pkg/dispatcher"
-    "github.com/agentjam/agentjam/pkg/runtime"
+    "github.com/primasdevlabs/agentjam/pkg/context"
+    "github.com/primasdevlabs/agentjam/pkg/dispatcher"
+    "github.com/primasdevlabs/agentjam/pkg/runtime"
 )
 
 // 1. Initialize Go runtime

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/agentjam/agentjam/pkg/toolchain"
+	"github.com/primasdevlabs/agentjam/pkg/toolchain"
 )
 
 func TestToolchainManagerModule(t *testing.T) {

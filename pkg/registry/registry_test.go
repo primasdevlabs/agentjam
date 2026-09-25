@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/registry"
+	"github.com/primasdevlabs/agentjam/pkg/registry"
 )
 
 func TestRegistryModule(t *testing.T) {

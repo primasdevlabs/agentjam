@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/agentjam/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/core"
 )
 
 // MemoryQuery configures search queries.

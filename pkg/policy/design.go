@@ -3,7 +3,7 @@ package policy
 import (
 	"regexp"
 
-	"github.com/agentjam/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/core"
 )
 
 // EvaluateDesignRules evaluates design content against anti-slop rules.

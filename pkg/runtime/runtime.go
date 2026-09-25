@@ -1,11 +1,11 @@
 package runtime
 
 import (
-	"github.com/agentjam/agentjam/pkg/context"
-	"github.com/agentjam/agentjam/pkg/dispatcher"
-	"github.com/agentjam/agentjam/pkg/memory"
-	"github.com/agentjam/agentjam/pkg/policy"
-	"github.com/agentjam/agentjam/pkg/toolchain"
+	"github.com/primasdevlabs/agentjam/pkg/context"
+	"github.com/primasdevlabs/agentjam/pkg/dispatcher"
+	"github.com/primasdevlabs/agentjam/pkg/memory"
+	"github.com/primasdevlabs/agentjam/pkg/policy"
+	"github.com/primasdevlabs/agentjam/pkg/toolchain"
 )
 
 // AgentJamRuntime orchestrates all AgentJam subsystems in native Go.

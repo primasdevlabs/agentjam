@@ -1,8 +1,8 @@
 package registry
 
 import (
-	"github.com/agentjam/agentjam/pkg/core"
-	"github.com/agentjam/agentjam/pkg/parser"
+	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/parser"
 )
 
 // RegistryIndex holds repository resource stats.

@@ -3,8 +3,8 @@ package adapters_test
 import (
 	"testing"
 
-	"github.com/agentjam/agentjam/pkg/adapters"
-	"github.com/agentjam/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/adapters"
+	"github.com/primasdevlabs/agentjam/pkg/core"
 )
 
 func TestAdaptersModuleAllHarnesses(t *testing.T) {

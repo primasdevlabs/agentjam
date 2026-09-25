@@ -3,7 +3,7 @@ package policy
 import (
 	"regexp"
 
-	"github.com/agentjam/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/core"
 )
 
 // EvaluateSecurityRules evaluates source code for hardcoded secrets and unparameterized SQL.
