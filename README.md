@@ -254,14 +254,22 @@ fullstack/
 
 ## Installation & Usage
 
-### Prerequisites
+### Direct Installation from Git
 
-- Go version 1.21 or higher
-
-### Build & Verification Commands
+You can install the `agentjam` CLI binary directly from Git using `go install`:
 
 ```bash
-# Build native Go binary CLI
+# Install latest release binary directly from GitHub
+go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest
+
+# Or install from specific branch
+go install github.com/primasdevlabs/agentjam/cmd/agentjam@feat/go-native-engine
+```
+
+### Local Build & Verification Commands
+
+```bash
+# Build native Go binary CLI locally
 go build -o agentjam ./cmd/agentjam
 
 # Run all Go unit test suites
@@ -271,25 +279,21 @@ go test ./...
 go run ./cmd/agentjam validate
 ```
 
-### Programmatic Usage Example
+### Programmatic Usage Example (Go Module)
 
-```typescript
-import { PolicyEngine } from '@agentjam/policy-engine';
-import { EnvironmentDetector, ContextResolver } from '@agentjam/runtime';
+```go
+import (
+    "github.com/agentjam/agentjam/pkg/context"
+    "github.com/agentjam/agentjam/pkg/dispatcher"
+    "github.com/agentjam/agentjam/pkg/runtime"
+)
 
-// 1. Detect target execution environment
-const detector = new EnvironmentDetector();
-const env = detector.detectEnvironment(process.cwd());
-console.log(`Detected environment: ${env.name} (Level ${env.compatibility_level})`);
+// 1. Initialize Go runtime
+rt := runtime.NewRuntime(workspaceRoot, dispatcher.ToolDispatcherOptions{AllowDestructive: true})
 
-// 2. Load policy engine
-const policyEngine = new PolicyEngine();
-policyEngine.loadPoliciesFromDirectory('./policies');
-
-// 3. Resolve project context
-const resolver = new ContextResolver(process.cwd());
-const context = resolver.resolveContext();
-console.log(`Active stack: ${context.stackProfile?.name}`);
+// 2. Resolve workspace context snapshot
+cm := rt.GetContextManager()
+snapshot := cm.BuildContextSnapshot(context.ContextOptions{ActiveAgent: "software-engineer"})
 ```
 
 ---
