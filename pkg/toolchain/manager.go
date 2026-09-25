@@ -61,36 +61,46 @@ func (tm *ToolchainManager) RunPreflightChecks() core.PreflightCheckResult {
 	checks := make([]core.PreflightCheckItem, 0)
 	allPassed := true
 
-	// Node.js Check
-	nodeCheck := core.PreflightCheckItem{
-		Name:       "Node.js Engine Check",
-		Category:   "environment",
-		Status:     "fail",
-		DurationMs: 5,
+	// Check go.mod presence
+	goMod := filepath.Join(tm.workspaceRoot, "go.mod")
+	if _, err := os.Stat(goMod); err == nil {
+		goCheck := core.PreflightCheckItem{
+			Name:       "Go Engine Check",
+			Category:   "environment",
+			Status:     "fail",
+			DurationMs: 5,
+		}
+		if tm.HasBinary("go") {
+			goCheck.Status = "pass"
+		} else {
+			allPassed = false
+		}
+		checks = append(checks, goCheck)
 	}
-	if tm.HasBinary("node") {
-		nodeCheck.Status = "pass"
-	}
-	checks = append(checks, nodeCheck)
 
 	// Check package.json presence
 	pkgJson := filepath.Join(tm.workspaceRoot, "package.json")
 	if _, err := os.Stat(pkgJson); err == nil {
-		// Typecheck
-		if tm.HasBinary("npm") {
-			ok, out, dur := tm.RunCommand("npm run typecheck", 30*time.Second)
-			if !ok {
-				allPassed = false
-			}
-			checks = append(checks, core.PreflightCheckItem{
-				Name:       "TypeScript Typecheck",
-				Category:   "typecheck",
-				Status:     map[bool]string{true: "pass", false: "fail"}[ok],
-				Command:    "npm run typecheck",
-				Output:     out,
-				DurationMs: dur,
-			})
+		nodeCheck := core.PreflightCheckItem{
+			Name:       "Node.js Engine Check",
+			Category:   "environment",
+			Status:     "fail",
+			DurationMs: 5,
 		}
+		if tm.HasBinary("node") {
+			nodeCheck.Status = "pass"
+		}
+		checks = append(checks, nodeCheck)
+	}
+
+	// Fallback if no specific manifest checks were triggered
+	if len(checks) == 0 {
+		checks = append(checks, core.PreflightCheckItem{
+			Name:       "System Environment Check",
+			Category:   "environment",
+			Status:     "pass",
+			DurationMs: 1,
+		})
 	}
 
 	return core.PreflightCheckResult{

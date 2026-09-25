@@ -20,7 +20,7 @@ Thank you for helping build AgentJam! AgentJam is a harness-agnostic, open-sourc
 4. **Validate**:
    Run the validation script to verify schema compliance:
    ```bash
-   npm run validate
+   go run ./cmd/agentjam validate
    ```
 
 5. **Submit a Pull Request**:
