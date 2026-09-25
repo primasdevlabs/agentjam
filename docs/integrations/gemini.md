@@ -9,7 +9,7 @@ AgentJam provides Level 5 integration for **Gemini CLI**.
 Export workspace rules for Gemini:
 
 ```bash
-npx @agentjam/cli export --agent software-engineer --harness gemini
+agentjam export --agent software-engineer --harness gemini
 ```
 
 This generates:

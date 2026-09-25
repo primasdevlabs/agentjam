@@ -1,13 +1,10 @@
 {
-  "name": "agentjam-monorepo",
-  "version": "0.1.0",
+  "name": "agentjam",
+  "version": "1.0.0",
   "private": true,
   "description": "Open-source agents, skills, tools, and workflows for AI-powered development.",
   "author": "AgentJam Community",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
   "type": "module",
   "scripts": {
     "build": "go build ./...",
@@ -16,28 +13,6 @@
     "format": "prettier --write \"**/*.{json,md,yaml,yml}\""
   },
   "devDependencies": {
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.11.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
-    "eslint": "^8.56.0",
-    "js-yaml": "^4.1.0",
-    "prettier": "^3.2.5",
-    "tsx": "^4.7.1",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.2",
-    "zod": "^3.22.4"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "@agentjam/policy-engine": "^0.1.0",
-    "@agentjam/runtime": "^0.1.0",
-    "@agentjam/validator": "^0.1.0"
-  },
-  "allowScripts": {
-    "esbuild@0.28.2": true,
-    "esbuild@0.21.5": true
+    "prettier": "^3.2.5"
   }
 }

@@ -1,6 +1,6 @@
 # AgentJam CLI Specification
 
-The AgentJam CLI (`@agentjam/cli`) provides command-line tools for workspace management, validation, and harness rule export.
+The AgentJam CLI (`cmd/agentjam`) provides command-line tools for workspace management, validation, and harness rule export.
 
 ---
 

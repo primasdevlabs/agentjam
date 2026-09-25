@@ -12,7 +12,6 @@ safetyLevel: safe-write
 mcpServer:
   name: agentjam-mcp-hub
   transport: stdio
-  command: npx
+  command: agentjam
   args:
-    - "-y"
-    - "@agentjam/mcp-server"
+    - mcp

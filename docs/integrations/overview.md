@@ -20,5 +20,5 @@ AgentJam categorizes AI development environments into 6 categories under `integr
 - **Level 2 — Skills**: Reusable task-specific AgentJam skill modules.
 - **Level 3 — Tools**: Connection to AgentJam abstract tools or MCP servers.
 - **Level 4 — Workflows**: Single and multi-agent execution flows.
-- **Level 5 — Validation**: AgentJam post-execution validation engine (`npm run validate`).
+- **Level 5 — Validation**: AgentJam post-execution validation engine (`agentjam validate`).
 - **Level 6 — Lifecycle Integration**: Participating in lifecycle events (`before task`, `before commit`, etc.).

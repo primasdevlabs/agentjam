@@ -11,8 +11,8 @@
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](file:///c:/wamp64/www/fullstack/package.json)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](file:///c:/wamp64/www/fullstack/LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](file:///c:/wamp64/www/fullstack/scripts/validate.ts)
-[![Node Version](https://img.shields.io/badge/node-%3E%3D20.0.0-blue.svg)](file:///c:/wamp64/www/fullstack/package.json)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](file:///c:/wamp64/www/fullstack/cmd/agentjam)
+[![Go Version](https://img.shields.io/badge/go-%3E%3D1.22.0-blue.svg)](file:///c:/wamp64/www/fullstack/go.mod)
 [![Architecture](https://img.shields.io/badge/architecture-harness--agnostic-orange.svg)](file:///c:/wamp64/www/fullstack/docs/concepts/architecture.md)
 [![GitHub Stars](https://img.shields.io/badge/stars-1.2k-yellow.svg)](https://github.com/primasdevlabs/agentjam/stargazers)
 [![GitHub Forks](https://img.shields.io/badge/forks-180-blue.svg)](https://github.com/primasdevlabs/agentjam/network/members)
@@ -38,8 +38,8 @@ AgentJam prevents AI agents from introducing unvetted dependencies, inventing no
 | :---------------------- | :---------------------- | :------------------------------------------------------------------------- |
 | **Release Version**     | `v1.0.0`                | [package.json](file:///c:/wamp64/www/fullstack/package.json)               |
 | **Repository License**  | MIT License             | [LICENSE](file:///c:/wamp64/www/fullstack/LICENSE)                         |
-| **Build & Test Status** | 100% Passing            | [scripts/validate.ts](file:///c:/wamp64/www/fullstack/scripts/validate.ts) |
-| **Node.js Engine**      | `>=20.0.0`              | Monorepo Workspace standard                                                |
+| **Build & Test Status** | 100% Passing            | [cmd/agentjam](file:///c:/wamp64/www/fullstack/cmd/agentjam)               |
+| **Go Engine**           | `>=1.22.0`              | [go.mod](file:///c:/wamp64/www/fullstack/go.mod)                           |
 | **Architecture**        | Harness-Agnostic        | Canonical Neutral Format                                                   |
 | **Active Stacks**       | 8 Pre-configured Stacks | [stacks/](file:///c:/wamp64/www/fullstack/stacks)                          |
 | **Language Ecosystems** | 15 Ecosystem Categories | [languages/](file:///c:/wamp64/www/fullstack/languages)                    |
@@ -47,7 +47,7 @@ AgentJam prevents AI agents from introducing unvetted dependencies, inventing no
 
 ### Ecosystem Topic Tags
 
-`#ai-agents` `#agent-governance` `#harness-agnostic` `#mcp` `#model-context-protocol` `#mcp-server` `#mcp-tools` `#claude-code` `#cursor` `#windsurf` `#roo-code` `#cline` `#antigravity` `#design-governance` `#anti-slop` `#language-registry` `#stack-profiles` `#monorepo` `#typescript`
+`#ai-agents` `#agent-governance` `#harness-agnostic` `#mcp` `#model-context-protocol` `#mcp-server` `#mcp-tools` `#claude-code` `#cursor` `#windsurf` `#roo-code` `#cline` `#antigravity` `#design-governance` `#anti-slop` `#language-registry` `#stack-profiles` `#monorepo` `#golang` `#go`
 
 ---
 
@@ -154,10 +154,10 @@ flowchart TD
     end
 
     subgraph Core["AgentJam Governance & Runtime"]
-        PE["@agentjam/policy-engine"]
-        CR["Context Resolver (@agentjam/runtime)"]
-        VAL["@agentjam/validator"]
-        REG["@agentjam/registry"]
+        PE["pkg/policy"]
+        CR["Context Resolver (pkg/runtime)"]
+        VAL["pkg/validator"]
+        REG["pkg/registry"]
     end
 
     subgraph Canonical["Canonical AgentJam Assets"]
@@ -169,7 +169,7 @@ flowchart TD
         LANG["Language Registry (15 ecosystems)"]
     end
 
-    subgraph Export["Harness Adapters Layer (@agentjam/adapters)"]
+    subgraph Export["Harness Adapters Layer (pkg/adapters)"]
         AD_CLI["CLI Adapter (CLAUDE.md)"]
         AD_IDE["IDE Adapter (.cursorrules, .vscode)"]
         AD_EXT["Extension Adapter (.clinerules)"]
@@ -343,9 +343,9 @@ We welcome contributions to AgentJam! You can contribute new agents, skills, too
 2. Follow existing directory and file naming conventions.
 3. Verify that your changes pass all build, test, and validation checks before opening a pull request:
    ```bash
-   npm run build
-   npm test
-   npx tsx scripts/validate.ts
+   go build ./...
+   go test ./...
+   go run ./cmd/agentjam validate
    ```
 
 For detailed contributing instructions, read [docs/contributing/index.md](file:///c:/wamp64/www/fullstack/docs/contributing/index.md).

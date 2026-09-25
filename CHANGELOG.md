@@ -2,6 +2,15 @@
 
 All notable changes to AgentJam will be documented in this file.
 
+## [1.0.0] - 2026-09-25
+
+### Added & Refactored
+- **Native Go Engine Migration**:
+  - Complete migration of runtime, parser, policy engine, validator, registry, adapters, dispatcher, toolchain, context, memory, and CLI to native Go (`pkg/` and `cmd/agentjam`).
+  - Removed all legacy TypeScript monorepo packages (`packages/`), scripts, and Node.js toolchains.
+  - Sub-20ms CLI execution time with 100% Go test suite coverage (`go test ./...`).
+  - Direct installation via `go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest`.
+
 ## [0.4.0] - 2026-09-22
 
 ### Added

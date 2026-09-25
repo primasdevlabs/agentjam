@@ -19,7 +19,7 @@ AgentJam provides complete integration support for **Cline** (formerly Claude De
 Export canonical AgentJam instructions to `.clinerules` format:
 
 ```bash
-npx @agentjam/cli export --agent software-engineer --harness cline
+agentjam export --agent software-engineer --harness cline
 ```
 
 This generates `.clinerules` at the project root, defining system role boundaries, code standards, and execution rules.

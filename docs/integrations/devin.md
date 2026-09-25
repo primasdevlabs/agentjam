@@ -22,7 +22,7 @@ AgentJam exports canonical rules to root `DEVIN.md` and project-level `.devin/ru
 
 ```bash
 # Export canonical agent rules for Devin / Devin Desktop
-npx @agentjam/cli export --agent software-engineer --harness devin
+agentjam export --agent software-engineer --harness devin
 ```
 
 This generates:
