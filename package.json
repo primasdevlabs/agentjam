@@ -10,13 +10,10 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "tsc -b tsconfig.build.json",
-    "prepare": "npm run build",
-    "test": "vitest run",
-    "lint": "eslint packages scripts --ext .ts",
-    "format": "prettier --write .",
-    "check-format": "prettier --check .",
-    "validate": "tsx scripts/validate.ts"
+    "build": "go build ./...",
+    "test": "go test ./...",
+    "validate": "go run ./cmd/agentjam validate",
+    "format": "prettier --write \"**/*.{json,md,yaml,yml}\""
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",

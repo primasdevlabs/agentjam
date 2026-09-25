@@ -1,24 +1,46 @@
 # Installation & Workspace Operational Behavior
 
-This guide details how to install AgentJam and **what AgentJam actively enforces and does inside a workspace where it is installed**.
+This guide details how to install AgentJam Go Native Engine and **what AgentJam actively enforces inside a workspace where it is installed**.
 
 ---
 
 ## Installation
 
-Install AgentJam packages into your project workspace:
+Install AgentJam CLI and runtime using Go:
 
 ```bash
-npm install @agentjam/runtime @agentjam/validator @agentjam/policy-engine
+# Clone repository
+git clone https://github.com/agentjam/agentjam.git
+cd agentjam
+
+# Build native Go binary
+go build -o agentjam ./cmd/agentjam
 ```
 
-Or initialize AgentJam governance rules in any target repository:
+Or run directly using `go run`:
 
 ```bash
-npx @agentjam/cli init
+go run ./cmd/agentjam validate
 ```
 
-This scaffolds `.agentjam/config.yaml`, `.agentjam/policies/`, and exports harness rules (`AGENTS.md`, `.cursorrules`, `CLAUDE.md`, `GEMINI.md`, `.clinerules`) into your repository root.
+---
+
+## Harness Export & Rule Deployment
+
+AgentJam supports both **auto-detection** and **explicit harness selection**:
+
+```bash
+# Auto-detect workspace AI environment (Cursor, Antigravity, Claude Code, etc.)
+agentjam export
+
+# Explicitly export rules for a specific AI harness
+agentjam export --harness cursor
+agentjam export --harness claude-code
+agentjam export --harness gemini
+agentjam export --harness all
+```
+
+This scaffolds `.agentjam/config.yaml`, `.agentjam/policies/`, and exports harness rule configurations (`AGENTS.md`, `.cursorrules`, `CLAUDE.md`, `GEMINI.md`, `.clinerules`) into your repository root.
 
 ---
 
@@ -32,11 +54,11 @@ When an AI coding agent operates inside an AgentJam-enabled workspace, AgentJam 
 - **Config Alignment**: Forces new code to conform to existing ESLint, Prettier, Pint, or TypeScript compiler configurations.
 
 ### 2. Modular Boundary Enforcement
-- **Public API Isolation**: Restricts cross-feature imports to exported public APIs—prohibiting imports from other features' private internals (`/src/internal/`).
+- **Public API Isolation**: Restricts cross-feature imports to exported public APIs—prohibiting imports from other features' private internals (`/pkg/internal/`).
 - **Single Responsibility**: Enforces small, composable units with colocated tests and type definitions.
 
 ### 3. Security Governance
-- **Boundary Input Validation**: Enforces input validation schemas (Zod, Valibot, standard validator) at HTTP, queue, and webhook boundaries.
+- **Boundary Input Validation**: Enforces input validation schemas at HTTP, queue, and webhook boundaries.
 - **Parameterized Database Queries**: Prohibits string-concatenated raw SQL queries; enforces parameterized queries or ORM models.
 - **Secret Protection**: Scans for hardcoded secrets and API keys, requiring environment variables or secret managers.
 
@@ -51,4 +73,4 @@ When an AI coding agent operates inside an AgentJam-enabled workspace, AgentJam 
 - **Human Product Copy**: Prohibits AI marketing buzzwords ("empower your business", "unlock the power").
 
 ### 6. Verification Before Task Completion
-- Never declares a task complete without executing empirical verification (`npm run build`, `npm test`, `npm run validate`).
+- Never declares a task complete without executing empirical verification (`go build ./...`, `go test ./...`, `agentjam validate`).

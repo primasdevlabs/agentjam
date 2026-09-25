@@ -213,64 +213,42 @@ flowchart TD
 
 ```text
 fullstack/
+├── cmd/                      # Executable Go binaries (cmd/agentjam)
+├── pkg/                      # Modular Go packages
+│   ├── core/                 # Go domain types, constants, errors, and utils
+│   ├── parser/               # Markdown frontmatter and YAML manifest parser
+│   ├── policy/               # Policy Engine & 12 anti-slop design governance evaluators
+│   ├── validator/            # Repository and manifest cross-reference validator
+│   ├── registry/             # Search index builder
+│   ├── adapters/             # Target harness exporters (CLAUDE.md, .cursorrules, GEMINI.md)
+│   ├── context/              # Context Manager & token estimator
+│   ├── memory/               # Working, Episodic, and Semantic memory store
+│   ├── toolchain/            # Toolchain preflight checker & PATH binary inspector
+│   ├── dispatcher/           # Tool Dispatcher with safety level enforcement
+│   └── runtime/              # Execution runtime, environment detector, and orchestrator
 ├── agents/                   # Composed agent personas (software-engineer, code-reviewer, etc.)
-│   ├── software-engineer/    # Full-stack developer agent
-│   ├── frontend-engineer/    # UI specialist with anti-slop rules
-│   ├── backend-engineer/     # API, service, and data architect
-│   ├── code-reviewer/        # Policy, security, and quality auditor
-│   ├── qa-engineer/          # Automated testing specialist
-│   ├── security-engineer/    # Secrets and vulnerability auditor
-│   ├── ui-ux-designer/       # Visual system architect
-│   ├── architect/            # Domain boundaries architect
-│   └── researcher/           # Documentation and library researcher
 ├── skills/                   # Domain-specific skill modules
-│   ├── project/              # existing-project-audit, stack-detection, dependency-audit, house-cleaning
-│   ├── development/          # architecture, code-quality, error-handling, testing, documentation
-│   ├── design/               # design-discovery, anti-slop, design-system, responsive-design, accessibility, ui-copy, visual-review
-│   ├── security/             # secure-coding, dependency-security, secrets
-│   └── research/             # documentation-research, technology-research, current-conventions
 ├── policies/                 # Non-negotiable policy governance matrix
-│   ├── core/                 # model-knowledge, inspect-before-act, current-conventions, dependencies, security, architecture, testing, documentation, change-management
-│   ├── design/               # 12 anti-slop policies (typography, color, spacing, icons, visual-language, copy, accessibility, etc.)
-│   └── project/              # existing-project, house-cleaning, stack, freshness
 ├── workflows/                # Single and multi-agent execution flows
-│   ├── existing-project-audit/ # 7-step codebase audit workflow
-│   ├── new-project/          # Project scaffolding workflow
-│   ├── feature-development/  # Research, code, test, and review workflow
-│   ├── bug-fixing/           # Log analysis, reproduction test, fix, and verify workflow
-│   ├── code-review/          # PR compliance review workflow
-│   ├── ui-development/       # Token binding and anti-slop UI workflow
-│   ├── dependency-update/    # Security audit and lockfile upgrade workflow
-│   ├── framework-update/     # Framework migration workflow with ADRs
-│   └── release/              # Pre-release audit, tagging, and changelog workflow
 ├── stacks/                   # Stack profiles (nextjs, laravel, nestjs, react, vue, django, rails, generic)
 ├── languages/                # Language registry across 15 ecosystems
-├── integrations/             # Target harness export adapters (ide, autonomous-agents, cli, extensions, ai-platforms, generic)
-├── docs/                     # Canonical documentation suite (11 sections)
-├── packages/                 # Monorepo TypeScript packages
-│   ├── core/                 # Core Zod schemas and type definitions
-│   ├── parser/               # YAML and Markdown parser
-│   ├── policy-engine/        # Policy evaluation engine
-│   ├── validator/            # Repository and manifest validator
-│   ├── registry/             # Search index builder
-│   ├── adapters/             # Target harness exporters
-│   └── runtime/              # Execution context resolver and environment detector
-└── scripts/                  # Repository validation scripts (validate.ts)
+├── integrations/             # Target harness export adapters
+└── docs/                     # Canonical documentation suite
 ```
 
 ---
 
-## Monorepo Packages
+## Go Packages Architecture
 
-| Package                       | Path                                                                             | Description                                                                                         |
-| :---------------------------- | :------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------- |
-| **`@agentjam/core`**          | [packages/core](file:///c:/wamp64/www/fullstack/packages/core)                   | TypeScript types and Zod schemas for agents, skills, workflows, policies, stacks, and languages.    |
-| **`@agentjam/parser`**        | [packages/parser](file:///c:/wamp64/www/fullstack/packages/parser)               | Parser for `agent.yaml`, `skill.yaml`, `workflow.yaml`, `language.yaml`, and Markdown instructions. |
-| **`@agentjam/policy-engine`** | [packages/policy-engine](file:///c:/wamp64/www/fullstack/packages/policy-engine) | Evaluator for core policies, design governance rules, and anti-slop constraints.                    |
-| **`@agentjam/validator`**     | [packages/validator](file:///c:/wamp64/www/fullstack/packages/validator)         | Structural and semantic validator for AgentJam repository resources.                                |
-| **`@agentjam/registry`**      | [packages/registry](file:///c:/wamp64/www/fullstack/packages/registry)           | Indexer building registry metadata for discovery and search.                                        |
-| **`@agentjam/adapters`**      | [packages/adapters](file:///c:/wamp64/www/fullstack/packages/adapters)           | Exporters rendering canonical resources into CLAUDE.md, .cursorrules, .clinerules, and GEMINI.md.   |
-| **`@agentjam/runtime`**       | [packages/runtime](file:///c:/wamp64/www/fullstack/packages/runtime)             | Execution runtime, environment detector, and active context resolver.                               |
+| Package | Path | Description |
+| :--- | :--- | :--- |
+| **`github.com/agentjam/agentjam/pkg/core`** | [pkg/core](file:///c:/wamp64/www/fullstack/pkg/core) | Go structs and types for agents, skills, workflows, policies, stacks, and languages. |
+| **`github.com/agentjam/agentjam/pkg/parser`** | [pkg/parser](file:///c:/wamp64/www/fullstack/pkg/parser) | Parser for `agent.yaml`, `skill.yaml`, `workflow.yaml`, `SKILL.md`, and Markdown frontmatter. |
+| **`github.com/agentjam/agentjam/pkg/policy`** | [pkg/policy](file:///c:/wamp64/www/fullstack/pkg/policy) | Evaluator for core policies, design governance rules, and anti-slop constraints. |
+| **`github.com/agentjam/agentjam/pkg/validator`** | [pkg/validator](file:///c:/wamp64/www/fullstack/pkg/validator) | Structural and cross-reference validator for AgentJam repository resources. |
+| **`github.com/agentjam/agentjam/pkg/registry`** | [pkg/registry](file:///c:/wamp64/www/fullstack/pkg/registry) | Indexer building registry metadata for discovery and search. |
+| **`github.com/agentjam/agentjam/pkg/adapters`** | [pkg/adapters](file:///c:/wamp64/www/fullstack/pkg/adapters) | Exporters rendering canonical resources into CLAUDE.md, .cursorrules, and GEMINI.md. |
+| **`github.com/agentjam/agentjam/pkg/runtime`** | [pkg/runtime](file:///c:/wamp64/www/fullstack/pkg/runtime) | Execution runtime, environment detector, context, memory, and tool dispatcher orchestrator. |
 
 ---
 
@@ -278,36 +256,19 @@ fullstack/
 
 ### Prerequisites
 
-- Node.js version 20.0.0 or higher
-- npm or pnpm package manager
-
-### Installation
-
-Install AgentJam packages locally within your project:
-
-```bash
-npm install @agentjam/runtime @agentjam/validator @agentjam/policy-engine
-```
-
-Or clone the monorepo for local development:
-
-```bash
-git clone https://github.com/agentjam/agentjam.git
-cd agentjam
-npm install
-```
+- Go version 1.21 or higher
 
 ### Build & Verification Commands
 
 ```bash
-# Build all monorepo TypeScript packages
-npm run build
+# Build native Go binary CLI
+go build -o agentjam ./cmd/agentjam
 
-# Run unit and integration tests
-npm test
+# Run all Go unit test suites
+go test ./...
 
-# Run repository validation script
-npx tsx scripts/validate.ts
+# Run repository validation via Go CLI
+go run ./cmd/agentjam validate
 ```
 
 ### Programmatic Usage Example

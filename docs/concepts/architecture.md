@@ -1,13 +1,31 @@
-# AgentJam Architecture
+# AgentJam Architecture (Go Native Engine)
 
-AgentJam is built as a harness-agnostic monorepo separating canonical assets from adapter implementations.
+AgentJam is built as a high-performance, harness-agnostic Go architecture separating canonical assets from export adapter implementations.
 
-## Monorepo Packages
+---
 
-1. `@agentjam/core`: TypeScript type definitions and Zod validation schemas.
-2. `@agentjam/parser`: YAML & markdown manifest loader.
-3. `@agentjam/validator`: Repository linting and structural validation engine.
-4. `@agentjam/registry`: Local and remote resource indexer.
-5. `@agentjam/policy-engine`: Governance and precedence evaluator.
-6. `@agentjam/adapters`: Export engine converting canonical rules into target harness formats (Claude Code, Cursor, Windsurf, Roo Code, etc.).
-7. `@agentjam/runtime`: AgentJam execution runtime and environment compatibility detector.
+## Go Packages Architecture (`pkg/`)
+
+1. **`github.com/agentjam/agentjam/pkg/core`**: Go domain types, structs, constants, errors, and token estimation utilities.
+2. **`github.com/agentjam/agentjam/pkg/parser`**: YAML manifest loader, Markdown frontmatter parser, and directory resource discovery walker.
+3. **`github.com/agentjam/agentjam/pkg/policy`**: Governance evaluator for core policies, 12 anti-slop design rules, and security scans.
+4. **`github.com/agentjam/agentjam/pkg/validator`**: Repository linting, schema validation, and cross-reference integrity checker.
+5. **`github.com/agentjam/agentjam/pkg/registry`**: Search index builder and repository statistics calculator.
+6. **`github.com/agentjam/agentjam/pkg/adapters`**: Harness export engine converting canonical rules into target AI harness formats (Claude Code, Cursor, Gemini/Antigravity, Cline, Windsurf, Devin, Roo Code, Generic).
+7. **`github.com/agentjam/agentjam/pkg/context`**: Context Manager, token estimator, system prompt formatter, and window truncator.
+8. **`github.com/agentjam/agentjam/pkg/memory`**: Thread-safe Working, Episodic, and Semantic memory store.
+9. **`github.com/agentjam/agentjam/pkg/toolchain`**: Toolchain preflight check executor and PATH binary inspector.
+10. **`github.com/agentjam/agentjam/pkg/dispatcher`**: Tool dispatcher enforcing safety levels and workspace path boundary security.
+11. **`github.com/agentjam/agentjam/pkg/runtime`**: Main execution runtime orchestrator.
+
+---
+
+## Executable CLI (`cmd/agentjam`)
+
+The native Go binary CLI (`agentjam`) provides subcommands:
+- `agentjam validate`: Validates repository resources, policies, and stacks.
+- `agentjam export`: Auto-detects or explicitly exports rules for AI harnesses (`--harness auto|all|cursor|claude-code|gemini|...`).
+- `agentjam context`: Generates context snapshot and system instructions.
+- `agentjam preflight`: Runs toolchain preflight checks.
+- `agentjam build-registry`: Generates `registry.json` index.
+- `agentjam run-e2e`: Runs full end-to-end verification suite.

@@ -8,3 +8,5 @@ coverage/
 .tmp/
 .agentjam
 .cursor
+*.exe
+tsconfig.tsbuildinfo

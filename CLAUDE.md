@@ -1,8 +1,11 @@
-# Cursor Project Rules — software-engineer
+# Claude Code Configuration — software-engineer
 
+Description: Fullstack Engineer
+
+## System Guidance & AgentJam Policies
 # AgentJam System Instructions & Active Context (Go Engine)
 **Workspace**: `C:\wamp64\www\fullstack`
-**Timestamp**: 2026-09-25T23:28:12+01:00
+**Timestamp**: 2026-09-25T23:28:00+01:00
 
 ## Active Stack Profile: Generic Polyglot
 
