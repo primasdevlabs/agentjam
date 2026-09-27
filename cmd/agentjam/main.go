@@ -54,7 +54,7 @@ func main() {
 
 	switch command {
 	case "version":
-		fmt.Printf("AgentJam Go Native CLI v%s\n", version)
+		fmt.Printf("AgentJam Go Native CLI %s\n", version)
 
 	case "preflight":
 		result := rt.GetToolchainManager().RunPreflightChecks()
@@ -484,7 +484,7 @@ func runE2E(rt *runtime.AgentJamRuntime, cwd string) {
 }
 
 func printHelp() {
-	fmt.Printf("AgentJam Go Native CLI v%s\n\n", version)
+	fmt.Printf("AgentJam Go Native CLI %s\n\n", version)
 	fmt.Println("Usage: agentjam <command> [options]")
 	fmt.Println("\nCommands:")
 	fmt.Println("  version          Print AgentJam Go version")
