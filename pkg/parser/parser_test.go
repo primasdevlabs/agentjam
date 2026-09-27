@@ -172,11 +172,32 @@ func TestParseAgentBadYAML(t *testing.T) {
 }
 
 func TestLoadWorkspaceConfig(t *testing.T) {
-	cfg, err := parser.LoadWorkspaceConfig(repoRoot(t))
+	// Self-contained: .agentjam/ is gitignored, so never rely on the repo's copy.
+	dir := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(dir, ".agentjam"), 0755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(dir, ".agentjam", "config.yaml"), []byte(`versionPolicy: current-stable
+freshnessRequired: true
+maxDocAge: 7d
+stack: generic
+defaultAgent: software-engineer
+`), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	cfg, err := parser.LoadWorkspaceConfig(dir)
 	if err != nil {
 		t.Fatalf("LoadWorkspaceConfig failed: %v", err)
 	}
 	if cfg.MaxDocAge != "7d" {
 		t.Errorf("Expected maxDocAge 7d, got %q", cfg.MaxDocAge)
+	}
+	if cfg.DefaultAgent != "software-engineer" || cfg.Stack != "generic" {
+		t.Errorf("Expected stack/agent defaults, got %+v", cfg)
+	}
+
+	if _, err := parser.LoadWorkspaceConfig(t.TempDir()); err == nil {
+		t.Error("Expected error for missing config.yaml")
 	}
 }
