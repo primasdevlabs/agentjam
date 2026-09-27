@@ -7,23 +7,27 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-validate:
+  build-test-validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm ci
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+          cache: true
+
+      - name: Build
+        run: go build ./...
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Test
+        run: go test ./...
 
       - name: Validate Canonical Resources
-        run: npm run validate
+        run: go run ./cmd/agentjam validate
 
-      - name: Type Check & Build Monorepo
-        run: npm run build
-
-      - name: Run Tests
-        run: npm run test
+      - name: Build Registry
+        run: go run ./cmd/agentjam build-registry
