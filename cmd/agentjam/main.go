@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime/debug"
 	"strings"
 
 	agentjam "github.com/primasdevlabs/agentjam"
@@ -23,7 +24,17 @@ import (
 	"github.com/primasdevlabs/agentjam/pkg/validator"
 )
 
-var version = core.Version
+var version = resolvedVersion()
+
+// resolvedVersion prefers the module version recorded by `go install
+// pkg@tag` (debug.ReadBuildInfo), falling back to the compiled-in default
+// or the -ldflags -X override used by release builds.
+func resolvedVersion() string {
+	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Version != "" && info.Main.Version != "(devel)" {
+		return info.Main.Version
+	}
+	return core.Version
+}
 
 func main() {
 	if len(os.Args) < 2 {
