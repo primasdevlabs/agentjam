@@ -1,0 +1,19 @@
+id: 00-example-policy
+name: Example Policy
+description: "Declarative policy specification: describes what is enforced and why."
+category: core
+enforcement: strict-block
+scope: global
+
+appliesTo:
+  - agent
+  - workflow
+
+rules:
+  example_rule_enabled: true
+
+instructions: |
+  Policy Requirements:
+  - State the non-negotiable rule precisely.
+  - Explain the rationale in one sentence.
+  - Reference the enforcing evaluator when one exists.

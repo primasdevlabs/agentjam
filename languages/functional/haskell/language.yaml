@@ -1,0 +1,18 @@
+id: lang-haskell
+name: Haskell
+ecosystem: functional
+aliases: [hs, haskell]
+extensions: [.hs, .lhs]
+
+tooling:
+  package_manager: cabal
+  linter: hlint
+  formatter: ormolu
+  type_checker: ghc
+
+framework_precedence:
+  - servant
+  - scotty
+
+documentation:
+  official_site: https://www.haskell.org/documentation/

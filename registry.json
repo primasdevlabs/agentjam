@@ -1,13 +1,14 @@
 {
-  "generatedAt": "2026-09-22T07:50:43.804Z",
-  "totalAgents": 9,
-  "totalSkills": 24,
-  "totalTools": 3,
-  "totalWorkflows": 9,
-  "totalStacks": 8,
-  "totalPolicies": 0,
-  "totalIntegrations": 3,
-  "totalLanguages": 5,
+  "generatedAt": "2026-09-27T08:38:42+01:00",
+  "agentsCount": 13,
+  "skillsCount": 32,
+  "toolsCount": 8,
+  "workflowsCount": 12,
+  "stacksCount": 8,
+  "languagesCount": 18,
+  "policiesCount": 32,
+  "integrationsCount": 14,
+  "total": 145,
   "entries": [
     {
       "id": "architect",
@@ -15,12 +16,7 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "Enterprise software architect designing system structure, domain boundaries, tech stack selection, and integration patterns.",
-      "path": "agents/architect",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/architect/agent.yaml"
     },
     {
       "id": "backend-engineer",
@@ -28,12 +24,7 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "Backend systems specialist focused on API design, database schemas, performance, security, and domain services.",
-      "path": "agents/backend-engineer",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/backend-engineer/agent.yaml"
     },
     {
       "id": "code-reviewer",
@@ -41,12 +32,23 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "Rigorous code reviewer enforcing architectural modularity, policy compliance, security standards, and anti-slop rules.",
-      "path": "agents/code-reviewer",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/code-reviewer/agent.yaml"
+    },
+    {
+      "id": "database-engineer",
+      "name": "database-engineer",
+      "version": "1.0.0",
+      "type": "agent",
+      "description": "Database engineer responsible for schema design, query optimization, migrations, and data integrity across relational and document stores.",
+      "path": "agents/database-engineer/agent.yaml"
+    },
+    {
+      "id": "devops-engineer",
+      "name": "devops-engineer",
+      "version": "1.0.0",
+      "type": "agent",
+      "description": "DevOps and platform engineer responsible for CI/CD pipelines, infrastructure as code, deployment automation, and observability.",
+      "path": "agents/devops-engineer/agent.yaml"
     },
     {
       "id": "frontend-engineer",
@@ -54,12 +56,23 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "Frontend UI specialist focused on modern web components, design system fidelity, anti-slop governance, and responsive user experiences.",
-      "path": "agents/frontend-engineer",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/frontend-engineer/agent.yaml"
+    },
+    {
+      "id": "fullstack-engineer",
+      "name": "fullstack-engineer",
+      "version": "1.0.0",
+      "type": "agent",
+      "description": "Full-stack engineer spanning frontend, backend, and data layers for end-to-end feature delivery.",
+      "path": "agents/fullstack-engineer/agent.yaml"
+    },
+    {
+      "id": "product-manager",
+      "name": "product-manager",
+      "version": "1.0.0",
+      "type": "agent",
+      "description": "Product manager agent translating business requirements into scoped specs, acceptance criteria, and prioritized work items.",
+      "path": "agents/product-manager/agent.yaml"
     },
     {
       "id": "qa-engineer",
@@ -67,12 +80,7 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "Quality assurance and test automation engineer responsible for test coverage, regression testing, and verification.",
-      "path": "agents/qa-engineer",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/qa-engineer/agent.yaml"
     },
     {
       "id": "researcher",
@@ -80,12 +88,7 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "Technology researcher responsible for discovering authoritative documentation, API references, library versions, and ecosystem updates.",
-      "path": "agents/researcher",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/researcher/agent.yaml"
     },
     {
       "id": "security-engineer",
@@ -93,12 +96,7 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "Cybersecurity engineer specializing in threat modeling, vulnerability scanning, secret detection, and secure boundary enforcement.",
-      "path": "agents/security-engineer",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/security-engineer/agent.yaml"
     },
     {
       "id": "software-engineer",
@@ -106,12 +104,7 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "Generalist software engineer capable of full-stack feature development, refactoring, and bug fixing.",
-      "path": "agents/software-engineer",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/software-engineer/agent.yaml"
     },
     {
       "id": "ui-ux-designer",
@@ -119,25 +112,422 @@
       "version": "1.0.0",
       "type": "agent",
       "description": "UI/UX design specialist crafting visual design systems, anti-slop guidelines, color palettes, and component design governance.",
-      "path": "agents/ui-ux-designer",
-      "tags": [],
-      "metadata": {
-        "author": "AgentJam Team",
-        "license": "MIT"
-      }
+      "path": "agents/ui-ux-designer/agent.yaml"
     },
     {
-      "id": "code-review",
-      "name": "code-review",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Rigorous code review techniques for quality, security, performance, and maintainability.",
-      "path": "skills/code-review",
-      "tags": [],
-      "category": "code-quality",
-      "metadata": {
-        "author": "AgentJam Community"
-      }
+      "id": "antigravity",
+      "name": "antigravity",
+      "type": "integration",
+      "path": "integrations/ai-platforms/antigravity/integration.yaml"
+    },
+    {
+      "id": "claude-code",
+      "name": "claude-code",
+      "type": "integration",
+      "path": "integrations/cli/claude-code/integration.yaml"
+    },
+    {
+      "id": "cline",
+      "name": "cline",
+      "type": "integration",
+      "path": "integrations/extensions/cline/integration.yaml"
+    },
+    {
+      "id": "codex",
+      "name": "codex",
+      "type": "integration",
+      "path": "integrations/cli/codex/integration.yaml"
+    },
+    {
+      "id": "cursor",
+      "name": "cursor",
+      "type": "integration",
+      "path": "integrations/ide/cursor/integration.yaml"
+    },
+    {
+      "id": "devin",
+      "name": "devin",
+      "type": "integration",
+      "path": "integrations/autonomous-agents/devin/integration.yaml"
+    },
+    {
+      "id": "gemini",
+      "name": "gemini-cli",
+      "type": "integration",
+      "path": "integrations/cli/gemini/integration.yaml"
+    },
+    {
+      "id": "generic",
+      "name": "generic",
+      "type": "integration",
+      "path": "integrations/generic/integration.yaml"
+    },
+    {
+      "id": "opencode",
+      "name": "opencode",
+      "type": "integration",
+      "path": "integrations/cli/opencode/integration.yaml"
+    },
+    {
+      "id": "roo-code",
+      "name": "roo-code",
+      "type": "integration",
+      "path": "integrations/extensions/roo-code/integration.yaml"
+    },
+    {
+      "id": "void",
+      "name": "void",
+      "type": "integration",
+      "path": "integrations/ide/void/integration.yaml"
+    },
+    {
+      "id": "vscode",
+      "name": "vscode",
+      "type": "integration",
+      "path": "integrations/ide/vscode/integration.yaml"
+    },
+    {
+      "id": "windsurf",
+      "name": "windsurf",
+      "type": "integration",
+      "path": "integrations/ide/windsurf/integration.yaml"
+    },
+    {
+      "id": "zed",
+      "name": "zed",
+      "type": "integration",
+      "path": "integrations/ide/zed/integration.yaml"
+    },
+    {
+      "id": "bash",
+      "name": "Bash",
+      "type": "language",
+      "path": "languages/scripting/bash/language.yaml"
+    },
+    {
+      "id": "cobol",
+      "name": "COBOL",
+      "type": "language",
+      "path": "languages/legacy/cobol/language.yaml"
+    },
+    {
+      "id": "csharp",
+      "name": "C#",
+      "type": "language",
+      "path": "languages/dotnet/csharp/language.yaml"
+    },
+    {
+      "id": "dart",
+      "name": "Dart",
+      "type": "language",
+      "path": "languages/mobile/dart/language.yaml"
+    },
+    {
+      "id": "embedded-c",
+      "name": "Embedded C",
+      "type": "language",
+      "path": "languages/embedded/embedded-c/language.yaml"
+    },
+    {
+      "id": "go",
+      "name": "Go",
+      "type": "language",
+      "path": "languages/backend/go/language.yaml"
+    },
+    {
+      "id": "haskell",
+      "name": "Haskell",
+      "type": "language",
+      "path": "languages/functional/haskell/language.yaml"
+    },
+    {
+      "id": "hcl",
+      "name": "HCL",
+      "type": "language",
+      "path": "languages/infrastructure/hcl/language.yaml"
+    },
+    {
+      "id": "java",
+      "name": "Java",
+      "type": "language",
+      "path": "languages/jvm/java/language.yaml"
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript",
+      "type": "language",
+      "path": "languages/web/javascript/language.yaml"
+    },
+    {
+      "id": "php",
+      "name": "PHP",
+      "type": "language",
+      "path": "languages/backend/php/language.yaml"
+    },
+    {
+      "id": "plpgsql",
+      "name": "PL/pgSQL",
+      "type": "language",
+      "path": "languages/databases/plpgsql/language.yaml"
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "type": "language",
+      "path": "languages/backend/python/language.yaml"
+    },
+    {
+      "id": "rust",
+      "name": "Rust",
+      "type": "language",
+      "path": "languages/systems/rust/language.yaml"
+    },
+    {
+      "id": "solidity",
+      "name": "Solidity",
+      "type": "language",
+      "path": "languages/smart-contracts/solidity/language.yaml"
+    },
+    {
+      "id": "sql",
+      "name": "SQL",
+      "type": "language",
+      "path": "languages/data/sql/language.yaml"
+    },
+    {
+      "id": "swift",
+      "name": "Swift",
+      "type": "language",
+      "path": "languages/apple/swift/language.yaml"
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "type": "language",
+      "path": "languages/web/typescript/language.yaml"
+    },
+    {
+      "id": "01-stack",
+      "name": "Technology Stack Policy",
+      "type": "policy",
+      "description": "Enforces project-declared tech stack boundaries and prevents casual introduction of unapproved frameworks.",
+      "path": "policies/technology/01-stack.yaml"
+    },
+    {
+      "id": "02-versions",
+      "name": "Version Constraint Policy",
+      "type": "policy",
+      "description": "Enforces version policy rules (current-stable, project-compatible, pinned) over raw 'latest'.",
+      "path": "policies/versions/02-versions.yaml"
+    },
+    {
+      "id": "03-freshness",
+      "name": "Documentation Freshness Policy",
+      "type": "policy",
+      "description": "TRAINING KNOWLEDGE ≠ SOURCE OF TRUTH. Forces agents to verify current official documentation over model training memory.",
+      "path": "policies/freshness/03-freshness.yaml"
+    },
+    {
+      "id": "04-security",
+      "name": "Security \u0026 Secret Management Policy",
+      "type": "policy",
+      "description": "Enforces zero-secret leakage, input validation at boundaries, and parameterized database queries.",
+      "path": "policies/security/04-security.yaml"
+    },
+    {
+      "id": "05-architecture",
+      "name": "Modular Architecture Policy",
+      "type": "policy",
+      "description": "Enforces clean separation of concerns, public contract boundaries, and small composable units.",
+      "path": "policies/architecture/05-architecture.yaml"
+    },
+    {
+      "id": "06-dependencies",
+      "name": "Dependency Boundary Policy",
+      "type": "policy",
+      "description": "Restricts unapproved external package additions.",
+      "path": "policies/dependencies/06-dependencies.yaml"
+    },
+    {
+      "id": "07-coding-standards",
+      "name": "Coding Standards Policy",
+      "type": "policy",
+      "description": "Requires strict linting, formatting, type checking, and test verification before completion.",
+      "path": "policies/coding-standards/07-coding-standards.yaml"
+    },
+    {
+      "id": "accessibility",
+      "name": "accessibility",
+      "type": "policy",
+      "path": "policies/design/accessibility.md"
+    },
+    {
+      "id": "animation",
+      "name": "animation",
+      "type": "policy",
+      "path": "policies/design/animation.md"
+    },
+    {
+      "id": "anti-slop",
+      "name": "anti-slop",
+      "type": "policy",
+      "path": "policies/design/anti-slop.md"
+    },
+    {
+      "id": "architecture",
+      "name": "architecture",
+      "type": "policy",
+      "path": "policies/core/architecture.md"
+    },
+    {
+      "id": "change-management",
+      "name": "change-management",
+      "type": "policy",
+      "path": "policies/core/change-management.md"
+    },
+    {
+      "id": "color",
+      "name": "color",
+      "type": "policy",
+      "path": "policies/design/color.md"
+    },
+    {
+      "id": "components",
+      "name": "components",
+      "type": "policy",
+      "path": "policies/design/components.md"
+    },
+    {
+      "id": "copy",
+      "name": "copy",
+      "type": "policy",
+      "path": "policies/design/copy.md"
+    },
+    {
+      "id": "current-conventions",
+      "name": "current-conventions",
+      "type": "policy",
+      "path": "policies/core/current-conventions.md"
+    },
+    {
+      "id": "dependencies",
+      "name": "dependencies",
+      "type": "policy",
+      "path": "policies/core/dependencies.md"
+    },
+    {
+      "id": "design-system",
+      "name": "design-system",
+      "type": "policy",
+      "path": "policies/design/design-system.md"
+    },
+    {
+      "id": "documentation",
+      "name": "documentation",
+      "type": "policy",
+      "path": "policies/core/documentation.md"
+    },
+    {
+      "id": "existing-project",
+      "name": "existing-project",
+      "type": "policy",
+      "path": "policies/project/existing-project.md"
+    },
+    {
+      "id": "freshness",
+      "name": "freshness",
+      "type": "policy",
+      "path": "policies/project/freshness.md"
+    },
+    {
+      "id": "house-cleaning",
+      "name": "house-cleaning",
+      "type": "policy",
+      "path": "policies/project/house-cleaning.md"
+    },
+    {
+      "id": "icons",
+      "name": "icons",
+      "type": "policy",
+      "path": "policies/design/icons.md"
+    },
+    {
+      "id": "inspect-before-act",
+      "name": "inspect-before-act",
+      "type": "policy",
+      "path": "policies/core/inspect-before-act.md"
+    },
+    {
+      "id": "model-knowledge",
+      "name": "model-knowledge",
+      "type": "policy",
+      "path": "policies/core/model-knowledge.md"
+    },
+    {
+      "id": "responsive",
+      "name": "responsive",
+      "type": "policy",
+      "path": "policies/design/responsive.md"
+    },
+    {
+      "id": "security",
+      "name": "security",
+      "type": "policy",
+      "path": "policies/core/security.md"
+    },
+    {
+      "id": "spacing",
+      "name": "spacing",
+      "type": "policy",
+      "path": "policies/design/spacing.md"
+    },
+    {
+      "id": "stack",
+      "name": "stack",
+      "type": "policy",
+      "path": "policies/project/stack.md"
+    },
+    {
+      "id": "testing",
+      "name": "testing",
+      "type": "policy",
+      "path": "policies/core/testing.md"
+    },
+    {
+      "id": "typography",
+      "name": "typography",
+      "type": "policy",
+      "path": "policies/design/typography.md"
+    },
+    {
+      "id": "visual-language",
+      "name": "visual-language",
+      "type": "policy",
+      "path": "policies/design/visual-language.md"
+    },
+    {
+      "id": "review/default",
+      "name": "review/default",
+      "type": "prompt",
+      "path": "prompts/review/default.md"
+    },
+    {
+      "id": "system/default",
+      "name": "system/default",
+      "type": "prompt",
+      "path": "prompts/system/default.md"
+    },
+    {
+      "id": "task/default",
+      "name": "task/default",
+      "type": "prompt",
+      "path": "prompts/task/default.md"
+    },
+    {
+      "id": "utility/default",
+      "name": "utility/default",
+      "type": "prompt",
+      "path": "prompts/utility/default.md"
     },
     {
       "id": "accessibility",
@@ -145,10 +535,7 @@
       "version": "1.0.0",
       "type": "skill",
       "description": "Enforces WCAG 2.1 AA accessibility standards, screen reader compatibility, keyboard navigation, and semantic HTML.",
-      "path": "skills/design/accessibility",
-      "tags": [],
-      "category": "design",
-      "metadata": {}
+      "path": "skills/design/accessibility/skill.yaml"
     },
     {
       "id": "anti-slop",
@@ -156,65 +543,15 @@
       "version": "1.0.0",
       "type": "skill",
       "description": "Audits UI implementations to eliminate generic AI aesthetic slop, emoji icons, purple gradients, and repetitive card grids.",
-      "path": "skills/design/anti-slop",
-      "tags": [],
-      "category": "design",
-      "metadata": {}
+      "path": "skills/design/anti-slop/skill.yaml"
     },
     {
-      "id": "design-discovery",
-      "name": "design-discovery",
+      "id": "api-design",
+      "name": "api-design",
       "version": "1.0.0",
       "type": "skill",
-      "description": "Interactive and automated design system discovery for brand, typography, color, spacing, icon, and UI component conventions.",
-      "path": "skills/design/design-discovery",
-      "tags": [],
-      "category": "design",
-      "metadata": {}
-    },
-    {
-      "id": "design-system",
-      "name": "design-system",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Enforces design token usage, component reuse, and architectural consistency for design systems.",
-      "path": "skills/design/design-system",
-      "tags": [],
-      "category": "design",
-      "metadata": {}
-    },
-    {
-      "id": "responsive-design",
-      "name": "responsive-design",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Ensures fluid, breakpoint-governed layouts across mobile, tablet, desktop, and ultra-wide viewports.",
-      "path": "skills/design/responsive-design",
-      "tags": [],
-      "category": "design",
-      "metadata": {}
-    },
-    {
-      "id": "ui-copy",
-      "name": "ui-copy",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Direct, human UI copy generation enforcing strict anti-marketing slop rules.",
-      "path": "skills/design/ui-copy",
-      "tags": [],
-      "category": "design",
-      "metadata": {}
-    },
-    {
-      "id": "visual-review",
-      "name": "visual-review",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Reviews frontend visual outputs against project design tokens, alignment, typography, and anti-slop rules.",
-      "path": "skills/design/visual-review",
-      "tags": [],
-      "category": "design",
-      "metadata": {}
+      "description": "REST and RPC API design conventions: resource modeling, versioning, pagination, error envelopes, and idempotency.",
+      "path": "skills/backend/api-design/skill.yaml"
     },
     {
       "id": "architecture",
@@ -222,10 +559,15 @@
       "version": "1.0.0",
       "type": "skill",
       "description": "Guides system architecture decisions, domain boundary design, modularity, and clean separation of concerns.",
-      "path": "skills/development/architecture",
-      "tags": [],
-      "category": "development",
-      "metadata": {}
+      "path": "skills/development/architecture/skill.yaml"
+    },
+    {
+      "id": "ci-cd",
+      "name": "ci-cd",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "CI/CD pipeline design: build stages, caching, test gates, artifact promotion, and deployment safety.",
+      "path": "skills/devops/ci-cd/skill.yaml"
     },
     {
       "id": "code-quality",
@@ -233,87 +575,23 @@
       "version": "1.0.0",
       "type": "skill",
       "description": "Enforces code quality, refactoring standards, type safety, and formatting consistency across all supported languages.",
-      "path": "skills/development/code-quality",
-      "tags": [],
-      "category": "development",
-      "metadata": {}
+      "path": "skills/development/code-quality/skill.yaml"
     },
     {
-      "id": "documentation",
-      "name": "documentation",
+      "id": "code-review",
+      "name": "code-review",
       "version": "1.0.0",
       "type": "skill",
-      "description": "Generates clean, concise API documentation, architecture notes, and inline docstrings without marketing fluff.",
-      "path": "skills/development/documentation",
-      "tags": [],
-      "category": "development",
-      "metadata": {}
+      "description": "Rigorous code review techniques for quality, security, performance, and maintainability.",
+      "path": "skills/code-review/skill.yaml"
     },
     {
-      "id": "error-handling",
-      "name": "error-handling",
+      "id": "component-architecture",
+      "name": "component-architecture",
       "version": "1.0.0",
       "type": "skill",
-      "description": "Enforces robust error handling, domain-specific exception hierarchies, structured context logging, and defensive boundary checking.",
-      "path": "skills/development/error-handling",
-      "tags": [],
-      "category": "development",
-      "metadata": {}
-    },
-    {
-      "id": "testing",
-      "name": "testing",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Guides unit, integration, and end-to-end test creation colocated with feature code.",
-      "path": "skills/development/testing",
-      "tags": [],
-      "category": "development",
-      "metadata": {}
-    },
-    {
-      "id": "dependency-audit",
-      "name": "dependency-audit",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Scans project dependencies for deprecated packages, version drift, security advisories, and missing peer dependencies.",
-      "path": "skills/project/dependency-audit",
-      "tags": [],
-      "category": "project",
-      "metadata": {}
-    },
-    {
-      "id": "existing-project-audit",
-      "name": "existing-project-audit",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Audits existing codebase structure, dependencies, architecture, design system, security, and tooling.",
-      "path": "skills/project/existing-project-audit",
-      "tags": [],
-      "category": "project",
-      "metadata": {}
-    },
-    {
-      "id": "house-cleaning",
-      "name": "house-cleaning",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Audits and remediates dead code, unused dependencies, inconsistent formatting, broken imports, and AI slop artifacts.",
-      "path": "skills/project/house-cleaning",
-      "tags": [],
-      "category": "project",
-      "metadata": {}
-    },
-    {
-      "id": "stack-detection",
-      "name": "stack-detection",
-      "version": "1.0.0",
-      "type": "skill",
-      "description": "Detects technologies, frameworks, language versions, build tools, and containerization in a codebase.",
-      "path": "skills/project/stack-detection",
-      "tags": [],
-      "category": "project",
-      "metadata": {}
+      "description": "Frontend component architecture: composition patterns, state boundaries, props design, and rendering performance.",
+      "path": "skills/frontend/component-architecture/skill.yaml"
     },
     {
       "id": "current-conventions",
@@ -321,32 +599,23 @@
       "version": "1.0.0",
       "type": "skill",
       "description": "Discovers and enforces current ecosystem conventions and active project patterns over outdated training data practices.",
-      "path": "skills/research/current-conventions",
-      "tags": [],
-      "category": "research",
-      "metadata": {}
+      "path": "skills/research/current-conventions/skill.yaml"
     },
     {
-      "id": "documentation-research",
-      "name": "documentation-research",
+      "id": "debugging",
+      "name": "debugging",
       "version": "1.0.0",
       "type": "skill",
-      "description": "Retrieves and verifies up-to-date framework and library documentation before generating implementation code.",
-      "path": "skills/research/documentation-research",
-      "tags": [],
-      "category": "research",
-      "metadata": {}
+      "description": "Systematic debugging methodology: reproduce, isolate, instrument, fix root cause, and verify with regression tests.",
+      "path": "skills/general/debugging/skill.yaml"
     },
     {
-      "id": "technology-research",
-      "name": "technology-research",
+      "id": "dependency-audit",
+      "name": "dependency-audit",
       "version": "1.0.0",
       "type": "skill",
-      "description": "Evaluates new libraries, tools, and technical solutions against project requirements, performance, and maintenance history.",
-      "path": "skills/research/technology-research",
-      "tags": [],
-      "category": "research",
-      "metadata": {}
+      "description": "Scans project dependencies for deprecated packages, version drift, security advisories, and missing peer dependencies.",
+      "path": "skills/project/dependency-audit/skill.yaml"
     },
     {
       "id": "dependency-security",
@@ -354,10 +623,95 @@
       "version": "1.0.0",
       "type": "skill",
       "description": "Audits third-party dependencies for known vulnerabilities, CVEs, and insecure transitive packages.",
-      "path": "skills/security/dependency-security",
-      "tags": [],
-      "category": "security",
-      "metadata": {}
+      "path": "skills/security/dependency-security/skill.yaml"
+    },
+    {
+      "id": "design-discovery",
+      "name": "design-discovery",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Interactive and automated design system discovery for brand, typography, color, spacing, icon, and UI component conventions.",
+      "path": "skills/design/design-discovery/skill.yaml"
+    },
+    {
+      "id": "design-system",
+      "name": "design-system",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Enforces design token usage, component reuse, and architectural consistency for design systems.",
+      "path": "skills/design/design-system/skill.yaml"
+    },
+    {
+      "id": "documentation",
+      "name": "documentation",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Generates clean, concise API documentation, architecture notes, and inline docstrings without marketing fluff.",
+      "path": "skills/development/documentation/skill.yaml"
+    },
+    {
+      "id": "documentation-research",
+      "name": "documentation-research",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Retrieves and verifies up-to-date framework and library documentation before generating implementation code.",
+      "path": "skills/research/documentation-research/skill.yaml"
+    },
+    {
+      "id": "error-handling",
+      "name": "error-handling",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Enforces robust error handling, domain-specific exception hierarchies, structured context logging, and defensive boundary checking.",
+      "path": "skills/development/error-handling/skill.yaml"
+    },
+    {
+      "id": "existing-project-audit",
+      "name": "existing-project-audit",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Audits existing codebase structure, dependencies, architecture, design system, security, and tooling.",
+      "path": "skills/project/existing-project-audit/skill.yaml"
+    },
+    {
+      "id": "house-cleaning",
+      "name": "house-cleaning",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Audits and remediates dead code, unused dependencies, inconsistent formatting, broken imports, and AI slop artifacts.",
+      "path": "skills/project/house-cleaning/skill.yaml"
+    },
+    {
+      "id": "query-optimization",
+      "name": "query-optimization",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Query performance analysis: execution plans, index selection, N+1 elimination, and pagination strategy.",
+      "path": "skills/databases/query-optimization/skill.yaml"
+    },
+    {
+      "id": "requirements-analysis",
+      "name": "requirements-analysis",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Requirements gathering and analysis: stakeholder goals, acceptance criteria, scope boundaries, and open questions.",
+      "path": "skills/product/requirements-analysis/skill.yaml"
+    },
+    {
+      "id": "responsive-design",
+      "name": "responsive-design",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Ensures fluid, breakpoint-governed layouts across mobile, tablet, desktop, and ultra-wide viewports.",
+      "path": "skills/design/responsive-design/skill.yaml"
+    },
+    {
+      "id": "schema-design",
+      "name": "schema-design",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Database schema design covering normalization, constraints, indexing strategy, and migration hygiene.",
+      "path": "skills/databases/schema-design/skill.yaml"
     },
     {
       "id": "secrets",
@@ -365,10 +719,7 @@
       "version": "1.0.0",
       "type": "skill",
       "description": "Prevents accidental commitment of API keys, private credentials, tokens, or environment secrets.",
-      "path": "skills/security/secrets",
-      "tags": [],
-      "category": "security",
-      "metadata": {}
+      "path": "skills/security/secrets/skill.yaml"
     },
     {
       "id": "secure-coding",
@@ -376,146 +727,63 @@
       "version": "1.0.0",
       "type": "skill",
       "description": "Enforces secure coding practices, parameterized SQL queries, input validation, output encoding, and auth checks.",
-      "path": "skills/security/secure-coding",
-      "tags": [],
-      "category": "security",
-      "metadata": {}
+      "path": "skills/security/secure-coding/skill.yaml"
+    },
+    {
+      "id": "security-review",
+      "name": "security-review",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Security-focused code review covering injection surfaces, secret leakage, authz boundaries, and dependency risk.",
+      "path": "skills/security/security-review/skill.yaml"
+    },
+    {
+      "id": "software-development",
+      "name": "software-development",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Core software development lifecycle practices for implementing features, refactoring, and maintaining codebases.",
+      "path": "skills/software-development/skill.yaml"
+    },
+    {
+      "id": "stack-detection",
+      "name": "stack-detection",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Detects technologies, frameworks, language versions, build tools, and containerization in a codebase.",
+      "path": "skills/project/stack-detection/skill.yaml"
+    },
+    {
+      "id": "technology-research",
+      "name": "technology-research",
+      "version": "1.0.0",
+      "type": "skill",
+      "description": "Evaluates new libraries, tools, and technical solutions against project requirements, performance, and maintenance history.",
+      "path": "skills/research/technology-research/skill.yaml"
     },
     {
       "id": "testing",
       "name": "testing",
       "version": "1.0.0",
       "type": "skill",
-      "description": "Test generation, execution, and validation across unit, integration, and E2E suites.",
-      "path": "skills/testing",
-      "tags": [],
-      "category": "testing",
-      "metadata": {
-        "author": "AgentJam Community"
-      }
+      "description": "Guides unit, integration, and end-to-end test creation colocated with feature code.",
+      "path": "skills/development/testing/skill.yaml"
     },
     {
-      "id": "filesystem",
-      "name": "filesystem",
+      "id": "ui-copy",
+      "name": "ui-copy",
       "version": "1.0.0",
-      "type": "tool",
-      "description": "Interface for reading, writing, listing, and inspecting files on local storage.",
-      "path": "tools/filesystem",
-      "tags": [],
-      "category": "file-management",
-      "metadata": {}
+      "type": "skill",
+      "description": "Direct, human UI copy generation enforcing strict anti-marketing slop rules.",
+      "path": "skills/design/ui-copy/skill.yaml"
     },
     {
-      "id": "git",
-      "name": "git",
+      "id": "visual-review",
+      "name": "visual-review",
       "version": "1.0.0",
-      "type": "tool",
-      "description": "Interface for inspecting git repositories, status, diffs, branches, and commit histories.",
-      "path": "tools/git",
-      "tags": [],
-      "category": "version-control",
-      "metadata": {}
-    },
-    {
-      "id": "mcp",
-      "name": "mcp",
-      "version": "1.0.0",
-      "type": "tool",
-      "description": "Model Context Protocol (MCP) integration interface connecting AI coding agents to external MCP servers, tools, resources, and prompts over stdio or SSE.",
-      "path": "tools/mcp",
-      "tags": [],
-      "category": "protocol",
-      "metadata": {}
-    },
-    {
-      "id": "bug-fixing",
-      "name": "bug-fixing",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "Systematic workflow for reproducing, isolating, fixing, and verifying bug resolutions.",
-      "path": "workflows/bug-fixing",
-      "tags": [],
-      "metadata": {}
-    },
-    {
-      "id": "code-review",
-      "name": "code-review",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "Automated multi-stage code review workflow involving review, security checks, and report generation.",
-      "path": "workflows/code-review",
-      "tags": [],
-      "metadata": {}
-    },
-    {
-      "id": "dependency-update",
-      "name": "dependency-update",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "Controlled dependency upgrade workflow auditing security advisories, lockfiles, and breaking changes.",
-      "path": "workflows/dependency-update",
-      "tags": [],
-      "metadata": {}
-    },
-    {
-      "id": "existing-project-audit",
-      "name": "existing-project-audit",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "Comprehensive non-destructive audit workflow inspecting project structure, tech versions, architecture, design tokens, and dependencies before feature implementation.",
-      "path": "workflows/existing-project-audit",
-      "tags": [],
-      "metadata": {}
-    },
-    {
-      "id": "feature-development",
-      "name": "feature-development",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "End-to-end workflow for designing, implementing, testing, and reviewing a new software feature.",
-      "path": "workflows/feature-development",
-      "tags": [],
-      "metadata": {}
-    },
-    {
-      "id": "framework-update",
-      "name": "framework-update",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "Framework migration workflow (e.g. Next.js major upgrade, Laravel major upgrade) with deprecation checks and ADR creation.",
-      "path": "workflows/framework-update",
-      "tags": [],
-      "metadata": {}
-    },
-    {
-      "id": "new-project",
-      "name": "new-project",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "Guided workflow for initializing a new harness-agnostic project with AgentJam rules, stack profile, and design system governance.",
-      "path": "workflows/new-project",
-      "tags": [],
-      "metadata": {}
-    },
-    {
-      "id": "release",
-      "name": "release",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "Pre-release audit and tag creation workflow validating changelog, semver tagging, security audit, and build bundle integrity.",
-      "path": "workflows/release",
-      "tags": [],
-      "metadata": {}
-    },
-    {
-      "id": "ui-development",
-      "name": "ui-development",
-      "version": "1.0.0",
-      "type": "workflow",
-      "description": "UI component and page development workflow enforcing design discovery, token binding, anti-slop rules, and visual review.",
-      "path": "workflows/ui-development",
-      "tags": [],
-      "metadata": {}
+      "type": "skill",
+      "description": "Reviews frontend visual outputs against project design tokens, alignment, typography, and anti-slop rules.",
+      "path": "skills/design/visual-review/skill.yaml"
     },
     {
       "id": "django",
@@ -523,9 +791,7 @@
       "version": "1.0.0",
       "type": "stack",
       "description": "Stack profile for Django applications (Django REST Framework, Pytest, Ruff).",
-      "path": "stacks/django",
-      "tags": [],
-      "metadata": {}
+      "path": "stacks/django/stack.yaml"
     },
     {
       "id": "generic",
@@ -533,9 +799,7 @@
       "version": "1.0.0",
       "type": "stack",
       "description": "Fallback stack profile for polyglot, unclassified, or custom codebases.",
-      "path": "stacks/generic",
-      "tags": [],
-      "metadata": {}
+      "path": "stacks/generic/stack.yaml"
     },
     {
       "id": "laravel",
@@ -543,9 +807,7 @@
       "version": "1.0.0",
       "type": "stack",
       "description": "Stack profile for modern Laravel 11/12 applications (modular monolith, Inertia.js / Blade, Pest testing, Laravel Pint formatting).",
-      "path": "stacks/laravel",
-      "tags": [],
-      "metadata": {}
+      "path": "stacks/laravel/stack.yaml"
     },
     {
       "id": "nestjs",
@@ -553,9 +815,7 @@
       "version": "1.0.0",
       "type": "stack",
       "description": "Stack profile for NestJS enterprise TypeScript backend applications (Prisma / TypeORM, Jest / Vitest, Class Validator).",
-      "path": "stacks/nestjs",
-      "tags": [],
-      "metadata": {}
+      "path": "stacks/nestjs/stack.yaml"
     },
     {
       "id": "nextjs",
@@ -563,9 +823,7 @@
       "version": "1.0.0",
       "type": "stack",
       "description": "Stack profile for Next.js App Router applications, establishing conventions for React 19, Server Components, Route Handlers, and Tailwind CSS / CSS Modules.",
-      "path": "stacks/nextjs",
-      "tags": [],
-      "metadata": {}
+      "path": "stacks/nextjs/stack.yaml"
     },
     {
       "id": "rails",
@@ -573,9 +831,7 @@
       "version": "1.0.0",
       "type": "stack",
       "description": "Stack profile for Ruby on Rails 7/8 applications (ActiveRecord, RSpec, RuboCop).",
-      "path": "stacks/rails",
-      "tags": [],
-      "metadata": {}
+      "path": "stacks/rails/stack.yaml"
     },
     {
       "id": "react",
@@ -583,9 +839,7 @@
       "version": "1.0.0",
       "type": "stack",
       "description": "Stack profile for React single page applications with Vite, TypeScript, and Vitest.",
-      "path": "stacks/react",
-      "tags": [],
-      "metadata": {}
+      "path": "stacks/react/stack.yaml"
     },
     {
       "id": "vue",
@@ -593,89 +847,191 @@
       "version": "1.0.0",
       "type": "stack",
       "description": "Stack profile for Vue 3 Single Page Applications (Composition API, Script Setup, Vite, Pinia).",
-      "path": "stacks/vue",
-      "tags": [],
-      "metadata": {}
+      "path": "stacks/vue/stack.yaml"
     },
     {
-      "id": "lang-php",
-      "name": "PHP",
-      "version": "1.0.0",
-      "type": "language",
-      "description": "language definition for PHP",
-      "path": "languages/backend/php",
-      "tags": [],
-      "metadata": {}
+      "id": "agent/agent",
+      "name": "agent/agent",
+      "type": "template",
+      "path": "templates/agent/agent.yaml"
     },
     {
-      "id": "lang-python",
-      "name": "Python",
-      "version": "1.0.0",
-      "type": "language",
-      "description": "language definition for Python",
-      "path": "languages/backend/python",
-      "tags": [],
-      "metadata": {}
+      "id": "skill/skill",
+      "name": "skill/skill",
+      "type": "template",
+      "path": "templates/skill/skill.yaml"
     },
     {
-      "id": "lang-hcl",
-      "name": "HCL",
-      "version": "1.0.0",
-      "type": "language",
-      "description": "language definition for HCL",
-      "path": "languages/infrastructure/hcl",
-      "tags": [],
-      "metadata": {}
+      "id": "tool/tool",
+      "name": "tool/tool",
+      "type": "template",
+      "path": "templates/tool/tool.yaml"
     },
     {
-      "id": "lang-rust",
-      "name": "Rust",
-      "version": "1.0.0",
-      "type": "language",
-      "description": "language definition for Rust",
-      "path": "languages/systems/rust",
-      "tags": [],
-      "metadata": {}
+      "id": "workflow/workflow",
+      "name": "workflow/workflow",
+      "type": "template",
+      "path": "templates/workflow/workflow.yaml"
     },
     {
-      "id": "lang-typescript",
-      "name": "TypeScript",
+      "id": "browser",
+      "name": "browser",
       "version": "1.0.0",
-      "type": "language",
-      "description": "language definition for TypeScript",
-      "path": "languages/web/typescript",
-      "tags": [],
-      "metadata": {}
+      "type": "tool",
+      "description": "Interface for headless browser navigation, DOM inspection, screenshots, and end-to-end interaction testing.",
+      "path": "tools/browser/tool.yaml"
     },
     {
-      "id": "claude-code",
-      "name": "claude-code-integration",
+      "id": "communication",
+      "name": "communication",
       "version": "1.0.0",
-      "type": "integration",
-      "description": "Target harness integration adapter for Claude Code.",
-      "path": "integrations/claude-code",
-      "tags": [],
-      "metadata": {}
+      "type": "tool",
+      "description": "Interface for team communication channels (chat, comments, notifications) used to report status and request clarifications.",
+      "path": "tools/communication/tool.yaml"
     },
     {
-      "id": "cursor",
-      "name": "cursor-integration",
+      "id": "database",
+      "name": "database",
       "version": "1.0.0",
-      "type": "integration",
-      "description": "Target harness integration adapter for Cursor IDE rules.",
-      "path": "integrations/cursor",
-      "tags": [],
-      "metadata": {}
+      "type": "tool",
+      "description": "Interface for executing parameterized database queries, inspecting schemas, and running migrations against configured data sources.",
+      "path": "tools/database/tool.yaml"
     },
     {
-      "id": "generic",
-      "name": "generic",
+      "id": "filesystem",
+      "name": "filesystem",
       "version": "1.0.0",
-      "type": "integration",
-      "description": "integration definition for generic",
-      "path": "integrations/generic",
-      "tags": [],
-      "metadata": {}
+      "type": "tool",
+      "description": "Interface for reading, writing, listing, and inspecting files on local storage.",
+      "path": "tools/filesystem/tool.yaml"
+    },
+    {
+      "id": "git",
+      "name": "git",
+      "version": "1.0.0",
+      "type": "tool",
+      "description": "Interface for inspecting git repositories, status, diffs, branches, and commit histories.",
+      "path": "tools/git/tool.yaml"
+    },
+    {
+      "id": "github",
+      "name": "github",
+      "version": "1.0.0",
+      "type": "tool",
+      "description": "Interface for GitHub operations: pull requests, issues, reviews, CI status, and repository metadata via API.",
+      "path": "tools/github/tool.yaml"
+    },
+    {
+      "id": "mcp",
+      "name": "mcp",
+      "version": "1.0.0",
+      "type": "tool",
+      "description": "Model Context Protocol (MCP) integration interface connecting AI coding agents to external MCP servers, tools, resources, and prompts over stdio or SSE.",
+      "path": "tools/mcp/tool.yaml"
+    },
+    {
+      "id": "terminal",
+      "name": "terminal",
+      "version": "1.0.0",
+      "type": "tool",
+      "description": "Interface for executing shell commands, running build/test toolchain commands, and capturing output streams.",
+      "path": "tools/terminal/tool.yaml"
+    },
+    {
+      "id": "bug-fixing",
+      "name": "bug-fixing",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Systematic workflow for reproducing, isolating, fixing, and verifying bug resolutions.",
+      "path": "workflows/bug-fixing/workflow.yaml"
+    },
+    {
+      "id": "code-review",
+      "name": "code-review",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Automated multi-stage code review workflow involving review, security checks, and report generation.",
+      "path": "workflows/code-review/workflow.yaml"
+    },
+    {
+      "id": "dependency-update",
+      "name": "dependency-update",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Controlled dependency upgrade workflow auditing security advisories, lockfiles, and breaking changes.",
+      "path": "workflows/dependency-update/workflow.yaml"
+    },
+    {
+      "id": "existing-project-audit",
+      "name": "existing-project-audit",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Comprehensive non-destructive audit workflow inspecting project structure, tech versions, architecture, design tokens, and dependencies before feature implementation.",
+      "path": "workflows/existing-project-audit/workflow.yaml"
+    },
+    {
+      "id": "feature-development",
+      "name": "feature-development",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "End-to-end workflow for designing, implementing, testing, and reviewing a new software feature.",
+      "path": "workflows/feature-development/workflow.yaml"
+    },
+    {
+      "id": "framework-update",
+      "name": "framework-update",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Framework migration workflow (e.g. Next.js major upgrade, Laravel major upgrade) with deprecation checks and ADR creation.",
+      "path": "workflows/framework-update/workflow.yaml"
+    },
+    {
+      "id": "new-project",
+      "name": "new-project",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Guided workflow for initializing a new harness-agnostic project with AgentJam rules, stack profile, and design system governance.",
+      "path": "workflows/new-project/workflow.yaml"
+    },
+    {
+      "id": "project-planning",
+      "name": "project-planning",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Requirements-to-plan workflow converting stakeholder goals into scoped milestones, acceptance criteria, and sequenced work items.",
+      "path": "workflows/project-planning/workflow.yaml"
+    },
+    {
+      "id": "release",
+      "name": "release",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Pre-release audit and tag creation workflow validating changelog, semver tagging, security audit, and build bundle integrity.",
+      "path": "workflows/release/workflow.yaml"
+    },
+    {
+      "id": "research",
+      "name": "research",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Technology and documentation research workflow producing verified, freshness-checked findings for downstream engineering decisions.",
+      "path": "workflows/research/workflow.yaml"
+    },
+    {
+      "id": "testing",
+      "name": "testing",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "Test coverage workflow that audits existing tests, fills gaps across unit/integration/e2e layers, and verifies the suite passes.",
+      "path": "workflows/testing/workflow.yaml"
+    },
+    {
+      "id": "ui-development",
+      "name": "ui-development",
+      "version": "1.0.0",
+      "type": "workflow",
+      "description": "UI component and page development workflow enforcing design discovery, token binding, anti-slop rules, and visual review.",
+      "path": "workflows/ui-development/workflow.yaml"
     }
   ]
 }

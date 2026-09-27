@@ -1,0 +1,106 @@
+[
+  {
+    "id": "architect",
+    "name": "architect",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Enterprise software architect designing system structure, domain boundaries, tech stack selection, and integration patterns.",
+    "path": "agents/architect/agent.yaml"
+  },
+  {
+    "id": "backend-engineer",
+    "name": "backend-engineer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Backend systems specialist focused on API design, database schemas, performance, security, and domain services.",
+    "path": "agents/backend-engineer/agent.yaml"
+  },
+  {
+    "id": "code-reviewer",
+    "name": "code-reviewer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Rigorous code reviewer enforcing architectural modularity, policy compliance, security standards, and anti-slop rules.",
+    "path": "agents/code-reviewer/agent.yaml"
+  },
+  {
+    "id": "database-engineer",
+    "name": "database-engineer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Database engineer responsible for schema design, query optimization, migrations, and data integrity across relational and document stores.",
+    "path": "agents/database-engineer/agent.yaml"
+  },
+  {
+    "id": "devops-engineer",
+    "name": "devops-engineer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "DevOps and platform engineer responsible for CI/CD pipelines, infrastructure as code, deployment automation, and observability.",
+    "path": "agents/devops-engineer/agent.yaml"
+  },
+  {
+    "id": "frontend-engineer",
+    "name": "frontend-engineer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Frontend UI specialist focused on modern web components, design system fidelity, anti-slop governance, and responsive user experiences.",
+    "path": "agents/frontend-engineer/agent.yaml"
+  },
+  {
+    "id": "fullstack-engineer",
+    "name": "fullstack-engineer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Full-stack engineer spanning frontend, backend, and data layers for end-to-end feature delivery.",
+    "path": "agents/fullstack-engineer/agent.yaml"
+  },
+  {
+    "id": "product-manager",
+    "name": "product-manager",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Product manager agent translating business requirements into scoped specs, acceptance criteria, and prioritized work items.",
+    "path": "agents/product-manager/agent.yaml"
+  },
+  {
+    "id": "qa-engineer",
+    "name": "qa-engineer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Quality assurance and test automation engineer responsible for test coverage, regression testing, and verification.",
+    "path": "agents/qa-engineer/agent.yaml"
+  },
+  {
+    "id": "researcher",
+    "name": "researcher",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Technology researcher responsible for discovering authoritative documentation, API references, library versions, and ecosystem updates.",
+    "path": "agents/researcher/agent.yaml"
+  },
+  {
+    "id": "security-engineer",
+    "name": "security-engineer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Cybersecurity engineer specializing in threat modeling, vulnerability scanning, secret detection, and secure boundary enforcement.",
+    "path": "agents/security-engineer/agent.yaml"
+  },
+  {
+    "id": "software-engineer",
+    "name": "software-engineer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "Generalist software engineer capable of full-stack feature development, refactoring, and bug fixing.",
+    "path": "agents/software-engineer/agent.yaml"
+  },
+  {
+    "id": "ui-ux-designer",
+    "name": "ui-ux-designer",
+    "version": "1.0.0",
+    "type": "agent",
+    "description": "UI/UX design specialist crafting visual design systems, anti-slop guidelines, color palettes, and component design governance.",
+    "path": "agents/ui-ux-designer/agent.yaml"
+  }
+]

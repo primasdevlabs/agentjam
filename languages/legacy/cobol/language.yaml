@@ -1,0 +1,17 @@
+id: lang-cobol
+name: COBOL
+ecosystem: legacy
+aliases: [cobol, cob]
+extensions: [.cbl, .cob]
+
+tooling:
+  package_manager: none
+  linter: gnucobol
+  formatter: gnucobol
+  type_checker: cobc
+
+framework_precedence:
+  - gnucobol
+
+documentation:
+  official_site: https://gnucobol.sourceforge.io/

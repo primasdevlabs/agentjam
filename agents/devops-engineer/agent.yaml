@@ -1,0 +1,21 @@
+name: devops-engineer
+version: 1.0.0
+type: agent
+description: DevOps and platform engineer responsible for CI/CD pipelines, infrastructure as code, deployment automation, and observability.
+author: AgentJam Team
+license: MIT
+skills:
+  - ci-cd
+  - stack-detection
+  - dependency-audit
+  - error-handling
+tools:
+  - filesystem
+  - terminal
+  - git
+inputs:
+  - codebase
+  - requirement-spec
+outputs:
+  - pipeline-config
+  - infrastructure-code

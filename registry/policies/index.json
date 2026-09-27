@@ -1,0 +1,201 @@
+[
+  {
+    "id": "01-stack",
+    "name": "Technology Stack Policy",
+    "type": "policy",
+    "description": "Enforces project-declared tech stack boundaries and prevents casual introduction of unapproved frameworks.",
+    "path": "policies/technology/01-stack.yaml"
+  },
+  {
+    "id": "02-versions",
+    "name": "Version Constraint Policy",
+    "type": "policy",
+    "description": "Enforces version policy rules (current-stable, project-compatible, pinned) over raw 'latest'.",
+    "path": "policies/versions/02-versions.yaml"
+  },
+  {
+    "id": "03-freshness",
+    "name": "Documentation Freshness Policy",
+    "type": "policy",
+    "description": "TRAINING KNOWLEDGE ≠ SOURCE OF TRUTH. Forces agents to verify current official documentation over model training memory.",
+    "path": "policies/freshness/03-freshness.yaml"
+  },
+  {
+    "id": "04-security",
+    "name": "Security \u0026 Secret Management Policy",
+    "type": "policy",
+    "description": "Enforces zero-secret leakage, input validation at boundaries, and parameterized database queries.",
+    "path": "policies/security/04-security.yaml"
+  },
+  {
+    "id": "05-architecture",
+    "name": "Modular Architecture Policy",
+    "type": "policy",
+    "description": "Enforces clean separation of concerns, public contract boundaries, and small composable units.",
+    "path": "policies/architecture/05-architecture.yaml"
+  },
+  {
+    "id": "06-dependencies",
+    "name": "Dependency Boundary Policy",
+    "type": "policy",
+    "description": "Restricts unapproved external package additions.",
+    "path": "policies/dependencies/06-dependencies.yaml"
+  },
+  {
+    "id": "07-coding-standards",
+    "name": "Coding Standards Policy",
+    "type": "policy",
+    "description": "Requires strict linting, formatting, type checking, and test verification before completion.",
+    "path": "policies/coding-standards/07-coding-standards.yaml"
+  },
+  {
+    "id": "accessibility",
+    "name": "accessibility",
+    "type": "policy",
+    "path": "policies/design/accessibility.md"
+  },
+  {
+    "id": "animation",
+    "name": "animation",
+    "type": "policy",
+    "path": "policies/design/animation.md"
+  },
+  {
+    "id": "anti-slop",
+    "name": "anti-slop",
+    "type": "policy",
+    "path": "policies/design/anti-slop.md"
+  },
+  {
+    "id": "architecture",
+    "name": "architecture",
+    "type": "policy",
+    "path": "policies/core/architecture.md"
+  },
+  {
+    "id": "change-management",
+    "name": "change-management",
+    "type": "policy",
+    "path": "policies/core/change-management.md"
+  },
+  {
+    "id": "color",
+    "name": "color",
+    "type": "policy",
+    "path": "policies/design/color.md"
+  },
+  {
+    "id": "components",
+    "name": "components",
+    "type": "policy",
+    "path": "policies/design/components.md"
+  },
+  {
+    "id": "copy",
+    "name": "copy",
+    "type": "policy",
+    "path": "policies/design/copy.md"
+  },
+  {
+    "id": "current-conventions",
+    "name": "current-conventions",
+    "type": "policy",
+    "path": "policies/core/current-conventions.md"
+  },
+  {
+    "id": "dependencies",
+    "name": "dependencies",
+    "type": "policy",
+    "path": "policies/core/dependencies.md"
+  },
+  {
+    "id": "design-system",
+    "name": "design-system",
+    "type": "policy",
+    "path": "policies/design/design-system.md"
+  },
+  {
+    "id": "documentation",
+    "name": "documentation",
+    "type": "policy",
+    "path": "policies/core/documentation.md"
+  },
+  {
+    "id": "existing-project",
+    "name": "existing-project",
+    "type": "policy",
+    "path": "policies/project/existing-project.md"
+  },
+  {
+    "id": "freshness",
+    "name": "freshness",
+    "type": "policy",
+    "path": "policies/project/freshness.md"
+  },
+  {
+    "id": "house-cleaning",
+    "name": "house-cleaning",
+    "type": "policy",
+    "path": "policies/project/house-cleaning.md"
+  },
+  {
+    "id": "icons",
+    "name": "icons",
+    "type": "policy",
+    "path": "policies/design/icons.md"
+  },
+  {
+    "id": "inspect-before-act",
+    "name": "inspect-before-act",
+    "type": "policy",
+    "path": "policies/core/inspect-before-act.md"
+  },
+  {
+    "id": "model-knowledge",
+    "name": "model-knowledge",
+    "type": "policy",
+    "path": "policies/core/model-knowledge.md"
+  },
+  {
+    "id": "responsive",
+    "name": "responsive",
+    "type": "policy",
+    "path": "policies/design/responsive.md"
+  },
+  {
+    "id": "security",
+    "name": "security",
+    "type": "policy",
+    "path": "policies/core/security.md"
+  },
+  {
+    "id": "spacing",
+    "name": "spacing",
+    "type": "policy",
+    "path": "policies/design/spacing.md"
+  },
+  {
+    "id": "stack",
+    "name": "stack",
+    "type": "policy",
+    "path": "policies/project/stack.md"
+  },
+  {
+    "id": "testing",
+    "name": "testing",
+    "type": "policy",
+    "path": "policies/core/testing.md"
+  },
+  {
+    "id": "typography",
+    "name": "typography",
+    "type": "policy",
+    "path": "policies/design/typography.md"
+  },
+  {
+    "id": "visual-language",
+    "name": "visual-language",
+    "type": "policy",
+    "path": "policies/design/visual-language.md"
+  }
+]

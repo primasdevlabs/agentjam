@@ -36,19 +36,25 @@ type MCPServerConfig struct {
 
 // AgentManifest defines an Agent persona manifest.
 type AgentManifest struct {
-	Name          string                 `json:"name" yaml:"name"`
-	Version       string                 `json:"version" yaml:"version"`
-	Type          string                 `json:"type" yaml:"type"`
-	Description   string                 `json:"description" yaml:"description"`
-	Author        string                 `json:"author,omitempty" yaml:"author,omitempty"`
-	License       string                 `json:"license,omitempty" yaml:"license,omitempty"`
-	Skills        []string               `json:"skills" yaml:"skills"`
-	Tools         []string               `json:"tools" yaml:"tools"`
-	MCPServers    []MCPServerConfig      `json:"mcpServers,omitempty" yaml:"mcpServers,omitempty"`
-	Inputs        []string               `json:"inputs" yaml:"inputs"`
-	Outputs       []string               `json:"outputs" yaml:"outputs"`
-	Compatibility []string               `json:"compatibility,omitempty" yaml:"compatibility,omitempty"`
-	Metadata      map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+	Name          string            `json:"name" yaml:"name"`
+	Version       string            `json:"version" yaml:"version"`
+	Type          string            `json:"type" yaml:"type"`
+	Description   string            `json:"description" yaml:"description"`
+	Author        string            `json:"author,omitempty" yaml:"author,omitempty"`
+	License       string            `json:"license,omitempty" yaml:"license,omitempty"`
+	Skills        []string          `json:"skills" yaml:"skills"`
+	Tools         []string          `json:"tools" yaml:"tools"`
+	MCPServers    []MCPServerConfig `json:"mcpServers,omitempty" yaml:"mcpServers,omitempty"`
+	Inputs        []string          `json:"inputs" yaml:"inputs"`
+	Outputs       []string          `json:"outputs" yaml:"outputs"`
+	Compatibility []string          `json:"compatibility,omitempty" yaml:"compatibility,omitempty"`
+	// SkillVersions carries version constraints merged from the optional
+	// skills.yaml override file (skill name -> semver range).
+	SkillVersions map[string]string `json:"skillVersions,omitempty" yaml:"-"`
+	// ToolCapabilities carries per-tool capability subsets merged from the
+	// optional tools.yaml override file (tool name -> capabilities).
+	ToolCapabilities map[string][]string    `json:"toolCapabilities,omitempty" yaml:"-"`
+	Metadata         map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 }
 
 // SkillManifest defines a domain skill manifest.
@@ -123,6 +129,38 @@ type StackManifest struct {
 	Conventions   map[string]string `json:"conventions,omitempty" yaml:"conventions,omitempty"`
 	Policies      []string          `json:"policies,omitempty" yaml:"policies,omitempty"`
 	Documentation map[string]string `json:"documentation,omitempty" yaml:"documentation,omitempty"`
+}
+
+// LanguageManifest defines a language registry entry.
+type LanguageManifest struct {
+	ID                  string            `json:"id" yaml:"id"`
+	Name                string            `json:"name" yaml:"name"`
+	Ecosystem           string            `json:"ecosystem" yaml:"ecosystem"`
+	Aliases             []string          `json:"aliases,omitempty" yaml:"aliases,omitempty"`
+	Extensions          []string          `json:"extensions,omitempty" yaml:"extensions,omitempty"`
+	Tooling             map[string]string `json:"tooling,omitempty" yaml:"tooling,omitempty"`
+	FrameworkPrecedence []string          `json:"framework_precedence,omitempty" yaml:"framework_precedence,omitempty"`
+	Documentation       map[string]string `json:"documentation,omitempty" yaml:"documentation,omitempty"`
+}
+
+// IntegrationManifest defines a target AI harness integration.
+type IntegrationManifest struct {
+	Name               string                 `json:"name" yaml:"name"`
+	Type               string                 `json:"type" yaml:"type"`
+	Status             string                 `json:"status,omitempty" yaml:"status,omitempty"`
+	CompatibilityLevel int                    `json:"compatibility_level,omitempty" yaml:"compatibility_level,omitempty"`
+	Capabilities       map[string]interface{} `json:"capabilities,omitempty" yaml:"capabilities,omitempty"`
+	Limitations        []string               `json:"limitations,omitempty" yaml:"limitations,omitempty"`
+	Mapping            map[string]interface{} `json:"mapping,omitempty" yaml:"mapping,omitempty"`
+}
+
+// WorkspaceConfig represents the .agentjam/config.yaml project configuration.
+type WorkspaceConfig struct {
+	VersionPolicy     string `json:"versionPolicy,omitempty" yaml:"versionPolicy,omitempty"`
+	FreshnessRequired bool   `json:"freshnessRequired,omitempty" yaml:"freshnessRequired,omitempty"`
+	MaxDocAge         string `json:"maxDocAge,omitempty" yaml:"maxDocAge,omitempty"`
+	Stack             string `json:"stack,omitempty" yaml:"stack,omitempty"`
+	DefaultAgent      string `json:"defaultAgent,omitempty" yaml:"defaultAgent,omitempty"`
 }
 
 // PolicyEnforcement defines enforcement level.

@@ -1,0 +1,8 @@
+name: debugging
+version: 1.0.0
+type: skill
+description: "Systematic debugging methodology: reproduce, isolate, instrument, fix root cause, and verify with regression tests."
+category: general
+triggers:
+  - bug-report
+  - incident-investigation

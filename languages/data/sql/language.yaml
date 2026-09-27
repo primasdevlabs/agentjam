@@ -1,0 +1,19 @@
+id: lang-sql
+name: SQL
+ecosystem: data
+aliases: [sql]
+extensions: [.sql]
+
+tooling:
+  package_manager: none
+  linter: sqlfluff
+  formatter: sqlfluff
+  type_checker: sqlfluff
+
+framework_precedence:
+  - postgres
+  - mysql
+  - sqlite
+
+documentation:
+  official_site: https://www.postgresql.org/docs/

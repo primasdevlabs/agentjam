@@ -1,0 +1,110 @@
+[
+  {
+    "id": "bash",
+    "name": "Bash",
+    "type": "language",
+    "path": "languages/scripting/bash/language.yaml"
+  },
+  {
+    "id": "cobol",
+    "name": "COBOL",
+    "type": "language",
+    "path": "languages/legacy/cobol/language.yaml"
+  },
+  {
+    "id": "csharp",
+    "name": "C#",
+    "type": "language",
+    "path": "languages/dotnet/csharp/language.yaml"
+  },
+  {
+    "id": "dart",
+    "name": "Dart",
+    "type": "language",
+    "path": "languages/mobile/dart/language.yaml"
+  },
+  {
+    "id": "embedded-c",
+    "name": "Embedded C",
+    "type": "language",
+    "path": "languages/embedded/embedded-c/language.yaml"
+  },
+  {
+    "id": "go",
+    "name": "Go",
+    "type": "language",
+    "path": "languages/backend/go/language.yaml"
+  },
+  {
+    "id": "haskell",
+    "name": "Haskell",
+    "type": "language",
+    "path": "languages/functional/haskell/language.yaml"
+  },
+  {
+    "id": "hcl",
+    "name": "HCL",
+    "type": "language",
+    "path": "languages/infrastructure/hcl/language.yaml"
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "type": "language",
+    "path": "languages/jvm/java/language.yaml"
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "type": "language",
+    "path": "languages/web/javascript/language.yaml"
+  },
+  {
+    "id": "php",
+    "name": "PHP",
+    "type": "language",
+    "path": "languages/backend/php/language.yaml"
+  },
+  {
+    "id": "plpgsql",
+    "name": "PL/pgSQL",
+    "type": "language",
+    "path": "languages/databases/plpgsql/language.yaml"
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "type": "language",
+    "path": "languages/backend/python/language.yaml"
+  },
+  {
+    "id": "rust",
+    "name": "Rust",
+    "type": "language",
+    "path": "languages/systems/rust/language.yaml"
+  },
+  {
+    "id": "solidity",
+    "name": "Solidity",
+    "type": "language",
+    "path": "languages/smart-contracts/solidity/language.yaml"
+  },
+  {
+    "id": "sql",
+    "name": "SQL",
+    "type": "language",
+    "path": "languages/data/sql/language.yaml"
+  },
+  {
+    "id": "swift",
+    "name": "Swift",
+    "type": "language",
+    "path": "languages/apple/swift/language.yaml"
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "type": "language",
+    "path": "languages/web/typescript/language.yaml"
+  }
+]

@@ -1,0 +1,19 @@
+id: lang-go
+name: Go
+ecosystem: backend
+aliases: [golang]
+extensions: [.go]
+
+tooling:
+  package_manager: go-modules
+  linter: golangci-lint
+  formatter: gofmt
+  type_checker: go-vet
+
+framework_precedence:
+  - gin
+  - echo
+  - chi
+
+documentation:
+  official_site: https://go.dev/doc/

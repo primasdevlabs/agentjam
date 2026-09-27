@@ -1,0 +1,8 @@
+name: component-architecture
+version: 1.0.0
+type: skill
+description: "Frontend component architecture: composition patterns, state boundaries, props design, and rendering performance."
+category: frontend
+triggers:
+  - component-design
+  - frontend-refactor

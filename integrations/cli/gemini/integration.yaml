@@ -1,0 +1,27 @@
+name: gemini-cli
+type: cli
+status: supported
+compatibility_level: 5
+
+capabilities:
+  instructions: true
+  skills: false
+  agents: false
+  workflows: false
+  tools: true
+  filesystem: true
+  terminal: true
+  mcp: true
+  project_rules: false
+  context_files: true
+  hooks: false
+  lifecycle_events: false
+  validation: true
+
+limitations:
+  - Multi-agent workflows flattened into a single instruction document
+
+mapping:
+  instructionFormat: markdown
+  fileNamingConvention: "GEMINI.md"
+  outputDir: "."

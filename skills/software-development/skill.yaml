@@ -1,0 +1,9 @@
+name: software-development
+version: 1.0.0
+type: skill
+description: Core software development lifecycle practices for implementing features, refactoring, and maintaining codebases.
+category: development
+triggers:
+  - feature-implementation
+  - refactoring
+  - bug-fixing

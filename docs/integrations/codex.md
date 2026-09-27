@@ -1,13 +1,20 @@
-# Codex CLI Integration
+# OpenAI Codex CLI Integration
 
-AgentJam supports **Codex CLI** for command-line autonomous software development.
+- **Type**: `cli`
+- **Compatibility Level**: Level 4 (Workflows)
+- **Manifest**: `integrations/cli/codex/integration.yaml`
+- **Output**: `codex.config.json`
 
----
+## Capabilities
 
-## Configuration
+Instructions, skills, tools, filesystem, terminal, project rules, and context files.
 
-Codex CLI uses `codex.config.json` and root instruction markdown files (`AGENTS.md` / `CODEX.md`).
+Not supported: agents, workflows, MCP, hooks, lifecycle events, validation.
+
+## Integration Path
+
+Codex consumes project rules through its config file and workspace tools through the MCP stdio server:
 
 ```bash
-agentjam export --agent software-engineer --harness generic
+agentjam mcp
 ```

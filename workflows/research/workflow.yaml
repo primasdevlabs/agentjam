@@ -1,0 +1,35 @@
+name: research
+version: 1.0.0
+type: workflow
+description: Technology and documentation research workflow producing verified, freshness-checked findings for downstream engineering decisions.
+mode: single-agent
+
+agents:
+  - researcher
+
+skills:
+  - technology-research
+  - documentation-research
+  - current-conventions
+
+steps:
+  - id: step-1
+    name: scope-question
+    description: Frame the research question and identify the decision it informs.
+  - id: step-2
+    name: gather-sources
+    description: Collect authoritative documentation and current package metadata.
+  - id: step-3
+    name: verify-freshness
+    description: Check source freshness against the maxDocAge policy before relying on it.
+  - id: step-4
+    name: synthesize-findings
+    description: Produce a cited research summary with recommended approach and trade-offs.
+
+inputs:
+  - technology-name
+  - requirement-spec
+
+outputs:
+  - research-summary
+  - remediation-plan

@@ -10,12 +10,12 @@ type PrecedenceCandidate struct {
 
 // PrecedenceOrder defines precedence weights (1 = highest).
 var PrecedenceOrder = map[string]int{
-	"Current Codebase State":                       1,
+	"Current Codebase State":                        1,
 	"Project Configuration (.agentjam/config.yaml)": 2,
-	"User explicit instruction":                    3,
-	"Pinned Rules":                                 4,
-	"Authoritative Documentation":                  5,
-	"Environment defaults":                         6,
+	"User explicit instruction":                     3,
+	"Pinned Rules":                                  4,
+	"Authoritative Documentation":                   5,
+	"Environment defaults":                          6,
 }
 
 // ResolveHighest returns candidate with highest precedence weight.

@@ -2,7 +2,10 @@ package dispatcher
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
+	goruntime "runtime"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -21,8 +24,9 @@ type registeredTool struct {
 
 // ToolDispatcherOptions configures tool security parameters.
 type ToolDispatcherOptions struct {
-	AllowDestructive bool
-	AllowAdmin       bool
+	AllowDestructive   bool
+	AllowAdmin         bool
+	ExecutionTimeoutMs int64
 }
 
 // ToolDispatcher handles tool registration, schema validation, safety enforcement, and execution.
@@ -55,6 +59,17 @@ func (td *ToolDispatcher) RegisterTool(manifest core.ToolManifest, handler ToolH
 	}
 }
 
+// UnregisterTool removes a previously registered tool.
+func (td *ToolDispatcher) UnregisterTool(name string) bool {
+	td.mu.Lock()
+	defer td.mu.Unlock()
+	if _, ok := td.tools[name]; !ok {
+		return false
+	}
+	delete(td.tools, name)
+	return true
+}
+
 // ListTools returns all registered tool manifests.
 func (td *ToolDispatcher) ListTools() []core.ToolManifest {
 	td.mu.RLock()
@@ -64,6 +79,7 @@ func (td *ToolDispatcher) ListTools() []core.ToolManifest {
 	for _, t := range td.tools {
 		manifests = append(manifests, t.manifest)
 	}
+	sort.Slice(manifests, func(i, j int) bool { return manifests[i].Name < manifests[j].Name })
 	return manifests
 }
 
@@ -82,19 +98,55 @@ func (td *ToolDispatcher) checkSafety(manifest core.ToolManifest) (bool, string)
 	return true, ""
 }
 
+// withinRoot reports whether path p is the workspace root or nested inside it.
+func withinRoot(root, p string) bool {
+	root = filepath.Clean(root)
+	p = filepath.Clean(p)
+	if goruntime.GOOS == "windows" {
+		root = strings.ToLower(root)
+		p = strings.ToLower(p)
+	}
+	return p == root || strings.HasPrefix(p, root+string(os.PathSeparator))
+}
+
 func (td *ToolDispatcher) validatePathSafety(args map[string]interface{}) bool {
 	pathKeys := []string{"filePath", "path", "directoryPath", "targetFile", "cwd"}
-	rootClean := filepath.Clean(td.workspaceRoot)
-
 	for _, key := range pathKeys {
-		if val, ok := args[key].(string); ok && filepath.IsAbs(val) {
-			valClean := filepath.Clean(val)
-			if !strings.HasPrefix(valClean, rootClean) {
-				return false
-			}
+		if val, ok := args[key].(string); ok && filepath.IsAbs(val) && !withinRoot(td.workspaceRoot, val) {
+			return false
 		}
 	}
 	return true
+}
+
+// execute runs a tool handler, enforcing the configured execution timeout.
+func (td *ToolDispatcher) execute(handler ToolHandler, args map[string]interface{}) (out interface{}, err error) {
+	timeoutMs := td.options.ExecutionTimeoutMs
+	if timeoutMs <= 0 {
+		return handler(args)
+	}
+
+	type result struct {
+		out interface{}
+		err error
+	}
+	done := make(chan result, 1)
+	go func() {
+		defer func() {
+			if r := recover(); r != nil {
+				done <- result{err: fmt.Errorf("tool handler panicked: %v", r)}
+			}
+		}()
+		o, e := handler(args)
+		done <- result{out: o, err: e}
+	}()
+
+	select {
+	case res := <-done:
+		return res.out, res.err
+	case <-time.After(time.Duration(timeoutMs) * time.Millisecond):
+		return nil, fmt.Errorf("tool execution timed out after %dms", timeoutMs)
+	}
 }
 
 // Dispatch executes a tool call safely.
@@ -135,7 +187,7 @@ func (td *ToolDispatcher) Dispatch(call core.ToolCall) core.ToolResult {
 		}
 	}
 
-	out, err := t.handler(call.Arguments)
+	out, err := td.execute(t.handler, call.Arguments)
 	durationMs := time.Since(startTime).Milliseconds()
 
 	if err != nil {

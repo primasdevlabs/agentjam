@@ -1,0 +1,86 @@
+[
+  {
+    "id": "antigravity",
+    "name": "antigravity",
+    "type": "integration",
+    "path": "integrations/ai-platforms/antigravity/integration.yaml"
+  },
+  {
+    "id": "claude-code",
+    "name": "claude-code",
+    "type": "integration",
+    "path": "integrations/cli/claude-code/integration.yaml"
+  },
+  {
+    "id": "cline",
+    "name": "cline",
+    "type": "integration",
+    "path": "integrations/extensions/cline/integration.yaml"
+  },
+  {
+    "id": "codex",
+    "name": "codex",
+    "type": "integration",
+    "path": "integrations/cli/codex/integration.yaml"
+  },
+  {
+    "id": "cursor",
+    "name": "cursor",
+    "type": "integration",
+    "path": "integrations/ide/cursor/integration.yaml"
+  },
+  {
+    "id": "devin",
+    "name": "devin",
+    "type": "integration",
+    "path": "integrations/autonomous-agents/devin/integration.yaml"
+  },
+  {
+    "id": "gemini",
+    "name": "gemini-cli",
+    "type": "integration",
+    "path": "integrations/cli/gemini/integration.yaml"
+  },
+  {
+    "id": "generic",
+    "name": "generic",
+    "type": "integration",
+    "path": "integrations/generic/integration.yaml"
+  },
+  {
+    "id": "opencode",
+    "name": "opencode",
+    "type": "integration",
+    "path": "integrations/cli/opencode/integration.yaml"
+  },
+  {
+    "id": "roo-code",
+    "name": "roo-code",
+    "type": "integration",
+    "path": "integrations/extensions/roo-code/integration.yaml"
+  },
+  {
+    "id": "void",
+    "name": "void",
+    "type": "integration",
+    "path": "integrations/ide/void/integration.yaml"
+  },
+  {
+    "id": "vscode",
+    "name": "vscode",
+    "type": "integration",
+    "path": "integrations/ide/vscode/integration.yaml"
+  },
+  {
+    "id": "windsurf",
+    "name": "windsurf",
+    "type": "integration",
+    "path": "integrations/ide/windsurf/integration.yaml"
+  },
+  {
+    "id": "zed",
+    "name": "zed",
+    "type": "integration",
+    "path": "integrations/ide/zed/integration.yaml"
+  }
+]

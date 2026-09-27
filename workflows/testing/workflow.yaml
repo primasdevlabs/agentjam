@@ -1,0 +1,34 @@
+name: testing
+version: 1.0.0
+type: workflow
+description: Test coverage workflow that audits existing tests, fills gaps across unit/integration/e2e layers, and verifies the suite passes.
+mode: single-agent
+
+agents:
+  - qa-engineer
+
+skills:
+  - testing
+  - code-quality
+
+steps:
+  - id: step-1
+    name: audit-coverage
+    description: Inventory existing tests and identify uncovered modules and boundary cases.
+  - id: step-2
+    name: write-unit-tests
+    description: Add unit tests for core domain logic colocated with implementation files.
+  - id: step-3
+    name: write-integration-tests
+    description: Add integration tests for external boundary adapters and API surfaces.
+  - id: step-4
+    name: run-and-verify
+    description: Execute the full test suite and confirm all assertions pass.
+
+inputs:
+  - codebase
+  - test-spec
+
+outputs:
+  - test-suite
+  - test-results

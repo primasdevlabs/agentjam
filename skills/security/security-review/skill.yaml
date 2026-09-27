@@ -1,0 +1,8 @@
+name: security-review
+version: 1.0.0
+type: skill
+description: Security-focused code review covering injection surfaces, secret leakage, authz boundaries, and dependency risk.
+category: security
+triggers:
+  - security-audit
+  - pre-merge-review

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "review/default",
+    "name": "review/default",
+    "type": "prompt",
+    "path": "prompts/review/default.md"
+  },
+  {
+    "id": "system/default",
+    "name": "system/default",
+    "type": "prompt",
+    "path": "prompts/system/default.md"
+  },
+  {
+    "id": "task/default",
+    "name": "task/default",
+    "type": "prompt",
+    "path": "prompts/task/default.md"
+  },
+  {
+    "id": "utility/default",
+    "name": "utility/default",
+    "type": "prompt",
+    "path": "prompts/utility/default.md"
+  }
+]

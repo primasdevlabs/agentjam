@@ -1,0 +1,66 @@
+[
+  {
+    "id": "browser",
+    "name": "browser",
+    "version": "1.0.0",
+    "type": "tool",
+    "description": "Interface for headless browser navigation, DOM inspection, screenshots, and end-to-end interaction testing.",
+    "path": "tools/browser/tool.yaml"
+  },
+  {
+    "id": "communication",
+    "name": "communication",
+    "version": "1.0.0",
+    "type": "tool",
+    "description": "Interface for team communication channels (chat, comments, notifications) used to report status and request clarifications.",
+    "path": "tools/communication/tool.yaml"
+  },
+  {
+    "id": "database",
+    "name": "database",
+    "version": "1.0.0",
+    "type": "tool",
+    "description": "Interface for executing parameterized database queries, inspecting schemas, and running migrations against configured data sources.",
+    "path": "tools/database/tool.yaml"
+  },
+  {
+    "id": "filesystem",
+    "name": "filesystem",
+    "version": "1.0.0",
+    "type": "tool",
+    "description": "Interface for reading, writing, listing, and inspecting files on local storage.",
+    "path": "tools/filesystem/tool.yaml"
+  },
+  {
+    "id": "git",
+    "name": "git",
+    "version": "1.0.0",
+    "type": "tool",
+    "description": "Interface for inspecting git repositories, status, diffs, branches, and commit histories.",
+    "path": "tools/git/tool.yaml"
+  },
+  {
+    "id": "github",
+    "name": "github",
+    "version": "1.0.0",
+    "type": "tool",
+    "description": "Interface for GitHub operations: pull requests, issues, reviews, CI status, and repository metadata via API.",
+    "path": "tools/github/tool.yaml"
+  },
+  {
+    "id": "mcp",
+    "name": "mcp",
+    "version": "1.0.0",
+    "type": "tool",
+    "description": "Model Context Protocol (MCP) integration interface connecting AI coding agents to external MCP servers, tools, resources, and prompts over stdio or SSE.",
+    "path": "tools/mcp/tool.yaml"
+  },
+  {
+    "id": "terminal",
+    "name": "terminal",
+    "version": "1.0.0",
+    "type": "tool",
+    "description": "Interface for executing shell commands, running build/test toolchain commands, and capturing output streams.",
+    "path": "tools/terminal/tool.yaml"
+  }
+]

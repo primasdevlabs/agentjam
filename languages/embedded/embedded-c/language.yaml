@@ -1,0 +1,18 @@
+id: lang-embedded-c
+name: Embedded C
+ecosystem: embedded
+aliases: [c, embedded-c]
+extensions: [.c, .h]
+
+tooling:
+  package_manager: platformio
+  linter: clang-tidy
+  formatter: clang-format
+  type_checker: gcc
+
+framework_precedence:
+  - freertos
+  - zephyr
+
+documentation:
+  official_site: https://en.cppreference.com/w/c

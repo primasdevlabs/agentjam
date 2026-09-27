@@ -1,0 +1,19 @@
+id: lang-swift
+name: Swift
+ecosystem: apple
+aliases: [swift]
+extensions: [.swift]
+
+tooling:
+  package_manager: swiftpm
+  linter: swiftlint
+  formatter: swift-format
+  type_checker: swiftc
+
+framework_precedence:
+  - swiftui
+  - uikit
+  - vaper
+
+documentation:
+  official_site: https://www.swift.org/documentation/

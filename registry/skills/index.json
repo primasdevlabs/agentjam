@@ -1,0 +1,258 @@
+[
+  {
+    "id": "accessibility",
+    "name": "accessibility",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Enforces WCAG 2.1 AA accessibility standards, screen reader compatibility, keyboard navigation, and semantic HTML.",
+    "path": "skills/design/accessibility/skill.yaml"
+  },
+  {
+    "id": "anti-slop",
+    "name": "anti-slop",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Audits UI implementations to eliminate generic AI aesthetic slop, emoji icons, purple gradients, and repetitive card grids.",
+    "path": "skills/design/anti-slop/skill.yaml"
+  },
+  {
+    "id": "api-design",
+    "name": "api-design",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "REST and RPC API design conventions: resource modeling, versioning, pagination, error envelopes, and idempotency.",
+    "path": "skills/backend/api-design/skill.yaml"
+  },
+  {
+    "id": "architecture",
+    "name": "architecture",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Guides system architecture decisions, domain boundary design, modularity, and clean separation of concerns.",
+    "path": "skills/development/architecture/skill.yaml"
+  },
+  {
+    "id": "ci-cd",
+    "name": "ci-cd",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "CI/CD pipeline design: build stages, caching, test gates, artifact promotion, and deployment safety.",
+    "path": "skills/devops/ci-cd/skill.yaml"
+  },
+  {
+    "id": "code-quality",
+    "name": "code-quality",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Enforces code quality, refactoring standards, type safety, and formatting consistency across all supported languages.",
+    "path": "skills/development/code-quality/skill.yaml"
+  },
+  {
+    "id": "code-review",
+    "name": "code-review",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Rigorous code review techniques for quality, security, performance, and maintainability.",
+    "path": "skills/code-review/skill.yaml"
+  },
+  {
+    "id": "component-architecture",
+    "name": "component-architecture",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Frontend component architecture: composition patterns, state boundaries, props design, and rendering performance.",
+    "path": "skills/frontend/component-architecture/skill.yaml"
+  },
+  {
+    "id": "current-conventions",
+    "name": "current-conventions",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Discovers and enforces current ecosystem conventions and active project patterns over outdated training data practices.",
+    "path": "skills/research/current-conventions/skill.yaml"
+  },
+  {
+    "id": "debugging",
+    "name": "debugging",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Systematic debugging methodology: reproduce, isolate, instrument, fix root cause, and verify with regression tests.",
+    "path": "skills/general/debugging/skill.yaml"
+  },
+  {
+    "id": "dependency-audit",
+    "name": "dependency-audit",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Scans project dependencies for deprecated packages, version drift, security advisories, and missing peer dependencies.",
+    "path": "skills/project/dependency-audit/skill.yaml"
+  },
+  {
+    "id": "dependency-security",
+    "name": "dependency-security",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Audits third-party dependencies for known vulnerabilities, CVEs, and insecure transitive packages.",
+    "path": "skills/security/dependency-security/skill.yaml"
+  },
+  {
+    "id": "design-discovery",
+    "name": "design-discovery",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Interactive and automated design system discovery for brand, typography, color, spacing, icon, and UI component conventions.",
+    "path": "skills/design/design-discovery/skill.yaml"
+  },
+  {
+    "id": "design-system",
+    "name": "design-system",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Enforces design token usage, component reuse, and architectural consistency for design systems.",
+    "path": "skills/design/design-system/skill.yaml"
+  },
+  {
+    "id": "documentation",
+    "name": "documentation",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Generates clean, concise API documentation, architecture notes, and inline docstrings without marketing fluff.",
+    "path": "skills/development/documentation/skill.yaml"
+  },
+  {
+    "id": "documentation-research",
+    "name": "documentation-research",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Retrieves and verifies up-to-date framework and library documentation before generating implementation code.",
+    "path": "skills/research/documentation-research/skill.yaml"
+  },
+  {
+    "id": "error-handling",
+    "name": "error-handling",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Enforces robust error handling, domain-specific exception hierarchies, structured context logging, and defensive boundary checking.",
+    "path": "skills/development/error-handling/skill.yaml"
+  },
+  {
+    "id": "existing-project-audit",
+    "name": "existing-project-audit",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Audits existing codebase structure, dependencies, architecture, design system, security, and tooling.",
+    "path": "skills/project/existing-project-audit/skill.yaml"
+  },
+  {
+    "id": "house-cleaning",
+    "name": "house-cleaning",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Audits and remediates dead code, unused dependencies, inconsistent formatting, broken imports, and AI slop artifacts.",
+    "path": "skills/project/house-cleaning/skill.yaml"
+  },
+  {
+    "id": "query-optimization",
+    "name": "query-optimization",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Query performance analysis: execution plans, index selection, N+1 elimination, and pagination strategy.",
+    "path": "skills/databases/query-optimization/skill.yaml"
+  },
+  {
+    "id": "requirements-analysis",
+    "name": "requirements-analysis",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Requirements gathering and analysis: stakeholder goals, acceptance criteria, scope boundaries, and open questions.",
+    "path": "skills/product/requirements-analysis/skill.yaml"
+  },
+  {
+    "id": "responsive-design",
+    "name": "responsive-design",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Ensures fluid, breakpoint-governed layouts across mobile, tablet, desktop, and ultra-wide viewports.",
+    "path": "skills/design/responsive-design/skill.yaml"
+  },
+  {
+    "id": "schema-design",
+    "name": "schema-design",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Database schema design covering normalization, constraints, indexing strategy, and migration hygiene.",
+    "path": "skills/databases/schema-design/skill.yaml"
+  },
+  {
+    "id": "secrets",
+    "name": "secrets",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Prevents accidental commitment of API keys, private credentials, tokens, or environment secrets.",
+    "path": "skills/security/secrets/skill.yaml"
+  },
+  {
+    "id": "secure-coding",
+    "name": "secure-coding",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Enforces secure coding practices, parameterized SQL queries, input validation, output encoding, and auth checks.",
+    "path": "skills/security/secure-coding/skill.yaml"
+  },
+  {
+    "id": "security-review",
+    "name": "security-review",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Security-focused code review covering injection surfaces, secret leakage, authz boundaries, and dependency risk.",
+    "path": "skills/security/security-review/skill.yaml"
+  },
+  {
+    "id": "software-development",
+    "name": "software-development",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Core software development lifecycle practices for implementing features, refactoring, and maintaining codebases.",
+    "path": "skills/software-development/skill.yaml"
+  },
+  {
+    "id": "stack-detection",
+    "name": "stack-detection",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Detects technologies, frameworks, language versions, build tools, and containerization in a codebase.",
+    "path": "skills/project/stack-detection/skill.yaml"
+  },
+  {
+    "id": "technology-research",
+    "name": "technology-research",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Evaluates new libraries, tools, and technical solutions against project requirements, performance, and maintenance history.",
+    "path": "skills/research/technology-research/skill.yaml"
+  },
+  {
+    "id": "testing",
+    "name": "testing",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Guides unit, integration, and end-to-end test creation colocated with feature code.",
+    "path": "skills/development/testing/skill.yaml"
+  },
+  {
+    "id": "ui-copy",
+    "name": "ui-copy",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Direct, human UI copy generation enforcing strict anti-marketing slop rules.",
+    "path": "skills/design/ui-copy/skill.yaml"
+  },
+  {
+    "id": "visual-review",
+    "name": "visual-review",
+    "version": "1.0.0",
+    "type": "skill",
+    "description": "Reviews frontend visual outputs against project design tokens, alignment, typography, and anti-slop rules.",
+    "path": "skills/design/visual-review/skill.yaml"
+  }
+]
