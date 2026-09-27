@@ -117,6 +117,57 @@ func main() {
 			fmt.Println("Repository validation passed successfully!")
 		}
 
+	case "scan":
+		fs := flag.NewFlagSet("scan", flag.ExitOnError)
+		pathFlag := fs.String("path", ".", "Directory to scan")
+		extFlag := fs.String("ext", "", "Comma-separated extensions (default: all source types)")
+		verbose := fs.Bool("v", false, "Show files with warnings/info too (default: only blocking files)")
+		_ = fs.Parse(os.Args[2:])
+
+		pe := rt.GetPolicyEngine()
+		if len(pe.GetPolicies()) == 0 {
+			if !hasCanonicalTree(cwd) {
+				tmp, terr := os.MkdirTemp("", "agentjam-canon-*")
+				if terr != nil {
+					fmt.Fprintf(os.Stderr, "scan failed: %v\n", terr)
+					os.Exit(1)
+				}
+				defer os.RemoveAll(tmp)
+				if _, terr := install.Init(agentjam.CanonicalFS, tmp, install.InitOptions{Force: true}); terr != nil {
+					fmt.Fprintf(os.Stderr, "scan failed to stage embedded policies: %v\n", terr)
+					os.Exit(1)
+				}
+				pe = policy.NewPolicyEngineFromDir(tmp)
+			}
+		}
+
+		var exts []string
+		if *extFlag != "" {
+			exts = splitComma(*extFlag)
+		}
+		report, err := pe.Scan(*pathFlag, exts, *verbose)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "scan failed: %v\n", err)
+			os.Exit(1)
+		}
+		for _, f := range report.Files {
+			fmt.Printf("%s\n", f.Path)
+			for _, v := range f.Summary.Violations {
+				fmt.Printf("  [%s] %s:%d %s — %s\n", strings.ToUpper(string(v.Enforcement)), f.Path, v.Line, v.PolicyName, v.Message)
+			}
+		}
+		fmt.Printf("\nScan: %d files, %d with violations — %d strict-block, %d warning, %d info.\n",
+			report.FilesScanned, report.FilesWithHits, report.StrictBlocks, report.Warnings, report.InfoCount)
+		if !report.Allowed {
+			fmt.Println("SCAN FAILED: strict-block violations present.")
+			os.Exit(1)
+		}
+		if report.FilesWithHits > 0 {
+			fmt.Println("Scan passed with warnings.")
+		} else {
+			fmt.Println("Scan clean.")
+		}
+
 	case "eval":
 		fs := flag.NewFlagSet("eval", flag.ExitOnError)
 		_ = fs.Parse(os.Args[2:])
@@ -492,6 +543,7 @@ func printHelp() {
 	fmt.Println("  detect           Detect AI harness environments and project stacks")
 	fmt.Println("  context          Generate context snapshot for active workspace")
 	fmt.Println("  eval             Evaluate files against loaded policy rules")
+	fmt.Println("  scan             Policy-scan all source files (--path, --ext, -v)")
 	fmt.Println("  export           Export rule configurations (--harness auto|all|cursor|claude-code|gemini|...)")
 	fmt.Println("  init             Materialize the canonical resource tree into a project")
 	fmt.Println("  install          Install skills/agents/rules for a harness (--harness auto|all|cursor|...)")

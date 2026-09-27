@@ -30,6 +30,25 @@ AgentJam prevents AI agents from introducing unvetted dependencies, inventing no
 
 ---
 
+## Install AgentJam into Your Project
+
+**For humans:**
+
+```bash
+go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest
+cd your-project
+agentjam install --harness cursor    # or claude-code, windsurf, gemini, cline, roo-code, devin, generic
+agentjam scan                        # policy-scan your codebase
+```
+
+**For AI agents** — paste this repository into Claude, Devin, Cursor, etc. and tell it:
+
+> Install AgentJam into this project. Run `go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest`, then `agentjam install --harness <this-environment>` and `agentjam scan`. Read `AGENTJAM.md` for your operational protocol before writing any code.
+
+`install` writes domain-organized rule trees native to your harness — `.cursor/rules/skills/<category>/`, `.claude/skills/<category>/<id>/SKILL.md`, `.clinerules/policies/`, `.windsurf/rules/`, `AGENTS.md`, `GEMINI.md`, `.devin/playbook.md` — plus `AGENTJAM.md`, the entry-point runbook that defines the enforce→scan→fix loop every agent must follow. `init` optionally materializes the full canonical tree into the project.
+
+---
+
 ## Repository Stats, Badges & Tags
 
 ### Community Metrics

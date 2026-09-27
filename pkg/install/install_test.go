@@ -111,9 +111,12 @@ func TestRenderCursorEmitsMDC(t *testing.T) {
 	if _, ok := files[".cursorrules"]; !ok {
 		t.Fatal("expected .cursorrules")
 	}
+	if _, ok := files["AGENTJAM.md"]; !ok {
+		t.Fatal("expected AGENTJAM.md runbook entry point")
+	}
 	mdcFound := 0
 	for name, content := range files {
-		if strings.HasPrefix(name, ".cursor/rules/skill-") && strings.HasSuffix(name, ".mdc") {
+		if strings.HasPrefix(name, ".cursor/rules/skills/") && strings.HasSuffix(name, ".mdc") {
 			mdcFound++
 			if !strings.Contains(content, "alwaysApply:") {
 				t.Errorf(".mdc missing frontmatter: %s", name)

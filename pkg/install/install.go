@@ -97,11 +97,13 @@ func Init(fsys fs.FS, targetRoot string, opts InitOptions) (*InitResult, error) 
 	return res, nil
 }
 
-// ResourceSet holds everything a harness renderer needs.
+// ResourceSet holds everything a harness renderer needs. Entries carry the
+// resource's domain category so installed trees follow DDD layout:
+// skills/<category>/<id>, policies/<category>/<id>, agents/<id>.
 type ResourceSet struct {
 	Agents   []AgentEntry
 	Skills   []SkillEntry
-	Policies []core.PolicyManifest
+	Policies []PolicyEntry
 }
 
 type AgentEntry struct {
@@ -111,7 +113,38 @@ type AgentEntry struct {
 
 type SkillEntry struct {
 	Manifest     core.SkillManifest
+	Category     string
 	Instructions map[string]string
+}
+
+type PolicyEntry struct {
+	Manifest core.PolicyManifest
+	Category string
+}
+
+// categoryOf extracts the domain segment between the type dir and the
+// resource id: skills/<cat>/<id>/skill.yaml -> cat, policies/<cat>/<file> ->
+// cat. Returns "" for flat layouts (agents/<id>).
+func categoryOf(root, resPath, typeDir string) string {
+	rel, err := filepath.Rel(root, resPath)
+	if err != nil {
+		return ""
+	}
+	rel = filepath.ToSlash(rel)
+	parts := strings.Split(rel, "/")
+	// expect: <typeDir>/<cat>/<id>/<file> or <typeDir>/<cat>/<file>
+	// skills/<cat>/<id>/file needs 4 segments to have a category;
+	// policies/<cat>/file needs 3. Anything shallower is flat (no category).
+	minDepth := 3
+	if typeDir == "skills" {
+		minDepth = 4
+	}
+	for i, p := range parts {
+		if p == typeDir && i+1 < len(parts)-1 && len(parts) >= minDepth {
+			return parts[i+1]
+		}
+	}
+	return ""
 }
 
 // Collect parses the canonical resource tree under root. When root lacks a
@@ -127,17 +160,19 @@ func Collect(root string) (*ResourceSet, error) {
 			}
 		case core.ResourceTypeSkill:
 			if b, err := parser.ParseSkill(res.Path); err == nil {
-				rs.Skills = append(rs.Skills, SkillEntry{Manifest: b.Manifest, Instructions: b.Instructions})
+				rs.Skills = append(rs.Skills, SkillEntry{
+					Manifest: b.Manifest, Category: categoryOf(root, res.Path, "skills"), Instructions: b.Instructions})
 			}
 		case core.ResourceTypePolicy:
 			if p, err := parser.ParsePolicy(res.Path); err == nil {
-				rs.Policies = append(rs.Policies, p)
+				rs.Policies = append(rs.Policies, PolicyEntry{
+					Manifest: p, Category: categoryOf(root, res.Path, "policies")})
 			}
 		}
 	}
 	sort.Slice(rs.Agents, func(i, j int) bool { return rs.Agents[i].Manifest.Name < rs.Agents[j].Manifest.Name })
 	sort.Slice(rs.Skills, func(i, j int) bool { return rs.Skills[i].Manifest.Name < rs.Skills[j].Manifest.Name })
-	sort.Slice(rs.Policies, func(i, j int) bool { return rs.Policies[i].Name < rs.Policies[j].Name })
+	sort.Slice(rs.Policies, func(i, j int) bool { return rs.Policies[i].Manifest.Name < rs.Policies[j].Manifest.Name })
 	return rs, nil
 }
 
