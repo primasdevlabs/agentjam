@@ -1,4 +1,4 @@
-# AgentJam Architecture (Go Native Engine)
+# AgentJam Architecture
 
 AgentJam is built as a high-performance, harness-agnostic Go architecture separating canonical assets from export adapter implementations.
 
@@ -22,7 +22,7 @@ AgentJam is built as a high-performance, harness-agnostic Go architecture separa
 
 ## Executable CLI (`cmd/agentjam`)
 
-The native Go binary CLI (`agentjam`) provides subcommands:
+The `agentjam` CLI binary (`agentjam`) provides subcommands:
 - `agentjam validate`: Validates repository resources, policies, and stacks.
 - `agentjam export`: Auto-detects or explicitly exports rules for AI harnesses (`--harness auto|all|cursor|claude-code|gemini|...`).
 - `agentjam context`: Generates context snapshot and system instructions.

@@ -58,7 +58,7 @@ agentjam scan                        # policy-scan your codebase
 | **Release Version**     | `v1.0.0`                | [package.json](file:///c:/wamp64/www/fullstack/package.json)               |
 | **Repository License**  | MIT License             | [LICENSE](file:///c:/wamp64/www/fullstack/LICENSE)                         |
 | **Build & Test Status** | 100% Passing            | [cmd/agentjam](file:///c:/wamp64/www/fullstack/cmd/agentjam)               |
-| **Go Engine**           | `>=1.22.0`              | [go.mod](file:///c:/wamp64/www/fullstack/go.mod)                           |
+| **Go Toolchain**        | `>=1.22.0`              | [go.mod](file:///c:/wamp64/www/fullstack/go.mod)                           |
 | **Architecture**        | Harness-Agnostic        | Canonical Neutral Format                                                   |
 | **Active Stacks**       | 8 Pre-configured Stacks | [stacks/](file:///c:/wamp64/www/fullstack/stacks)                          |
 | **Language Ecosystems** | 15 Ecosystem Categories | [languages/](file:///c:/wamp64/www/fullstack/languages)                    |

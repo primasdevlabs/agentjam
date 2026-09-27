@@ -54,7 +54,7 @@ func main() {
 
 	switch command {
 	case "version":
-		fmt.Printf("AgentJam Go Native CLI %s\n", version)
+		fmt.Printf("AgentJam CLI %s\n", version)
 
 	case "preflight":
 		result := rt.GetToolchainManager().RunPreflightChecks()
@@ -122,6 +122,7 @@ func main() {
 		pathFlag := fs.String("path", ".", "Directory to scan")
 		extFlag := fs.String("ext", "", "Comma-separated extensions (default: all source types)")
 		verbose := fs.Bool("v", false, "Show files with warnings/info too (default: only blocking files)")
+		offline := fs.Bool("offline", false, "Skip package-manager freshness checks (no registry calls)")
 		_ = fs.Parse(os.Args[2:])
 
 		pe := rt.GetPolicyEngine()
@@ -145,10 +146,13 @@ func main() {
 		if *extFlag != "" {
 			exts = splitComma(*extFlag)
 		}
-		report, err := pe.Scan(*pathFlag, exts, *verbose)
+		report, err := pe.Scan(*pathFlag, exts, *verbose, !*offline)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "scan failed: %v\n", err)
 			os.Exit(1)
+		}
+		for _, v := range report.ProjectViolations {
+			fmt.Printf("<project>\n  [%s] %s — %s\n", strings.ToUpper(string(v.Enforcement)), v.PolicyName, v.Message)
 		}
 		for _, f := range report.Files {
 			fmt.Printf("%s\n", f.Path)
@@ -319,6 +323,7 @@ func main() {
 				fmt.Fprintf(os.Stderr, "install: %v\n", err)
 				os.Exit(2)
 			}
+			var written []string
 			for fn, content := range files {
 				if *dryRun {
 					fmt.Printf("[dry-run] %s (%d bytes)\n", fn, len(content))
@@ -331,9 +336,53 @@ func main() {
 					fmt.Fprintf(os.Stderr, "install: writing %s: %v\n", fn, err)
 					os.Exit(1)
 				}
+				written = append(written, fn)
 				fmt.Printf("Installed [%s] %s\n", h, fn)
 			}
+			if !*dryRun {
+				if err := install.WriteLedger(cwd, h, written); err != nil {
+					fmt.Fprintf(os.Stderr, "install: ledger write: %v\n", err)
+				}
+			}
 		}
+
+	case "uninstall":
+		fs := flag.NewFlagSet("uninstall", flag.ExitOnError)
+		harnessFlag := fs.String("harness", "all", "Harness to uninstall ('all' or one of: "+strings.Join(install.SupportedHarnesses, ", ")+")")
+		purgeFlag := fs.Bool("purge", false, "Also remove root rule files (CLAUDE.md, .cursorrules, ...) and .agentjam/")
+		dryRun := fs.Bool("dry-run", false, "List files that would be removed without removing")
+		_ = fs.Parse(os.Args[2:])
+
+		var harnesses []string
+		if *harnessFlag != "all" {
+			harnesses = []string{*harnessFlag}
+		}
+
+		if *dryRun {
+			l, _ := install.ReadLedger(cwd)
+			for h, files := range l.Harnesses {
+				for _, f := range files {
+					fmt.Printf("[dry-run] would remove [%s] %s\n", h, f)
+				}
+			}
+			if len(l.Harnesses) == 0 {
+				fmt.Println("[dry-run] no ledger found — would remove well-known AgentJam paths")
+			}
+			break
+		}
+
+		res, err := install.Uninstall(cwd, harnesses, *purgeFlag)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "uninstall: %v\n", err)
+			os.Exit(1)
+		}
+		for _, f := range res.Removed {
+			fmt.Printf("Removed %s\n", f)
+		}
+		for _, f := range res.Purged {
+			fmt.Printf("Purged %s\n", f)
+		}
+		fmt.Printf("Uninstall complete: %d file(s)/path(s) removed.\n", len(res.Removed)+len(res.Purged))
 
 	case "mcp":
 		mcp.RegisterBuiltinTools(rt)
@@ -509,7 +558,7 @@ func runE2E(rt *runtime.AgentJamRuntime, cwd string) {
 			SafetyLevel:  core.SafetyReadOnly,
 		},
 		func(args map[string]interface{}) (interface{}, error) {
-			return map[string]string{"engine": "Go-Native", "status": "operational"}, nil
+			return map[string]string{"engine": "agentjam", "status": "operational"}, nil
 		},
 	)
 
@@ -535,7 +584,7 @@ func runE2E(rt *runtime.AgentJamRuntime, cwd string) {
 }
 
 func printHelp() {
-	fmt.Printf("AgentJam Go Native CLI %s\n\n", version)
+	fmt.Printf("AgentJam CLI %s\n\n", version)
 	fmt.Println("Usage: agentjam <command> [options]")
 	fmt.Println("\nCommands:")
 	fmt.Println("  version          Print AgentJam Go version")
@@ -547,6 +596,7 @@ func printHelp() {
 	fmt.Println("  export           Export rule configurations (--harness auto|all|cursor|claude-code|gemini|...)")
 	fmt.Println("  init             Materialize the canonical resource tree into a project")
 	fmt.Println("  install          Install skills/agents/rules for a harness (--harness auto|all|cursor|...)")
+	fmt.Println("  uninstall        Remove installed AgentJam files (--harness all|cursor|... --purge --dry-run)")
 	fmt.Println("  validate         Validate repository rules and policy engine")
 	fmt.Println("  build-registry   Generate registry.json index")
 	fmt.Println("  run              Run a workflow by name (--list to enumerate)")

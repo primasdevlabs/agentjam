@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
 id: 07-coding-standards
 name: Coding Standards Policy
 description: Requires strict linting, formatting, type checking, and test verification before completion.

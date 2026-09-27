@@ -1,6 +1,6 @@
 # Installation & Workspace Operational Behavior
 
-This guide details how to install AgentJam Go Native Engine and **what AgentJam actively enforces inside a workspace where it is installed**.
+This guide details how to install AgentJam CLI and **what AgentJam actively enforces inside a workspace where it is installed**.
 
 ---
 

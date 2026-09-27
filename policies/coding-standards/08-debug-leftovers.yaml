@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
+id: 08-debug-leftovers
+name: Debug Statement Hygiene
+description: Flags debugging statements left in source — console.log, debugger, pdb breakpoints, and print-debugging should not ship.
+category: coding-standards
+enforcement: warning
+scope: file
+
+terms:
+  - console.log
+  - debugger statement
+  - pdb breakpoint
+  - print debugging
+  - debug leftovers
+
+rules:
+  flag_console_log: true
+  flag_debugger_statements: true
+  flag_print_debugging: true
+
+instructions: |
+  Debug Hygiene Rules:
+  - Remove console.log, debugger, pdb.set_trace, binding.pry, fmt.Println, println!,
+    and System.out.println debugging before committing.
+  - Use structured logging with levels when runtime diagnostics are intentional.

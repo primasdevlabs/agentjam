@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
+id: 10-dependency-freshness
+name: Dependency Freshness
+description: Flags outdated dependencies by shelling out to the ecosystem package manager (npm outdated, go list -m -u) when the toolchain is installed and the registry is reachable.
+category: coding-standards
+enforcement: warning
+scope: project
+
+terms:
+  - outdated dependency
+  - version bump
+  - dependency update
+  - npm outdated
+  - freshness
+
+rules:
+  run_pm_outdated_checks: true
+  ecosystems: [npm, go]
+  offline_graceful: true
+
+instructions: |
+  Dependency Freshness Rules:
+  - Keep dependencies current; outdated majors accumulate security debt.
+  - The check only runs when the package manager binary exists and the
+    registry is reachable — an info note is emitted when it is skipped.
+  - Batch upgrades by domain; pin intentionally-frozen deps with a comment.

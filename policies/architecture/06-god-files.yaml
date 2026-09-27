@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
+id: 06-god-files
+name: God File Limit
+description: Flags oversized files that accumulate too many responsibilities — "god files" that violate single-responsibility and become unmaintainable.
+category: architecture
+enforcement: warning
+scope: file
+
+terms:
+  - god file
+  - oversized file
+  - long function
+  - high complexity
+  - too many symbols
+  - single responsibility
+
+rules:
+  max_file_lines: 500
+  max_top_level_decls: 40
+  max_responsibility_markers: 8
+  max_function_lines: 80
+  max_complexity_score: 12
+
+instructions: |
+  God File Rules:
+  - A single file must not exceed 500 lines; split by responsibility before it grows.
+  - A file must not declare more than 40 top-level symbols (functions, classes, types).
+  - Mixed-responsibility files (UI + data access + orchestration) must be decomposed
+    into cohesive units colocated with their domain.
+  - Prefer many small modules over one large one; extraction beats accumulation.
+  - No function may exceed 80 lines; long bodies hide multiple responsibilities.
+  - Keep per-function branching (ifs, loops, cases, boolean ops, catches) under 12 —
+    beyond that, decompose into named helpers.

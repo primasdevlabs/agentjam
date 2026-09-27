@@ -8,7 +8,7 @@ import (
 	"github.com/primasdevlabs/agentjam/pkg/toolchain"
 )
 
-// AgentJamRuntime orchestrates all AgentJam subsystems in native Go.
+// AgentJamRuntime orchestrates all AgentJam subsystems.
 type AgentJamRuntime struct {
 	projectRoot      string
 	policyEngine     *policy.PolicyEngine

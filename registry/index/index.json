@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-27T08:38:42+01:00",
+  "generatedAt": "2026-09-27T10:36:44+01:00",
   "agentsCount": 13,
   "skillsCount": 32,
   "toolsCount": 8,
   "workflowsCount": 12,
   "stacksCount": 8,
   "languagesCount": 18,
-  "policiesCount": 32,
+  "policiesCount": 40,
   "integrationsCount": 14,
-  "total": 145,
+  "total": 153,
   "entries": [
     {
       "id": "architect",
@@ -342,6 +342,13 @@
       "path": "policies/architecture/05-architecture.yaml"
     },
     {
+      "id": "05-insecure-api-sinks",
+      "name": "Insecure API Sinks",
+      "type": "policy",
+      "description": "Blocks dangerous API calls that create injection, XSS, or transport-security holes — eval, raw DOM HTML injection, TLS verification bypass, shell string execution, weak crypto on credentials.",
+      "path": "policies/security/05-insecure-api-sinks.yaml"
+    },
+    {
       "id": "06-dependencies",
       "name": "Dependency Boundary Policy",
       "type": "policy",
@@ -349,11 +356,60 @@
       "path": "policies/dependencies/06-dependencies.yaml"
     },
     {
+      "id": "06-god-files",
+      "name": "God File Limit",
+      "type": "policy",
+      "description": "Flags oversized files that accumulate too many responsibilities — \"god files\" that violate single-responsibility and become unmaintainable.",
+      "path": "policies/architecture/06-god-files.yaml"
+    },
+    {
+      "id": "06-sensitive-files",
+      "name": "Sensitive File Guard",
+      "type": "policy",
+      "description": "Blocks scanning/working on committed sensitive files — env files, private keys, certificates, and credential stores must never live in the source tree.",
+      "path": "policies/security/06-sensitive-files.yaml"
+    },
+    {
       "id": "07-coding-standards",
       "name": "Coding Standards Policy",
       "type": "policy",
       "description": "Requires strict linting, formatting, type checking, and test verification before completion.",
       "path": "policies/coding-standards/07-coding-standards.yaml"
+    },
+    {
+      "id": "07-deprecated-packages",
+      "name": "Deprecated Package Guard",
+      "type": "policy",
+      "description": "Flags dependencies that are deprecated, renamed, abandoned, or carry known vulnerabilities — checked against the built-in advisory database in every manifest the scanner finds.",
+      "path": "policies/security/07-deprecated-packages.yaml"
+    },
+    {
+      "id": "07-domain-layout",
+      "name": "Domain-Driven Layout",
+      "type": "policy",
+      "description": "Enforces domain-driven project structure — source files must be grouped by domain/bounded context, not dumped flat into a single directory.",
+      "path": "policies/architecture/07-domain-layout.yaml"
+    },
+    {
+      "id": "08-debug-leftovers",
+      "name": "Debug Statement Hygiene",
+      "type": "policy",
+      "description": "Flags debugging statements left in source — console.log, debugger, pdb breakpoints, and print-debugging should not ship.",
+      "path": "policies/coding-standards/08-debug-leftovers.yaml"
+    },
+    {
+      "id": "09-todo-hygiene",
+      "name": "Deferred Work Hygiene",
+      "type": "policy",
+      "description": "Tracks TODO/FIXME/HACK accumulation — a file drowning in deferred-work markers signals unfinished or unstable code.",
+      "path": "policies/coding-standards/09-todo-hygiene.yaml"
+    },
+    {
+      "id": "10-dependency-freshness",
+      "name": "Dependency Freshness",
+      "type": "policy",
+      "description": "Flags outdated dependencies by shelling out to the ecosystem package manager (npm outdated, go list -m -u) when the toolchain is installed and the registry is reachable.",
+      "path": "policies/coding-standards/10-dependency-freshness.yaml"
     },
     {
       "id": "accessibility",

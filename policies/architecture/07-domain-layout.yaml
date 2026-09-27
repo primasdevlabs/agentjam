@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
+id: 07-domain-layout
+name: Domain-Driven Layout
+description: Enforces domain-driven project structure — source files must be grouped by domain/bounded context, not dumped flat into a single directory.
+category: architecture
+enforcement: warning
+scope: project
+
+terms:
+  - flat layout
+  - domain-driven design
+  - bounded context
+  - messy structure
+  - oversized directory
+
+rules:
+  flat_source_threshold: 12
+  max_files_per_dir: 15
+  min_domain_ratio: 0.6
+
+instructions: |
+  Domain Layout Rules:
+  - Group source files by bounded context/domain (e.g. auth/, billing/, inventory/),
+    never as a flat pile in one directory.
+  - No directory may hold more than 15 source files; split domains further.
+  - Once a project exceeds 12 source files, at least 60% must live inside
+    domain-named subdirectories.
+  - Entry points and composition roots stay at the edge; domain logic nests.
