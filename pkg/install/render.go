@@ -90,6 +90,9 @@ func Render(rs *ResourceSet, harness, systemInstruction, agentName, agentDesc st
 		for _, s := range rs.Skills {
 			files[catPath(".clinerules/skills", s.Category, s.Manifest.Name+".md")] = skillBody(s) + "\n"
 		}
+		for _, a := range rs.Agents {
+			files[".clinerules/agents/"+a.Manifest.Name+".md"] = agentBody(a) + "\n"
+		}
 		for _, p := range rs.Policies {
 			files[catPath(".clinerules/policies", p.Category, p.Manifest.ID+".md")] = policyBody(p) + "\n"
 		}
@@ -99,6 +102,9 @@ func Render(rs *ResourceSet, harness, systemInstruction, agentName, agentDesc st
 		for _, s := range rs.Skills {
 			files[catPath(".roo/rules/skills", s.Category, s.Manifest.Name+".md")] = skillBody(s) + "\n"
 		}
+		for _, a := range rs.Agents {
+			files[".roo/rules/agents/"+a.Manifest.Name+".md"] = agentBody(a) + "\n"
+		}
 		for _, p := range rs.Policies {
 			files[catPath(".roo/rules/policies", p.Category, p.Manifest.ID+".md")] = policyBody(p) + "\n"
 		}
@@ -106,13 +112,40 @@ func Render(rs *ResourceSet, harness, systemInstruction, agentName, agentDesc st
 	case "devin":
 		files[".devin/playbook.md"] = "# Devin Agent Playbook — " + agentName + "\n\n" + systemInstruction
 		files["AGENTS.md"] = agentsDoc(rs, agentName, agentDesc)
+		for _, s := range rs.Skills {
+			files[catPath(".devin/rules/skills", s.Category, s.Manifest.Name+".md")] = skillBody(s) + "\n"
+		}
+		for _, a := range rs.Agents {
+			files[".devin/rules/agents/"+a.Manifest.Name+".md"] = agentBody(a) + "\n"
+		}
+		for _, p := range rs.Policies {
+			files[catPath(".devin/rules/policies", p.Category, p.Manifest.ID+".md")] = policyBody(p) + "\n"
+		}
 
 	case "gemini":
-		files["GEMINI.md"] = "# Gemini Instructions — " + agentName + "\n\n" + systemInstruction + "\n\n" + skillSections(rs)
+		files["GEMINI.md"] = "# Gemini Instructions — " + agentName + "\n\n" + systemInstruction
+		for _, s := range rs.Skills {
+			files[catPath(".gemini/skills", s.Category, s.Manifest.Name+".md")] = skillBody(s) + "\n"
+		}
+		for _, a := range rs.Agents {
+			files[".gemini/agents/"+a.Manifest.Name+".md"] = agentBody(a) + "\n"
+		}
+		for _, p := range rs.Policies {
+			files[catPath(".gemini/policies", p.Category, p.Manifest.ID+".md")] = policyBody(p) + "\n"
+		}
 
 	case "generic":
 		files["SYSTEM_PROMPT.md"] = "# Generic AI System Prompt — " + agentName + "\n\n" + systemInstruction
 		files["AGENTS.md"] = agentsDoc(rs, agentName, agentDesc)
+		for _, s := range rs.Skills {
+			files[catPath(".agentjam/rules/skills", s.Category, s.Manifest.Name+".md")] = skillBody(s) + "\n"
+		}
+		for _, a := range rs.Agents {
+			files[".agentjam/rules/agents/"+a.Manifest.Name+".md"] = agentBody(a) + "\n"
+		}
+		for _, p := range rs.Policies {
+			files[catPath(".agentjam/rules/policies", p.Category, p.Manifest.ID+".md")] = policyBody(p) + "\n"
+		}
 
 	default:
 		return nil, fmt.Errorf("unknown harness %q (supported: %s)", harness, strings.Join(SupportedHarnesses, ", "))
@@ -209,20 +242,6 @@ func agentsDoc(rs *ResourceSet, agentName, agentDesc string) string {
 	sb.WriteString("## Agents\n\n")
 	for _, a := range rs.Agents {
 		fmt.Fprintf(&sb, "- **%s** — %s (skills: %s)\n", a.Manifest.Name, a.Manifest.Description, strings.Join(a.Manifest.Skills, ", "))
-	}
-	return sb.String()
-}
-
-func skillSections(rs *ResourceSet) string {
-	var sb strings.Builder
-	sb.WriteString("## Skills\n\n")
-	cat := ""
-	for _, s := range rs.Skills {
-		if s.Category != cat {
-			cat = s.Category
-			fmt.Fprintf(&sb, "#### %s\n\n", orCore(cat))
-		}
-		fmt.Fprintf(&sb, "### %s\n\n%s\n\n%s\n\n", s.Manifest.Name, s.Manifest.Description, instructionsText(s.Instructions))
 	}
 	return sb.String()
 }

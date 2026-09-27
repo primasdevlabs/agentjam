@@ -345,6 +345,22 @@ func main() {
 				}
 			}
 		}
+		if *dryRun {
+			break
+		}
+		fmt.Println(`
+AgentJam installed. Next steps:
+
+  agentjam scan                 Policy-scan this project (exits 1 on strict-block violations)
+  agentjam eval <file>          Evaluate a single file with line numbers
+  agentjam uninstall            Remove everything this install wrote
+
+  AGENTJAM.md is the agent entry point — point your AI agent at it
+  (e.g. "read AGENTJAM.md and follow the protocol").
+
+  To also materialize the canonical resource tree (agents/, skills/,
+  policies/, ... as source manifests you can edit): agentjam init`)
+
 
 	case "uninstall":
 		fs := flag.NewFlagSet("uninstall", flag.ExitOnError)
@@ -587,12 +603,12 @@ func printHelp() {
 	fmt.Printf("AgentJam CLI %s\n\n", version)
 	fmt.Println("Usage: agentjam <command> [options]")
 	fmt.Println("\nCommands:")
-	fmt.Println("  version          Print AgentJam Go version")
+	fmt.Println("  version          Print AgentJam CLI version")
 	fmt.Println("  preflight        Run toolchain preflight checks")
 	fmt.Println("  detect           Detect AI harness environments and project stacks")
 	fmt.Println("  context          Generate context snapshot for active workspace")
 	fmt.Println("  eval             Evaluate files against loaded policy rules")
-	fmt.Println("  scan             Policy-scan all source files (--path, --ext, -v)")
+	fmt.Println("  scan             Policy-scan all source files (--path, --ext, --offline, -v)")
 	fmt.Println("  export           Export rule configurations (--harness auto|all|cursor|claude-code|gemini|...)")
 	fmt.Println("  init             Materialize the canonical resource tree into a project")
 	fmt.Println("  install          Install skills/agents/rules for a harness (--harness auto|all|cursor|...)")

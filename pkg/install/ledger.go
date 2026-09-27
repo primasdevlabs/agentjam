@@ -81,11 +81,11 @@ var harnessOwnedPaths = map[string][]string{
 	"cursor":      {".cursor/rules/skills", ".cursor/rules/policies", ".cursor/rules/agents"},
 	"claude-code": {".claude/skills", ".claude/agents", ".claude/policies"},
 	"windsurf":    {".windsurf/rules"},
-	"cline":       {".clinerules/rules"},
+	"cline":       {".clinerules/skills", ".clinerules/policies", ".clinerules/agents"},
 	"roo-code":    {".roo/rules"},
-	"devin":       {".devin/playbook.md"},
-	"generic":     {},
-	"gemini":      {},
+	"devin":       {".devin/playbook.md", ".devin/rules"},
+	"generic":     {".agentjam/rules"},
+	"gemini":      {".gemini/skills", ".gemini/policies", ".gemini/agents"},
 }
 
 // rootRuleFiles are top-level harness files install overwrites; removed
