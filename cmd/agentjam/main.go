@@ -8,10 +8,12 @@ import (
 	"path/filepath"
 	"strings"
 
+	agentjam "github.com/primasdevlabs/agentjam"
 	"github.com/primasdevlabs/agentjam/pkg/adapters"
 	"github.com/primasdevlabs/agentjam/pkg/context"
 	"github.com/primasdevlabs/agentjam/pkg/core"
 	"github.com/primasdevlabs/agentjam/pkg/dispatcher"
+	"github.com/primasdevlabs/agentjam/pkg/install"
 	"github.com/primasdevlabs/agentjam/pkg/mcp"
 	"github.com/primasdevlabs/agentjam/pkg/memory"
 	"github.com/primasdevlabs/agentjam/pkg/parser"
@@ -21,7 +23,7 @@ import (
 	"github.com/primasdevlabs/agentjam/pkg/validator"
 )
 
-const version = core.Version
+var version = core.Version
 
 func main() {
 	if len(os.Args) < 2 {
@@ -188,6 +190,89 @@ func main() {
 			os.Exit(1)
 		}
 
+	case "init":
+		fs := flag.NewFlagSet("init", flag.ExitOnError)
+		bareFlag := fs.Bool("bare", false, "Only write .agentjam/config.yaml and empty canonical directories")
+		forceFlag := fs.Bool("force", false, "Overwrite existing files")
+		onlyFlag := fs.String("only", "", "Comma-separated canonical dirs to materialize (agents,skills,policies,...)")
+		_ = fs.Parse(os.Args[2:])
+
+		opts := install.InitOptions{Bare: *bareFlag, Force: *forceFlag}
+		if *onlyFlag != "" {
+			opts.Only = splitComma(*onlyFlag)
+		}
+		res, err := install.Init(agentjam.CanonicalFS, cwd, opts)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "init failed: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Printf("Initialized AgentJam workspace: %d files written, %d skipped (use --force to overwrite).\n",
+			len(res.Written), len(res.Skipped))
+		fmt.Println("Next: agentjam detect && agentjam install --harness <your-ai-tool>")
+
+	case "install":
+		fs := flag.NewFlagSet("install", flag.ExitOnError)
+		harnessFlag := fs.String("harness", "auto", "Target harness ('auto', 'all', or one of: "+strings.Join(install.SupportedHarnesses, ", ")+")")
+		agentFlag := fs.String("agent", "", "Agent persona (defaults to .agentjam/config.yaml defaultAgent)")
+		dryRun := fs.Bool("dry-run", false, "List files that would be written without writing")
+		_ = fs.Parse(os.Args[2:])
+
+		// Collect canonical resources: prefer the target's own tree, fall back
+		// to the tree embedded in the binary.
+		collectRoot := cwd
+		if !hasCanonicalTree(cwd) {
+			tmp, err := os.MkdirTemp("", "agentjam-canon-*")
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "install failed: %v\n", err)
+				os.Exit(1)
+			}
+			defer os.RemoveAll(tmp)
+			if _, err := install.Init(agentjam.CanonicalFS, tmp, install.InitOptions{Force: true}); err != nil {
+				fmt.Fprintf(os.Stderr, "install failed to stage embedded resources: %v\n", err)
+				os.Exit(1)
+			}
+			collectRoot = tmp
+		}
+		rs, err := install.Collect(collectRoot)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "install failed to collect resources: %v\n", err)
+			os.Exit(1)
+		}
+
+		pe := policy.NewPolicyEngineFromDir(collectRoot)
+		cm := context.NewContextManager(collectRoot, pe)
+		agent := resolveAgent(collectRoot, *agentFlag)
+		snapshot := cm.BuildContextSnapshot(context.ContextOptions{ActiveAgent: agent.Name, TokenBudget: 128000})
+
+		targets := []string{*harnessFlag}
+		if *harnessFlag == "all" {
+			targets = install.SupportedHarnesses
+		} else if *harnessFlag == "auto" {
+			targets = autoHarnesses(cwd)
+		}
+
+		for _, h := range targets {
+			files, err := install.Render(rs, h, snapshot.SystemInstruction, agent.Name, agent.Description)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "install: %v\n", err)
+				os.Exit(2)
+			}
+			for fn, content := range files {
+				if *dryRun {
+					fmt.Printf("[dry-run] %s (%d bytes)\n", fn, len(content))
+					continue
+				}
+				if dir := filepath.Dir(fn); dir != "." {
+					_ = os.MkdirAll(dir, 0755)
+				}
+				if err := os.WriteFile(fn, []byte(content), 0644); err != nil {
+					fmt.Fprintf(os.Stderr, "install: writing %s: %v\n", fn, err)
+					os.Exit(1)
+				}
+				fmt.Printf("Installed [%s] %s\n", h, fn)
+			}
+		}
+
 	case "mcp":
 		mcp.RegisterBuiltinTools(rt)
 		fmt.Fprintln(os.Stderr, "AgentJam MCP server listening on stdio (newline-delimited JSON-RPC).")
@@ -236,6 +321,36 @@ func main() {
 	default:
 		printHelp()
 	}
+}
+
+// hasCanonicalTree reports whether root contains an AgentJam resource tree.
+func hasCanonicalTree(root string) bool {
+	for _, d := range []string{"agents", "skills", "policies"} {
+		if info, err := os.Stat(filepath.Join(root, d)); err == nil && info.IsDir() {
+			return true
+		}
+	}
+	return false
+}
+
+// autoHarnesses maps detected IDE/agent environments to install harness names,
+// falling back to "generic" when nothing is detected.
+func autoHarnesses(root string) []string {
+	envs := runtime.DetectEnvironments(root)
+	names := make([]string, 0, len(envs))
+	for _, e := range envs {
+		id := strings.ToLower(e.Name)
+		for _, h := range install.SupportedHarnesses {
+			if strings.Contains(id, h) || (h == "claude-code" && strings.Contains(id, "claude")) {
+				names = append(names, h)
+				break
+			}
+		}
+	}
+	if len(names) == 0 {
+		names = []string{"generic"}
+	}
+	return names
 }
 
 func splitComma(s string) []string {
@@ -367,6 +482,8 @@ func printHelp() {
 	fmt.Println("  context          Generate context snapshot for active workspace")
 	fmt.Println("  eval             Evaluate files against loaded policy rules")
 	fmt.Println("  export           Export rule configurations (--harness auto|all|cursor|claude-code|gemini|...)")
+	fmt.Println("  init             Materialize the canonical resource tree into a project")
+	fmt.Println("  install          Install skills/agents/rules for a harness (--harness auto|all|cursor|...)")
 	fmt.Println("  validate         Validate repository rules and policy engine")
 	fmt.Println("  build-registry   Generate registry.json index")
 	fmt.Println("  run              Run a workflow by name (--list to enumerate)")

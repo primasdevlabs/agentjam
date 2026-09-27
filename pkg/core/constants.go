@@ -1,7 +1,10 @@
 package core
 
+// Version is the CLI/engine version. It is a var (not const) so release
+// builds can inject the git tag via -ldflags "-X .../pkg/core.Version=vX.Y.Z".
+var Version = "1.0.0-go"
+
 const (
-	Version        = "1.0.0-go"
 	ConfigFileName = "config.yaml"
 	AgentJamDir    = ".agentjam"
 )

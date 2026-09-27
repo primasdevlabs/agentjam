@@ -1,0 +1,7 @@
+# AgentJam workspace configuration.
+# Applied by `agentjam init`; edit per project.
+versionPolicy: current-stable
+freshnessRequired: true
+maxDocAge: 7d
+stack: generic
+defaultAgent: software-engineer
