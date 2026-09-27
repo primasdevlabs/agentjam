@@ -65,7 +65,7 @@ func (cm *ContextManager) BuildContextSnapshot(opts ContextOptions) core.Context
 	policies := cm.policyEngine.GetPolicies()
 	var sb strings.Builder
 
-	sb.WriteString("# AgentJam System Instructions & Active Context (Go Engine)\n")
+	sb.WriteString("# AgentJam System Instructions & Active Context (AgentJam Engine)\n")
 	sb.WriteString(fmt.Sprintf("**Workspace**: `%s`\n", cm.workspaceRoot))
 	sb.WriteString(fmt.Sprintf("**Timestamp**: %s\n", time.Now().Format(time.RFC3339)))
 
@@ -131,7 +131,7 @@ func (cm *ContextManager) BuildContextSnapshot(opts ContextOptions) core.Context
 			"activeAgent":  opts.ActiveAgent,
 			"activeSkills": opts.ActiveSkills,
 			"tokenBudget":  opts.TokenBudget,
-			"engine":       "Go-Native",
+			"engine":       "agentjam",
 		},
 	}
 }

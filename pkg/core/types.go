@@ -180,6 +180,7 @@ type PolicyManifest struct {
 	Category     string                 `json:"category" yaml:"category"`
 	Enforcement  PolicyEnforcement      `json:"enforcement" yaml:"enforcement"`
 	Scope        string                 `json:"scope" yaml:"scope"`
+	Terms        []string               `json:"terms,omitempty" yaml:"terms,omitempty"`
 	AppliesTo    []string               `json:"appliesTo,omitempty" yaml:"appliesTo,omitempty"`
 	Rules        map[string]interface{} `json:"rules,omitempty" yaml:"rules,omitempty"`
 	Instructions string                 `json:"instructions,omitempty" yaml:"instructions,omitempty"`

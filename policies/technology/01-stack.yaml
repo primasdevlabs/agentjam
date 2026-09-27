@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
 id: 01-stack
 name: Technology Stack Policy
 description: Enforces project-declared tech stack boundaries and prevents casual introduction of unapproved frameworks.

@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
+id: 06-sensitive-files
+name: Sensitive File Guard
+description: Blocks scanning/working on committed sensitive files — env files, private keys, certificates, and credential stores must never live in the source tree.
+category: security
+enforcement: strict-block
+scope: file
+
+terms:
+  - committed secrets
+  - .env file
+  - private key
+  - credentials file
+  - certificate
+  - secret leakage
+
+rules:
+  blocked_filenames:
+    - .env
+    - .env.local
+    - .env.production
+    - credentials.json
+    - serviceaccount.json
+    - id_rsa
+    - id_dsa
+    - id_ed25519
+  blocked_extensions:
+    - .pem
+    - .key
+    - .p12
+    - .pfx
+    - .keystore
+
+instructions: |
+  Sensitive File Rules:
+  - .env files, private keys, certificates, and credential JSON never belong in the repo.
+  - Use environment variables or a secret manager; commit only *.example templates.
+  - If a sensitive file already exists, rotate its secrets — deleting the file is not enough.

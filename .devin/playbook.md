@@ -1,4 +1,4 @@
-# Antigravity / Gemini Instructions — software-engineer
+# Devin Agent Playbook — software-engineer
 
 # AgentJam System Instructions & Active Context (AgentJam Engine)
 **Workspace**: `C:\wamp64\www\fullstack`

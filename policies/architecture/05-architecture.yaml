@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
 id: 05-architecture
 name: Modular Architecture Policy
 description: Enforces clean separation of concerns, public contract boundaries, and small composable units.

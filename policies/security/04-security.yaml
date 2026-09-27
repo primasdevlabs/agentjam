@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
 id: 04-security
 name: Security & Secret Management Policy
 description: Enforces zero-secret leakage, input validation at boundaries, and parameterized database queries.

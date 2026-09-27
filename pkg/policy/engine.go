@@ -115,6 +115,9 @@ func (pe *PolicyEngine) EvaluateAll(content string) PolicyEngineSummary {
 		EvaluateDesignRules(policies, content),
 		EvaluateSecurityRules(policies, content)...,
 	)
+	violations = append(violations, EvaluateSinkRules(policies, content)...)
+	violations = append(violations, EvaluateHygieneRules(policies, content)...)
+	violations = append(violations, EvaluateDeprecatedAPIs(policies, content)...)
 	return pe.Summarize(violations)
 }
 

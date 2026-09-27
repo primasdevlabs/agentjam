@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
+id: 05-insecure-api-sinks
+name: Insecure API Sinks
+description: Blocks dangerous API calls that create injection, XSS, or transport-security holes — eval, raw DOM HTML injection, TLS verification bypass, shell string execution, weak crypto on credentials.
+category: security
+enforcement: strict-block
+scope: file
+
+terms:
+  - eval
+  - innerHTML
+  - command injection
+  - TLS bypass
+  - InsecureSkipVerify
+  - weak cryptography
+  - insecure http
+
+rules:
+  block_eval: true
+  block_dom_html_injection: true
+  block_tls_skip_verify: true
+  block_shell_string_exec: true
+  block_weak_crypto_for_secrets: true
+  warn_plain_http: true
+
+instructions: |
+  Insecure Sink Rules:
+  - Never call eval(), new Function(), or set innerHTML / dangerouslySetInnerHTML with dynamic data.
+  - Never disable TLS verification (InsecureSkipVerify, verify=False, rejectUnauthorized: false).
+  - Never execute shell strings built by concatenation (os.system, child_process.exec, Runtime.exec).
+  - Never hash passwords or secrets with MD5/SHA1 — use bcrypt, argon2, or scrypt.
+  - Prefer https:// URLs; http:// is only acceptable for localhost development.

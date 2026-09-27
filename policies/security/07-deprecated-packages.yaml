@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
+id: 07-deprecated-packages
+name: Deprecated Package Guard
+description: Flags dependencies that are deprecated, renamed, abandoned, or carry known vulnerabilities — checked against the built-in advisory database in every manifest the scanner finds.
+category: security
+enforcement: strict-block
+scope: project
+
+terms:
+  - deprecated package
+  - abandoned dependency
+  - renamed package
+  - vulnerable dependency
+  - known CVE
+
+rules:
+  check_bundled_advisories: true
+  ecosystems: [npm, go, pip, cargo, composer, gem]
+
+instructions: |
+  Deprecated Package Rules:
+  - Packages that are archived, renamed, or carry known CVEs must be replaced —
+    the scan report names the recommended replacement for every finding.
+  - strict-block findings (e.g. dgrijalva/jwt-go, pycrypto, satori/go.uuid) are
+    active vulnerabilities — fix before shipping.
+  - warning findings are maintenance-mode packages — migrate on the next
+    refactor touch, do not add them to new code.

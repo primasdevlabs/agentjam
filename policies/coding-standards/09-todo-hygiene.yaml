@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=../../schemas/policy-manifest.schema.json
+id: 09-todo-hygiene
+name: Deferred Work Hygiene
+description: Tracks TODO/FIXME/HACK accumulation — a file drowning in deferred-work markers signals unfinished or unstable code.
+category: coding-standards
+enforcement: info
+scope: file
+
+terms:
+  - TODO
+  - FIXME
+  - HACK
+  - deferred work
+  - technical debt
+
+rules:
+  max_markers_per_file: 5
+
+instructions: |
+  Deferred Work Rules:
+  - More than 5 TODO/FIXME/HACK/XXX markers in one file means the work is not done —
+    resolve or ticket them, don't accumulate them.
+  - Every marker should reference a tracking issue (e.g. TODO(#123)).

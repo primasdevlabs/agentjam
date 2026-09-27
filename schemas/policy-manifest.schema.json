@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/primasdevlabs/agentjam/schemas/policy-manifest.schema.json",
+  "title": "AgentJam Policy Manifest",
+  "description": "Canonical AgentJam policy manifest (policies/<category>/*.yaml).",
+  "type": "object",
+  "required": ["id", "name", "category", "enforcement"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique policy identifier, e.g. 06-god-files."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable policy name."
+    },
+    "description": {
+      "type": "string",
+      "description": "What this policy enforces and why."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["design", "security", "architecture", "coding-standards", "workflow", "performance", "accessibility"],
+      "description": "Domain category — must match the containing directory."
+    },
+    "enforcement": {
+      "type": "string",
+      "enum": ["strict-block", "warning", "info"],
+      "description": "strict-block fails scans and blocks agents; warning/info are advisory."
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["file", "project"],
+      "description": "file = evaluated per source file; project = evaluated against repo layout."
+    },
+    "terms": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Trigger keywords describing when this policy applies."
+    },
+    "appliesTo": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "File globs or language identifiers this policy targets."
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Rule toggles and numeric thresholds consumed by the policy engine."
+    },
+    "instructions": {
+      "type": "string",
+      "description": "Agent-facing prose explaining the rules."
+    }
+  },
+  "additionalProperties": true
+}
