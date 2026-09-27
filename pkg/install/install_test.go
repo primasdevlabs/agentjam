@@ -21,9 +21,9 @@ func TestInitMaterializesEmbeddedTree(t *testing.T) {
 	}
 	for _, rel := range []string{
 		".agentjam/config.yaml",
-		"agents/software-engineer/agent.yaml",
-		"policies/security/04-security.yaml",
-		"skills/development/testing/skill.yaml",
+		".agentjam/agents/software-engineer/agent.yaml",
+		".agentjam/policies/security/04-security.yaml",
+		".agentjam/skills/development/testing/skill.yaml",
 	} {
 		if _, err := os.Stat(filepath.Join(dir, filepath.FromSlash(rel))); err != nil {
 			t.Errorf("expected %s to exist: %v", rel, err)
@@ -70,12 +70,12 @@ func TestInitBare(t *testing.T) {
 	if _, err := os.Stat(filepath.Join(dir, ".agentjam", "config.yaml")); err != nil {
 		t.Error("bare init should write config.yaml")
 	}
-	if _, err := os.Stat(filepath.Join(dir, "agents", "software-engineer")); !os.IsNotExist(err) {
+	if _, err := os.Stat(filepath.Join(dir, ".agentjam", "agents", "software-engineer")); !os.IsNotExist(err) {
 		t.Error("bare init should not materialize resources")
 	}
 	for _, d := range []string{"agents", "skills", "policies"} {
-		if info, err := os.Stat(filepath.Join(dir, d)); err != nil || !info.IsDir() {
-			t.Errorf("bare init should create %s skeleton dir", d)
+		if info, err := os.Stat(filepath.Join(dir, ".agentjam", d)); err != nil || !info.IsDir() {
+			t.Errorf("bare init should create .agentjam/%s skeleton dir", d)
 		}
 	}
 }

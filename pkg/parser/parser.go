@@ -159,9 +159,43 @@ func classifyResource(rootDir, path, base string) (core.ResourceType, string) {
 	return "", ""
 }
 
+// canonicalTopDirs are the directories that constitute an AgentJam canonical
+// resource tree.
+var canonicalTopDirs = []string{
+	"agents", "skills", "tools", "workflows",
+	"policies", "stacks", "languages", "integrations",
+	"prompts", "templates",
+}
+
+// CanonicalRoot resolves where a workspace's canonical resource tree lives:
+// <root>/.agentjam when it contains a materialized tree (`agentjam init`
+// layout), otherwise root itself (repo-style layout). A nested tree only
+// wins when a canonical directory contains at least one file — empty
+// skeleton dirs do not shadow a root-level tree.
+func CanonicalRoot(root string) string {
+	nested := filepath.Join(root, ".agentjam")
+	for _, d := range canonicalTopDirs {
+		hasFile := false
+		_ = filepath.Walk(filepath.Join(nested, d), func(_ string, info os.FileInfo, err error) error {
+			if err == nil && !info.IsDir() {
+				hasFile = true
+				return filepath.SkipAll
+			}
+			return nil
+		})
+		if hasFile {
+			return nested
+		}
+	}
+	return root
+}
+
 // DiscoverResources recursively scans root directory for agents, skills, tools,
 // workflows, policies, stacks, languages, integrations, prompts, and templates.
+// The canonical tree resolves via CanonicalRoot, so callers may pass either
+// the workspace root or the canonical root directly.
 func DiscoverResources(rootDir string) []DiscoveredResource {
+	rootDir = CanonicalRoot(rootDir)
 	results := make([]DiscoveredResource, 0)
 
 	_ = filepath.Walk(rootDir, func(path string, info os.FileInfo, err error) error {

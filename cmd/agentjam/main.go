@@ -361,7 +361,6 @@ AgentJam installed. Next steps:
   To also materialize the canonical resource tree (agents/, skills/,
   policies/, ... as source manifests you can edit): agentjam init`)
 
-
 	case "uninstall":
 		fs := flag.NewFlagSet("uninstall", flag.ExitOnError)
 		harnessFlag := fs.String("harness", "all", "Harness to uninstall ('all' or one of: "+strings.Join(install.SupportedHarnesses, ", ")+")")
@@ -450,10 +449,12 @@ AgentJam installed. Next steps:
 	}
 }
 
-// hasCanonicalTree reports whether root contains an AgentJam resource tree.
+// hasCanonicalTree reports whether root contains an AgentJam resource tree —
+// either directly or under .agentjam/ (init layout).
 func hasCanonicalTree(root string) bool {
+	base := parser.CanonicalRoot(root)
 	for _, d := range []string{"agents", "skills", "policies"} {
-		if info, err := os.Stat(filepath.Join(root, d)); err == nil && info.IsDir() {
+		if info, err := os.Stat(filepath.Join(base, d)); err == nil && info.IsDir() {
 			return true
 		}
 	}
