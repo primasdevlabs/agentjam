@@ -37,15 +37,16 @@ AgentJam prevents AI agents from introducing unvetted dependencies, inventing no
 ```bash
 go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest
 cd your-project
-agentjam install --harness cursor    # or claude-code, windsurf, gemini, cline, roo-code, devin, generic
-agentjam scan                        # policy-scan your codebase
+agentjam install --harness cursor    # or claude-code, windsurf, gemini, cline, roo-code, devin, generic, auto, all
+agentjam scan                        # policy-scan your codebase (--offline skips PM checks)
+agentjam uninstall                   # remove everything install wrote
 ```
 
 **For AI agents** — paste this repository into Claude, Devin, Cursor, etc. and tell it:
 
 > Install AgentJam into this project. Run `go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest`, then `agentjam install --harness <this-environment>` and `agentjam scan`. Read `AGENTJAM.md` for your operational protocol before writing any code.
 
-`install` writes domain-organized rule trees native to your harness — `.cursor/rules/skills/<category>/`, `.claude/skills/<category>/<id>/SKILL.md`, `.clinerules/policies/`, `.windsurf/rules/`, `AGENTS.md`, `GEMINI.md`, `.devin/playbook.md` — plus `AGENTJAM.md`, the entry-point runbook that defines the enforce→scan→fix loop every agent must follow. `init` optionally materializes the full canonical tree into the project.
+`install` writes domain-organized rule trees native to your harness — `.cursor/rules/{skills,policies,agents}/<category>/`, `.claude/skills/<category>/<id>/SKILL.md` + `.claude/{agents,policies}/`, `.gemini/{skills,policies,agents}/`, `.windsurf/rules/`, `.clinerules/`, `.roo/rules/`, `.devin/{playbook.md,rules/}`, `.agentjam/rules/` for generic — plus `AGENTJAM.md`, the entry-point runbook that defines the enforce→scan→fix loop every agent must follow. Every installed file is recorded in `.agentjam/installed.json` so `uninstall` removes exactly what was written. `init` optionally materializes the full canonical tree into the project for editing.
 
 ---
 
@@ -281,14 +282,14 @@ You can install the `agentjam` CLI binary directly from Git using `go install`:
 # Install latest release binary directly from GitHub
 go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest
 
-# Or install from specific branch
-go install github.com/primasdevlabs/agentjam/cmd/agentjam@feat/go-native-engine
+# Or install a specific release tag
+go install github.com/primasdevlabs/agentjam/cmd/agentjam@v1.1.3
 ```
 
 ### Local Build & Verification Commands
 
 ```bash
-# Build native Go binary CLI locally
+# Build the agentjam binary locally
 go build -o agentjam ./cmd/agentjam
 
 # Run all Go unit test suites
