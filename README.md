@@ -32,11 +32,12 @@ AgentJam prevents AI agents from introducing unvetted dependencies, inventing no
 
 ## Install AgentJam into Your Project
 
-**For humans:**
+**Manual Install:**
 
 ```bash
 go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest
 cd your-project
+agentjam init                        # materialize canonical tree under .agentjam/ (optional, editable source)
 agentjam install --harness cursor    # or claude-code, windsurf, gemini, cline, roo-code, devin, generic, auto, all
 agentjam scan                        # policy-scan your codebase (--offline skips PM checks)
 agentjam uninstall                   # remove everything install wrote
@@ -44,30 +45,29 @@ agentjam uninstall                   # remove everything install wrote
 
 **For AI agents** — paste this repository into Claude, Devin, Cursor, etc. and tell it:
 
-> Install AgentJam into this project. Run `go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest`, then `agentjam install --harness <this-environment>` and `agentjam scan`. Read `AGENTJAM.md` for your operational protocol before writing any code.
+> Install AgentJam into this project. Run `go install github.com/primasdevlabs/agentjam/cmd/agentjam@latest`, then `agentjam install --harness <this-environment>` and `agentjam scan`. Read `AGENTJAM.md` for your operational protocol before writing any code. Available commands: `init` (materialize canonical tree under `.agentjam/`), `install --harness <h>` (write harness-native rule files), `scan [--offline]` (policy gate, exits 1 on strict-block), `eval <file>` (single-file check), `validate` (resource integrity), `detect` (stacks + harnesses), `preflight` (toolchain check), `context` (assembled snapshot), `run <workflow> --list`, `export --harness <h>`, `mcp` (stdio tool server), `uninstall` (remove installed files).
 
-`install` writes domain-organized rule trees native to your harness — `.cursor/rules/{skills,policies,agents}/<category>/`, `.claude/skills/<category>/<id>/SKILL.md` + `.claude/{agents,policies}/`, `.gemini/{skills,policies,agents}/`, `.windsurf/rules/`, `.clinerules/`, `.roo/rules/`, `.devin/{playbook.md,rules/}`, `.agentjam/rules/` for generic — plus `AGENTJAM.md`, the entry-point runbook that defines the enforce→scan→fix loop every agent must follow. Every installed file is recorded in `.agentjam/installed.json` so `uninstall` removes exactly what was written. `init` optionally materializes the full canonical tree into the project for editing.
+`install` writes domain-organized rule trees native to your harness — `.cursor/rules/{skills,policies,agents}/<category>/`, `.claude/skills/<category>/<id>/SKILL.md` + `.claude/{agents,policies}/`, `.gemini/{skills,policies,agents}/`, `.windsurf/rules/`, `.clinerules/`, `.roo/rules/`, `.devin/{playbook.md,rules/}`, `.agentjam/rules/` for generic — plus `AGENTJAM.md`, the entry-point runbook that defines the enforce→scan→fix loop every agent must follow. Every installed file is recorded in `.agentjam/installed.json` so `uninstall` removes exactly what was written. `agentjam init` optionally materializes the full canonical tree under `.agentjam/` (`agents/`, `skills/`, `policies/`, …) for editing — project root stays clean.
 
----
+### CLI Reference
 
-## Repository Stats, Badges & Tags
-
-### Community Metrics
-
-| Metric                  | Value                   | Reference                                                                  |
-| :---------------------- | :---------------------- | :------------------------------------------------------------------------- |
-| **Release Version**     | `v1.0.0`                | [package.json](file:///c:/wamp64/www/fullstack/package.json)               |
-| **Repository License**  | MIT License             | [LICENSE](file:///c:/wamp64/www/fullstack/LICENSE)                         |
-| **Build & Test Status** | 100% Passing            | [cmd/agentjam](file:///c:/wamp64/www/fullstack/cmd/agentjam)               |
-| **Go Toolchain**        | `>=1.22.0`              | [go.mod](file:///c:/wamp64/www/fullstack/go.mod)                           |
-| **Architecture**        | Harness-Agnostic        | Canonical Neutral Format                                                   |
-| **Active Stacks**       | 8 Pre-configured Stacks | [stacks/](file:///c:/wamp64/www/fullstack/stacks)                          |
-| **Language Ecosystems** | 15 Ecosystem Categories | [languages/](file:///c:/wamp64/www/fullstack/languages)                    |
-| **Design Governance**   | 12 Anti-Slop Policies   | [policies/design/](file:///c:/wamp64/www/fullstack/policies/design)        |
-
-### Ecosystem Topic Tags
-
-`#ai-agents` `#agent-governance` `#harness-agnostic` `#mcp` `#model-context-protocol` `#mcp-server` `#mcp-tools` `#claude-code` `#cursor` `#windsurf` `#roo-code` `#cline` `#antigravity` `#design-governance` `#anti-slop` `#language-registry` `#stack-profiles` `#monorepo` `#golang` `#go`
+| Command | What it does | Key flags |
+| :------ | :----------- | :-------- |
+| `version` | Print the AgentJam CLI version | — |
+| `init` | Materialize the canonical resource tree (agents, skills, policies, workflows, …) under `.agentjam/` — the editable source of truth installs render from | `--bare` (config + skeleton dirs only), `--force` (overwrite), `--only <dirs>` (subset) |
+| `install` | Write harness-native skills/agents/policies files + `AGENTJAM.md` runbook into the project | `--harness auto\|all\|cursor\|claude-code\|windsurf\|gemini\|cline\|roo-code\|devin\|generic`, `--agent <id>`, `--dry-run` |
+| `uninstall` | Remove installed files (ledger-tracked, never touches user files) | `--harness <h>` (default all), `--purge` (also root rule files + `.agentjam/`), `--dry-run` |
+| `scan` | Policy-scan all source files: secrets, insecure APIs, deprecated/vulnerable deps, god files, flat layout, debug leftovers, TODO density — exits 1 on strict-block | `--path`, `--ext`, `--offline` (skip npm/go registry checks), `-v` |
+| `eval` | Evaluate a single file against loaded policies with line numbers | `<file>` argument |
+| `validate` | Check canonical resource integrity (refs, enums, duplicates) — must report 0 errors | — |
+| `detect` | Show detected AI harnesses and project stacks (JSON) | — |
+| `preflight` | Verify required toolchain binaries for detected stacks | — |
+| `context` | Generate the assembled context snapshot (agent + skills + policy matrix) | — |
+| `run` | Execute a multi-step workflow; resolves agents and assembles per-step context | `<workflow>` argument, `--list` |
+| `export` | Export flat rule files for harnesses (`.cursorrules`, `CLAUDE.md`, `GEMINI.md`, …) | `--harness <h>\|auto\|all`, `--agent <id>` |
+| `build-registry` | Regenerate `registry.json` + `registry/index/` + per-type indexes | — |
+| `mcp` | Start the MCP stdio server exposing workspace tools (filesystem, git, terminal, github, run_workflow) | — |
+| `run-e2e` | Execute the end-to-end system verification suite | — |
 
 ---
 

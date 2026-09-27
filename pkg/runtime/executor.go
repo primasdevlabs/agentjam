@@ -117,7 +117,7 @@ func ListWorkflows(workflowDir string) ([]string, error) {
 // configured StepRunner (or prepared when no runner is set). Step outcomes
 // are recorded in episodic memory.
 func (e *Executor) Run(workflowName string) (*WorkflowRun, error) {
-	root := e.runtime.RootPath()
+	root := parser.CanonicalRoot(e.runtime.RootPath())
 	workflowDir := filepath.Join(root, "workflows")
 
 	wf, err := LoadWorkflow(workflowDir, workflowName)

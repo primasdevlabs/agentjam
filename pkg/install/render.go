@@ -182,9 +182,12 @@ This file is your entry point. Follow the protocol below exactly.
 
 ` + "```bash" + `
 agentjam scan              # policy-scan all source files; exit 1 on strict blocks
+agentjam scan --offline    # skip package-registry freshness checks
 agentjam eval <file>       # evaluate one file with line numbers
 agentjam validate          # canonical resource integrity (errors must be 0)
 agentjam run <workflow>    # structured multi-step workflows (e.g. bug-fixing)
+agentjam init              # materialize canonical tree under .agentjam/ (editable source of truth)
+agentjam uninstall         # remove installed files (ledger-tracked; --purge for full removal)
 ` + "```" + `
 
 For every task:
@@ -200,12 +203,13 @@ agentjam preflight         # verify toolchain binaries for the detected stack
 agentjam detect            # show detected harnesses and stacks
 ` + "```" + `
 
-## Empty Projects
+## Canonical Tree
 
-If this project was just initialized, the canonical tree under agents/,
-skills/, policies/, tools/, workflows/, stacks/, languages/ is the source of
-truth — extend it rather than working around it, and keep
-` + "`agentjam validate`" + ` green.
+If the project was initialized with ` + "`agentjam init`" + `, the canonical
+resource tree lives under ` + "`.agentjam/`" + ` (` + "`agents/`, `skills/`, `policies/`, `tools/`, `workflows/`" + ` ...).
+That tree is the source of truth — extend it rather than working around it,
+and keep ` + "`agentjam validate`" + ` green. Projects without it still work:
+scan falls back to the policies embedded in the binary.
 `
 }
 

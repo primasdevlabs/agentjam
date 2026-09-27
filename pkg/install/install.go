@@ -44,11 +44,15 @@ stack: generic
 defaultAgent: software-engineer
 `
 
-// Init materializes the embedded canonical tree into targetRoot.
+// Init materializes the embedded canonical tree into targetRoot. Canonical
+// resources land under targetRoot/.agentjam/ — keeping the project root
+// clean — and every consumer resolves that location via
+// parser.CanonicalRoot.
 func Init(fsys fs.FS, targetRoot string, opts InitOptions) (*InitResult, error) {
 	res := &InitResult{}
+	canonRoot := filepath.Join(targetRoot, ".agentjam")
 	write := func(rel string, data []byte) error {
-		dst := filepath.Join(targetRoot, rel)
+		dst := filepath.Join(canonRoot, rel)
 		if _, err := os.Stat(dst); err == nil && !opts.Force {
 			res.Skipped = append(res.Skipped, rel)
 			return nil
@@ -63,12 +67,12 @@ func Init(fsys fs.FS, targetRoot string, opts InitOptions) (*InitResult, error) 
 		return nil
 	}
 
-	if err := write(filepath.Join(".agentjam", "config.yaml"), []byte(defaultWorkspaceConfig)); err != nil {
+	if err := write("config.yaml", []byte(defaultWorkspaceConfig)); err != nil {
 		return res, err
 	}
 	if opts.Bare {
 		for _, d := range canonicalDirs {
-			if err := os.MkdirAll(filepath.Join(targetRoot, d), 0o755); err != nil {
+			if err := os.MkdirAll(filepath.Join(canonRoot, d), 0o755); err != nil {
 				return res, err
 			}
 		}
