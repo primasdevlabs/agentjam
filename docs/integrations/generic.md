@@ -1,8 +1,18 @@
-# Generic Adapter Integration Guide
+# Generic Fallback Integration
 
 - **Type**: `generic`
 - **Compatibility Level**: Level 1 (Instructions)
-- **Output File**: `AGENTJAM.md`
-- **Capabilities**: Markdown instructions, project rules, standard project configuration.
+- **Manifest**: `integrations/generic/integration.yaml`
+- **Output**: `AGENTJAM.md`
 
-The generic adapter represents the lowest common denominator, ensuring AgentJam resources remain usable even in environments without a specialized harness adapter.
+## Capabilities
+
+Instructions, skills, filesystem, project rules, and context files.
+
+## Usage
+
+```bash
+agentjam export --harness generic
+```
+
+The generic exporter writes a portable `AGENTJAM.md` system prompt suitable for any harness that accepts markdown instructions — the baseline for environments without a dedicated integration.

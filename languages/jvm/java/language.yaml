@@ -1,0 +1,19 @@
+id: lang-java
+name: Java
+ecosystem: jvm
+aliases: [java]
+extensions: [.java]
+
+tooling:
+  package_manager: maven
+  linter: checkstyle
+  formatter: google-java-format
+  type_checker: javac
+
+framework_precedence:
+  - spring
+  - quarkus
+  - micronaut
+
+documentation:
+  official_site: https://docs.oracle.com/en/java/

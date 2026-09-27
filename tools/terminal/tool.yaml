@@ -1,0 +1,11 @@
+name: terminal
+version: 1.0.0
+type: tool
+description: Interface for executing shell commands, running build/test toolchain commands, and capturing output streams.
+category: execution
+capabilities:
+  - exec
+  - read-output
+  - background
+  - env
+safetyLevel: destructive

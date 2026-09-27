@@ -1,0 +1,26 @@
+[
+  {
+    "id": "agent/agent",
+    "name": "agent/agent",
+    "type": "template",
+    "path": "templates/agent/agent.yaml"
+  },
+  {
+    "id": "skill/skill",
+    "name": "skill/skill",
+    "type": "template",
+    "path": "templates/skill/skill.yaml"
+  },
+  {
+    "id": "tool/tool",
+    "name": "tool/tool",
+    "type": "template",
+    "path": "templates/tool/tool.yaml"
+  },
+  {
+    "id": "workflow/workflow",
+    "name": "workflow/workflow",
+    "type": "template",
+    "path": "templates/workflow/workflow.yaml"
+  }
+]

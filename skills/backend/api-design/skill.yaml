@@ -1,0 +1,8 @@
+name: api-design
+version: 1.0.0
+type: skill
+description: "REST and RPC API design conventions: resource modeling, versioning, pagination, error envelopes, and idempotency."
+category: backend
+triggers:
+  - api-endpoint
+  - contract-design

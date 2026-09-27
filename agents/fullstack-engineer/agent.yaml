@@ -1,0 +1,23 @@
+name: fullstack-engineer
+version: 1.0.0
+type: agent
+description: Full-stack engineer spanning frontend, backend, and data layers for end-to-end feature delivery.
+author: AgentJam Team
+license: MIT
+skills:
+  - architecture
+  - code-quality
+  - error-handling
+  - testing
+  - documentation
+  - responsive-design
+tools:
+  - filesystem
+  - terminal
+  - git
+inputs:
+  - requirement-spec
+  - codebase
+outputs:
+  - source-code
+  - pull-request

@@ -1,0 +1,11 @@
+name: communication
+version: 1.0.0
+type: tool
+description: Interface for team communication channels (chat, comments, notifications) used to report status and request clarifications.
+category: collaboration
+capabilities:
+  - message
+  - notify
+  - comment
+  - ask
+safetyLevel: safe-write

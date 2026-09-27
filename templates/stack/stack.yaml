@@ -1,0 +1,25 @@
+name: example-stack
+version: 1.0.0
+type: stack
+description: Stack profile describing framework, ecosystem defaults, and enforced conventions.
+framework: ExampleFramework
+ecosystem: web
+
+defaults:
+  language: typescript
+  package_manager: npm
+  linter: eslint
+  test_runner: vitest
+  style_system: css-modules
+
+conventions:
+  router: file-based
+  api: route-handlers
+  rendering: server-components
+
+policies:
+  - 01-stack
+  - 04-security
+
+documentation:
+  official_site: https://example.com/docs

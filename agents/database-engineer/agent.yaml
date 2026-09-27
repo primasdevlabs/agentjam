@@ -1,0 +1,21 @@
+name: database-engineer
+version: 1.0.0
+type: agent
+description: Database engineer responsible for schema design, query optimization, migrations, and data integrity across relational and document stores.
+author: AgentJam Team
+license: MIT
+skills:
+  - schema-design
+  - query-optimization
+  - error-handling
+  - testing
+tools:
+  - filesystem
+  - database
+  - terminal
+inputs:
+  - schema-def
+  - requirement-spec
+outputs:
+  - migrations
+  - schema-def

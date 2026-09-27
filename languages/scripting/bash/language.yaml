@@ -1,0 +1,17 @@
+id: lang-bash
+name: Bash
+ecosystem: scripting
+aliases: [sh, bash, shell]
+extensions: [.sh, .bash]
+
+tooling:
+  package_manager: none
+  linter: shellcheck
+  formatter: shfmt
+  type_checker: shellcheck
+
+framework_precedence:
+  - posix
+
+documentation:
+  official_site: https://www.gnu.org/software/bash/manual/

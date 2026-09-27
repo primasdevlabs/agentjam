@@ -1,0 +1,8 @@
+name: schema-design
+version: 1.0.0
+type: skill
+description: Database schema design covering normalization, constraints, indexing strategy, and migration hygiene.
+category: databases
+triggers:
+  - schema-change
+  - migration

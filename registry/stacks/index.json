@@ -1,0 +1,66 @@
+[
+  {
+    "id": "django",
+    "name": "django",
+    "version": "1.0.0",
+    "type": "stack",
+    "description": "Stack profile for Django applications (Django REST Framework, Pytest, Ruff).",
+    "path": "stacks/django/stack.yaml"
+  },
+  {
+    "id": "generic",
+    "name": "generic",
+    "version": "1.0.0",
+    "type": "stack",
+    "description": "Fallback stack profile for polyglot, unclassified, or custom codebases.",
+    "path": "stacks/generic/stack.yaml"
+  },
+  {
+    "id": "laravel",
+    "name": "laravel",
+    "version": "1.0.0",
+    "type": "stack",
+    "description": "Stack profile for modern Laravel 11/12 applications (modular monolith, Inertia.js / Blade, Pest testing, Laravel Pint formatting).",
+    "path": "stacks/laravel/stack.yaml"
+  },
+  {
+    "id": "nestjs",
+    "name": "nestjs",
+    "version": "1.0.0",
+    "type": "stack",
+    "description": "Stack profile for NestJS enterprise TypeScript backend applications (Prisma / TypeORM, Jest / Vitest, Class Validator).",
+    "path": "stacks/nestjs/stack.yaml"
+  },
+  {
+    "id": "nextjs",
+    "name": "nextjs",
+    "version": "1.0.0",
+    "type": "stack",
+    "description": "Stack profile for Next.js App Router applications, establishing conventions for React 19, Server Components, Route Handlers, and Tailwind CSS / CSS Modules.",
+    "path": "stacks/nextjs/stack.yaml"
+  },
+  {
+    "id": "rails",
+    "name": "rails",
+    "version": "1.0.0",
+    "type": "stack",
+    "description": "Stack profile for Ruby on Rails 7/8 applications (ActiveRecord, RSpec, RuboCop).",
+    "path": "stacks/rails/stack.yaml"
+  },
+  {
+    "id": "react",
+    "name": "react",
+    "version": "1.0.0",
+    "type": "stack",
+    "description": "Stack profile for React single page applications with Vite, TypeScript, and Vitest.",
+    "path": "stacks/react/stack.yaml"
+  },
+  {
+    "id": "vue",
+    "name": "vue",
+    "version": "1.0.0",
+    "type": "stack",
+    "description": "Stack profile for Vue 3 Single Page Applications (Composition API, Script Setup, Vite, Pinia).",
+    "path": "stacks/vue/stack.yaml"
+  }
+]

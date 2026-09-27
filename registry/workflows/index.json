@@ -1,0 +1,98 @@
+[
+  {
+    "id": "bug-fixing",
+    "name": "bug-fixing",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Systematic workflow for reproducing, isolating, fixing, and verifying bug resolutions.",
+    "path": "workflows/bug-fixing/workflow.yaml"
+  },
+  {
+    "id": "code-review",
+    "name": "code-review",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Automated multi-stage code review workflow involving review, security checks, and report generation.",
+    "path": "workflows/code-review/workflow.yaml"
+  },
+  {
+    "id": "dependency-update",
+    "name": "dependency-update",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Controlled dependency upgrade workflow auditing security advisories, lockfiles, and breaking changes.",
+    "path": "workflows/dependency-update/workflow.yaml"
+  },
+  {
+    "id": "existing-project-audit",
+    "name": "existing-project-audit",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Comprehensive non-destructive audit workflow inspecting project structure, tech versions, architecture, design tokens, and dependencies before feature implementation.",
+    "path": "workflows/existing-project-audit/workflow.yaml"
+  },
+  {
+    "id": "feature-development",
+    "name": "feature-development",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "End-to-end workflow for designing, implementing, testing, and reviewing a new software feature.",
+    "path": "workflows/feature-development/workflow.yaml"
+  },
+  {
+    "id": "framework-update",
+    "name": "framework-update",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Framework migration workflow (e.g. Next.js major upgrade, Laravel major upgrade) with deprecation checks and ADR creation.",
+    "path": "workflows/framework-update/workflow.yaml"
+  },
+  {
+    "id": "new-project",
+    "name": "new-project",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Guided workflow for initializing a new harness-agnostic project with AgentJam rules, stack profile, and design system governance.",
+    "path": "workflows/new-project/workflow.yaml"
+  },
+  {
+    "id": "project-planning",
+    "name": "project-planning",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Requirements-to-plan workflow converting stakeholder goals into scoped milestones, acceptance criteria, and sequenced work items.",
+    "path": "workflows/project-planning/workflow.yaml"
+  },
+  {
+    "id": "release",
+    "name": "release",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Pre-release audit and tag creation workflow validating changelog, semver tagging, security audit, and build bundle integrity.",
+    "path": "workflows/release/workflow.yaml"
+  },
+  {
+    "id": "research",
+    "name": "research",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Technology and documentation research workflow producing verified, freshness-checked findings for downstream engineering decisions.",
+    "path": "workflows/research/workflow.yaml"
+  },
+  {
+    "id": "testing",
+    "name": "testing",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "Test coverage workflow that audits existing tests, fills gaps across unit/integration/e2e layers, and verifies the suite passes.",
+    "path": "workflows/testing/workflow.yaml"
+  },
+  {
+    "id": "ui-development",
+    "name": "ui-development",
+    "version": "1.0.0",
+    "type": "workflow",
+    "description": "UI component and page development workflow enforcing design discovery, token binding, anti-slop rules, and visual review.",
+    "path": "workflows/ui-development/workflow.yaml"
+  }
+]

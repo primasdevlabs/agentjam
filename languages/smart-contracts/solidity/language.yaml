@@ -1,0 +1,19 @@
+id: lang-solidity
+name: Solidity
+ecosystem: smart-contracts
+aliases: [sol, solidity]
+extensions: [.sol]
+
+tooling:
+  package_manager: foundry
+  linter: solhint
+  formatter: forge-fmt
+  type_checker: solc
+
+framework_precedence:
+  - foundry
+  - hardhat
+  - openzeppelin
+
+documentation:
+  official_site: https://docs.soliditylang.org/

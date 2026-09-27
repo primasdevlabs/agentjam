@@ -1,0 +1,12 @@
+name: github
+version: 1.0.0
+type: tool
+description: "Interface for GitHub operations: pull requests, issues, reviews, CI status, and repository metadata via API."
+category: collaboration
+capabilities:
+  - pull-request
+  - issue
+  - review
+  - ci-status
+  - repo-metadata
+safetyLevel: safe-write

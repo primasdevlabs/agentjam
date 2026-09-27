@@ -1,0 +1,19 @@
+name: product-manager
+version: 1.0.0
+type: agent
+description: Product manager agent translating business requirements into scoped specs, acceptance criteria, and prioritized work items.
+author: AgentJam Team
+license: MIT
+skills:
+  - requirements-analysis
+  - design-discovery
+  - documentation
+tools:
+  - filesystem
+  - communication
+inputs:
+  - project-requirements
+  - brand-spec
+outputs:
+  - requirement-spec
+  - ui-spec

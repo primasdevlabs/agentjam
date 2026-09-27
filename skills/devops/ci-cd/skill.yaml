@@ -1,0 +1,8 @@
+name: ci-cd
+version: 1.0.0
+type: skill
+description: "CI/CD pipeline design: build stages, caching, test gates, artifact promotion, and deployment safety."
+category: devops
+triggers:
+  - pipeline-setup
+  - deployment-automation

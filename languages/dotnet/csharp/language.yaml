@@ -1,0 +1,19 @@
+id: lang-csharp
+name: C#
+ecosystem: dotnet
+aliases: [cs, csharp]
+extensions: [.cs, .csx]
+
+tooling:
+  package_manager: nuget
+  linter: dotnet-format
+  formatter: csharpier
+  type_checker: csc
+
+framework_precedence:
+  - aspnet
+  - blazor
+  - maui
+
+documentation:
+  official_site: https://learn.microsoft.com/dotnet/csharp/

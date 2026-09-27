@@ -87,30 +87,97 @@ func (mm *MemoryManager) Set(key string, value interface{}, scope core.MemorySco
 	return entry
 }
 
-// Get retrieves a memory entry.
-func (mm *MemoryManager) Get(key string, scope core.MemoryScope) (core.MemoryEntry, bool) {
-	mm.mu.RLock()
-	defer mm.mu.RUnlock()
+// isExpired reports whether the entry has outlived its TTL.
+func isExpired(entry core.MemoryEntry) bool {
+	if entry.TTLMs <= 0 {
+		return false
+	}
+	createdTime, err := time.Parse(time.RFC3339, entry.Timestamp)
+	if err != nil {
+		return false
+	}
+	return time.Since(createdTime).Milliseconds() > entry.TTLMs
+}
 
+// Get retrieves a memory entry. Expired entries are removed lazily.
+func (mm *MemoryManager) Get(key string, scope core.MemoryScope) (core.MemoryEntry, bool) {
 	if scope == "" {
 		scope = core.MemoryScopeWorking
 	}
 
-	store := mm.getStore(scope)
-	entry, exists := store[key]
+	mm.mu.RLock()
+	entry, exists := mm.getStore(scope)[key]
+	mm.mu.RUnlock()
+
 	if !exists {
 		return core.MemoryEntry{}, false
 	}
+	if isExpired(entry) {
+		mm.Delete(key, scope)
+		return core.MemoryEntry{}, false
+	}
+	return entry, true
+}
 
-	if entry.TTLMs > 0 {
-		createdTime, err := time.Parse(time.RFC3339, entry.Timestamp)
-		if err == nil && time.Since(createdTime).Milliseconds() > entry.TTLMs {
-			delete(store, key)
-			return core.MemoryEntry{}, false
+// Delete removes a memory entry from the given scope.
+func (mm *MemoryManager) Delete(key string, scope core.MemoryScope) bool {
+	if scope == "" {
+		scope = core.MemoryScopeWorking
+	}
+	mm.mu.Lock()
+	defer mm.mu.Unlock()
+	if _, ok := mm.getStore(scope)[key]; !ok {
+		return false
+	}
+	delete(mm.getStore(scope), key)
+	return true
+}
+
+// Clear removes all entries in the given scope.
+func (mm *MemoryManager) Clear(scope core.MemoryScope) {
+	mm.mu.Lock()
+	defer mm.mu.Unlock()
+	for k := range mm.getStore(scope) {
+		delete(mm.getStore(scope), k)
+	}
+}
+
+// Count returns the number of live (non-expired) entries in a scope. An empty
+// scope counts across all stores.
+func (mm *MemoryManager) Count(scope core.MemoryScope) int {
+	mm.mu.RLock()
+	defer mm.mu.RUnlock()
+
+	stores := []map[string]core.MemoryEntry{mm.getStore(scope)}
+	if scope == "" {
+		stores = []map[string]core.MemoryEntry{mm.workingMemory, mm.episodicMemory, mm.semanticMemory}
+	}
+	n := 0
+	for _, store := range stores {
+		for _, entry := range store {
+			if !isExpired(entry) {
+				n++
+			}
 		}
 	}
+	return n
+}
 
-	return entry, true
+// Prune removes all expired entries across every store and returns the count
+// of removed entries.
+func (mm *MemoryManager) Prune() int {
+	mm.mu.Lock()
+	defer mm.mu.Unlock()
+	removed := 0
+	for _, store := range []map[string]core.MemoryEntry{mm.workingMemory, mm.episodicMemory, mm.semanticMemory} {
+		for k, entry := range store {
+			if isExpired(entry) {
+				delete(store, k)
+				removed++
+			}
+		}
+	}
+	return removed
 }
 
 // Query performs search filtering over memory stores.
@@ -134,12 +201,8 @@ func (mm *MemoryManager) Query(q MemoryQuery) []core.MemoryEntry {
 
 	for _, store := range stores {
 		for _, entry := range store {
-			// TTL Check
-			if entry.TTLMs > 0 {
-				createdTime, err := time.Parse(time.RFC3339, entry.Timestamp)
-				if err == nil && time.Since(createdTime).Milliseconds() > entry.TTLMs {
-					continue
-				}
+			if isExpired(entry) {
+				continue
 			}
 
 			// Tag filter

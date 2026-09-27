@@ -1,0 +1,8 @@
+name: requirements-analysis
+version: 1.0.0
+type: skill
+description: "Requirements gathering and analysis: stakeholder goals, acceptance criteria, scope boundaries, and open questions."
+category: product
+triggers:
+  - feature-request
+  - spec-writing

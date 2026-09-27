@@ -1,0 +1,18 @@
+id: lang-example
+name: ExampleLang
+ecosystem: web
+aliases: [example, ex]
+extensions: [.ex, .exs]
+
+tooling:
+  package_manager: npm
+  linter: eslint
+  formatter: prettier
+  type_checker: tsc
+
+framework_precedence:
+  - primary-framework
+  - fallback-framework
+
+documentation:
+  official_site: https://example.com/docs

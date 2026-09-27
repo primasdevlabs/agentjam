@@ -1,0 +1,17 @@
+id: lang-dart
+name: Dart
+ecosystem: mobile
+aliases: [dart]
+extensions: [.dart]
+
+tooling:
+  package_manager: pub
+  linter: dart-analyze
+  formatter: dart-format
+  type_checker: dart-analyze
+
+framework_precedence:
+  - flutter
+
+documentation:
+  official_site: https://dart.dev/guides

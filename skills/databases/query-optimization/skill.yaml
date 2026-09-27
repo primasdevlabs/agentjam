@@ -1,0 +1,8 @@
+name: query-optimization
+version: 1.0.0
+type: skill
+description: "Query performance analysis: execution plans, index selection, N+1 elimination, and pagination strategy."
+category: databases
+triggers:
+  - slow-query
+  - performance-review

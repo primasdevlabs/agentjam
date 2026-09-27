@@ -1,17 +1,20 @@
 # Gemini CLI Integration
 
-AgentJam provides Level 5 integration for **Gemini CLI**.
+- **Type**: `cli`
+- **Compatibility Level**: Level 5 (Validation)
+- **Manifest**: `integrations/cli/gemini/integration.yaml`
+- **Output**: `GEMINI.md`
 
----
+## Capabilities
 
-## Configuration & Export
+Instructions, tools, filesystem, terminal, MCP, context files, and validation.
 
-Export workspace rules for Gemini:
+Not supported: skills, agents, workflows, project rules, hooks, lifecycle events.
+
+## Usage
 
 ```bash
-agentjam export --agent software-engineer --harness gemini
+agentjam export --harness gemini
 ```
 
-This generates:
-- `GEMINI.md` at project root
-- `.gemini/skills/` skill instruction modules
+Writes `GEMINI.md` with the active persona and policy matrix. Gemini CLI loads it as its system instruction context.

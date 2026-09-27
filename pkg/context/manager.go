@@ -3,21 +3,23 @@ package context
 import (
 	"fmt"
 	"math"
+	"sort"
 	"strings"
 	"time"
 
 	"github.com/primasdevlabs/agentjam/pkg/core"
+	"github.com/primasdevlabs/agentjam/pkg/parser"
 	"github.com/primasdevlabs/agentjam/pkg/policy"
 )
 
 // ContextOptions configures snapshot generation.
 type ContextOptions struct {
-	TokenBudget   int      `json:"tokenBudget"`
-	ActiveAgent   string   `json:"activeAgent,omitempty"`
-	ActiveStack   string   `json:"activeStack,omitempty"`
-	ActiveSkills  []string `json:"activeSkills,omitempty"`
-	CustomRules   []string `json:"customRules,omitempty"`
-	Environment   string   `json:"environment,omitempty"`
+	TokenBudget  int      `json:"tokenBudget"`
+	ActiveAgent  string   `json:"activeAgent,omitempty"`
+	ActiveStack  string   `json:"activeStack,omitempty"`
+	ActiveSkills []string `json:"activeSkills,omitempty"`
+	CustomRules  []string `json:"customRules,omitempty"`
+	Environment  string   `json:"environment,omitempty"`
 }
 
 // ContextManager manages context assembly, token budget estimation, and snapshot generation.
@@ -51,6 +53,15 @@ func (cm *ContextManager) BuildContextSnapshot(opts ContextOptions) core.Context
 		opts.TokenBudget = 128000
 	}
 
+	// Workspace config fills in unset defaults.
+	cfg, _ := parser.LoadWorkspaceConfig(cm.workspaceRoot)
+	if opts.ActiveAgent == "" {
+		opts.ActiveAgent = cfg.DefaultAgent
+	}
+	if opts.ActiveStack == "" {
+		opts.ActiveStack = cfg.Stack
+	}
+
 	policies := cm.policyEngine.GetPolicies()
 	var sb strings.Builder
 
@@ -76,11 +87,19 @@ func (cm *ContextManager) BuildContextSnapshot(opts ContextOptions) core.Context
 		for _, skill := range opts.ActiveSkills {
 			sb.WriteString(fmt.Sprintf("- %s\n", skill))
 		}
+		for _, inst := range cm.loadSkillInstructions(opts.ActiveSkills) {
+			sb.WriteString("\n" + inst)
+		}
 	}
 
 	sb.WriteString(fmt.Sprintf("\n## Enforced Policy Matrix (%d Policies Loaded)\n", len(policies)))
 	for _, p := range policies {
 		sb.WriteString(fmt.Sprintf("- **[%s] %s** (`%s`): %s\n", strings.ToUpper(string(p.Enforcement)), p.Name, p.ID, p.Description))
+	}
+	for _, p := range policies {
+		if strings.TrimSpace(p.Instructions) != "" {
+			sb.WriteString(fmt.Sprintf("\n### Policy: %s\n%s\n", p.Name, strings.TrimSpace(p.Instructions)))
+		}
 	}
 
 	if len(opts.CustomRules) > 0 {
@@ -109,8 +128,40 @@ func (cm *ContextManager) BuildContextSnapshot(opts ContextOptions) core.Context
 		ActiveFiles:        []string{},
 		Timestamp:          time.Now().Format(time.RFC3339),
 		Metadata: map[string]interface{}{
-			"activeAgent": opts.ActiveAgent,
-			"engine":      "Go-Native",
+			"activeAgent":  opts.ActiveAgent,
+			"activeSkills": opts.ActiveSkills,
+			"tokenBudget":  opts.TokenBudget,
+			"engine":       "Go-Native",
 		},
 	}
+}
+
+// loadSkillInstructions resolves active skill names to their instruction
+// files by discovering skill resources in the workspace.
+func (cm *ContextManager) loadSkillInstructions(skillNames []string) []string {
+	wanted := make(map[string]bool, len(skillNames))
+	for _, name := range skillNames {
+		wanted[name] = true
+	}
+
+	instructions := make([]string, 0)
+	for _, res := range parser.DiscoverResources(cm.workspaceRoot) {
+		if res.Type != core.ResourceTypeSkill || !wanted[res.ID] {
+			continue
+		}
+		bundle, err := parser.ParseSkill(res.Path)
+		if err != nil {
+			continue
+		}
+		names := make([]string, 0, len(bundle.Instructions))
+		for name := range bundle.Instructions {
+			names = append(names, name)
+		}
+		sort.Strings(names)
+		for _, name := range names {
+			instructions = append(instructions,
+				fmt.Sprintf("#### Skill `%s` — %s\n%s", res.ID, name, strings.TrimSpace(bundle.Instructions[name])))
+		}
+	}
+	return instructions
 }

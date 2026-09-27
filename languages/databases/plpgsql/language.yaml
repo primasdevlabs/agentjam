@@ -1,0 +1,17 @@
+id: lang-plpgsql
+name: PL/pgSQL
+ecosystem: databases
+aliases: [plpgsql]
+extensions: [.sql, .pgsql]
+
+tooling:
+  package_manager: none
+  linter: sqlfluff
+  formatter: pgformatter
+  type_checker: postgres
+
+framework_precedence:
+  - postgres
+
+documentation:
+  official_site: https://www.postgresql.org/docs/current/plpgsql.html

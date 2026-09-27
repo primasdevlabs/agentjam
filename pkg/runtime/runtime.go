@@ -18,9 +18,9 @@ type AgentJamRuntime struct {
 	toolDispatcher   *dispatcher.ToolDispatcher
 }
 
-// NewRuntime initializes AgentJamRuntime in Go.
+// NewRuntime initializes AgentJamRuntime in Go and loads workspace policies.
 func NewRuntime(projectRoot string, opts dispatcher.ToolDispatcherOptions) *AgentJamRuntime {
-	pe := policy.NewPolicyEngine()
+	pe := policy.NewPolicyEngineFromDir(projectRoot)
 	cm := context.NewContextManager(projectRoot, pe)
 	mm := memory.NewMemoryManager(projectRoot)
 	tm := toolchain.NewToolchainManager(projectRoot)
@@ -34,6 +34,11 @@ func NewRuntime(projectRoot string, opts dispatcher.ToolDispatcherOptions) *Agen
 		toolchainManager: tm,
 		toolDispatcher:   td,
 	}
+}
+
+// RootPath returns the workspace root the runtime was initialized with.
+func (r *AgentJamRuntime) RootPath() string {
+	return r.projectRoot
 }
 
 func (r *AgentJamRuntime) GetPolicyEngine() *policy.PolicyEngine {

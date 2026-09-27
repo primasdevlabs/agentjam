@@ -1,0 +1,41 @@
+name: project-planning
+version: 1.0.0
+type: workflow
+description: Requirements-to-plan workflow converting stakeholder goals into scoped milestones, acceptance criteria, and sequenced work items.
+mode: multi-agent
+
+agents:
+  - product-manager
+  - architect
+
+skills:
+  - requirements-analysis
+  - architecture
+  - design-discovery
+
+steps:
+  - id: step-1
+    name: gather-requirements
+    agent: product-manager
+    description: Collect stakeholder goals and translate them into a requirement specification.
+  - id: step-2
+    name: define-acceptance-criteria
+    agent: product-manager
+    description: Write verifiable acceptance criteria and explicit out-of-scope boundaries.
+  - id: step-3
+    name: propose-architecture
+    agent: architect
+    description: Draft the target architecture and technology choices aligned to requirements.
+  - id: step-4
+    name: sequence-milestones
+    agent: product-manager
+    description: Order work items into milestones by value, risk, and dependency.
+
+inputs:
+  - project-requirements
+  - brand-spec
+
+outputs:
+  - requirement-spec
+  - architecture-doc
+  - milestone-plan
